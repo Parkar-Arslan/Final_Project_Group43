@@ -1,15 +1,14 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ComplaintDirectory {
     private List<Complaint> complaintList;
 
-    the ComplaintDirectory() {
+    public ComplaintDirectory() {
         complaintList = new ArrayList<>();
     }
 
-    the Complaint fileComplaint(String complaintId, String details) {
+    public Complaint fileComplaint(String complaintId, String details) {
         Complaint newComplaint = new Complaint(complaintId, details, false);
         complaintList.add(newComplaint);
         return newComplaint;
@@ -19,7 +18,7 @@ public class ComplaintDirectory {
         return complaintList;
     }
 
-    the Complaint getComplaintById(String complaintId) {
+    public Complaint getComplaintById(String complaintId) {
         for (Complaint complaint : complaintList) {
             if (complaint.getComplaintId().equals(complaintId)) {
                 return complaint;
@@ -28,7 +27,7 @@ public class ComplaintDirectory {
         return null; // No complaint found
     }
 
-    public you resolveComplaint(String complaintId) {
+    public void resolveComplaint(String complaintId) {
         for (Complaint complaint : complaintList) {
             if (complaint.getComplaintId().equals(complaintId)) {
                 complaint.setResolved(true);
