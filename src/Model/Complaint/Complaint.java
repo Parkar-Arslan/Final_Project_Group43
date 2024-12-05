@@ -1,4 +1,3 @@
-
 public class Complaint {
     private String complaintId;
     private String details;
@@ -31,7 +30,7 @@ public class Complaint {
         return isResolved;
     }
 
-    public you setResolved(boolean resolved) {
+    public void setResolved(boolean resolved) {
         isResolved = resolved;
     }
 }

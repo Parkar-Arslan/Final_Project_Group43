@@ -1,15 +1,16 @@
-
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TrashCollectionDirectory {
     private List<TrashCollection> collectionList;
 
-    public TrashCollectionDirectory() {
+     TrashCollectionDirectory() {
         collectionList = new ArrayList<>();
     }
+     
 
-    public TrashCollection addCollection(String collectionId, String location, Date collectionDate, int weight) {
+     TrashCollection addCollection(String collectionId, String location,Date collectionDate, int weight) {
         TrashCollection newCollection = new TrashCollection(collectionId, location, collectionDate, weight);
         collectionList.add(newCollection);
         return newCollection;
@@ -19,7 +20,7 @@ public class TrashCollectionDirectory {
         return collectionList;
     }
 
-    public TrashCollection findCollectionById(String collectionId) {
+     TrashCollection findCollectionById(String collectionId) {
         for (TrashCollection collection : collectionList) {
             if (collection.getCollectionId().equals(collectionId)) {
                 return collection;
