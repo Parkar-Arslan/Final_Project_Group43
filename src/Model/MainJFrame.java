@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package UI;
+package Model;
 
 /**
  *
  * @author tawde
  */
-public class GarbageCollectionJPanel extends javax.swing.JPanel {
+public class MainJFrame extends javax.swing.JPanel {
 
     /**
      * Creates new form GarbageCollectionJPanel
      */
-    public GarbageCollectionJPanel() {
+    public MainJFrame() {
         initComponents();
     }
 
