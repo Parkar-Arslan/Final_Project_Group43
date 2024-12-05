@@ -1,13 +1,15 @@
-
+package Model.Admin;
 public class Admin {
     private String adminId;
     private String name;
     private String department;
+    private String password;  // Add password field
 
-    public Admin(String adminId, String name, String department) {
+    public Admin(String adminId, String name, String department, String password) {
         this.adminId = adminId;
         this.name = name;
         this.department = department;
+        this.password = password;  // Store the password
     }
 
     // Getters and Setters
@@ -33,5 +35,13 @@ public class Admin {
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

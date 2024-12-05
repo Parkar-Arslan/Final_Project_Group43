@@ -4,6 +4,8 @@
  */
 package UI;
 
+import Model.Admin.Admin;
+import Model.Admin.AdminDirectory;
 /**
  *
  * @author tawde
@@ -117,6 +119,28 @@ public class AdminLoginJPanel extends javax.swing.JPanel {
 
     private void btnAdminSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminSubmitActionPerformed
         // TODO add your handling code here:
+    // Get the admin ID and password from the text fields
+    String adminId = jTextFieldAdminID.getText();
+    String password = jTextFieldAdminPassword.getText();
+
+    // Check if the admin ID and password are entered
+    if (adminId.isEmpty() || password.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please enter both Admin ID and Password", "Validation Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Find the admin by admin ID
+    AdminDirectory adminDirectory = new AdminDirectory(); // Assuming you have a way to access this object
+    Admin admin = adminDirectory.findAdminById(adminId);
+
+    // Check if the admin exists and validate the password
+    if (admin != null && password.equals("adminPassword")) {  // Replace "adminPassword" with actual password logic
+        javax.swing.JOptionPane.showMessageDialog(this, "Login Successful", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        // Proceed to the next screen (e.g., Admin Dashboard)
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this, "Invalid Admin ID or Password", "Login Failed", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+    
     }//GEN-LAST:event_btnAdminSubmitActionPerformed
 
     private void jTextFieldAdminPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAdminPasswordActionPerformed
