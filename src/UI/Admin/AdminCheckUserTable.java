@@ -46,7 +46,7 @@ public class AdminCheckUserTable extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "User ID", "User Name", "User Address", "No of Complains Raised"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

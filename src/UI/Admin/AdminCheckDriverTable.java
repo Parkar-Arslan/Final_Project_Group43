@@ -46,7 +46,7 @@ public class AdminCheckDriverTable extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Driver ID", "Title 2", "Title 3", "Title 4"
+                "Driver ID", "Driver Name", "Truck", "Driver Shift"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
