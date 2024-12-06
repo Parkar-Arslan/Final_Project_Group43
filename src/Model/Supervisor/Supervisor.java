@@ -10,7 +10,6 @@ package Model.Supervisor;
  */
 
 
-
 public class Supervisor {
     private String supervisorId;
     private String name;
