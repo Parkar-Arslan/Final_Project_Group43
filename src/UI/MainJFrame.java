@@ -39,7 +39,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }
     
     private void initializeSupervisorData() {
-        supervisorDirectory.addSupervisor("SV001", "Alice Johnson","sup1");
+        supervisorDirectory.addSupervisor("s1", "s1","s1");
         supervisorDirectory.addSupervisor("SV002", "Bob Smith","sup2");
         // Add more supervisors as needed
     }
@@ -91,7 +91,7 @@ public class MainJFrame extends javax.swing.JFrame {
         btnSupervisorClick.setBackground(new java.awt.Color(181, 143, 120));
         btnSupervisorClick.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSupervisorClick.setForeground(new java.awt.Color(255, 255, 255));
-        btnSupervisorClick.setText("Click Here");
+        btnSupervisorClick.setText("Supervisor");
         btnSupervisorClick.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSupervisorClickActionPerformed(evt);
@@ -132,7 +132,7 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +153,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnSupervisorClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupervisorClickActionPerformed
        
             
-        SupervisorLoginJPanel SL = new SupervisorLoginJPanel();
+        SupervisorLoginJPanel SL = new SupervisorLoginJPanel(userProcessContainer,business ,supervisorDirectory);
         userProcessContainer.add("SupervisorLoginJPanel", SL);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);

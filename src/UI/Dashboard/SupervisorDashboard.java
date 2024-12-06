@@ -4,6 +4,11 @@
  */
 package UI.Dashboard;
 
+import Model.Business.Business;
+import Model.Supervisor.Supervisor;
+import Model.Supervisor.SupervisorDirectory;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tawde
@@ -13,7 +18,7 @@ public class SupervisorDashboard extends javax.swing.JPanel {
     /**
      * Creates new form SupervisorDashboard
      */
-    public SupervisorDashboard() {
+    public SupervisorDashboard(JPanel userProcessContainer, Business business, Supervisor authenticatedSupervisor, SupervisorDirectory supervisorDirectory) {
         initComponents();
     }
 
