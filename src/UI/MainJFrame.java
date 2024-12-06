@@ -5,6 +5,7 @@
 package UI;
 
 import Model.Business.Business;
+import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.TruckDirectory;
 
 /**
@@ -14,7 +15,7 @@ import Model.Truck.TruckDirectory;
 public class MainJFrame extends javax.swing.JFrame {
     Business business;
     TruckDirectory truckDirectory;
-    
+    SupervisorDirectory supervisorDirectory;
     /**
      * Creates new form MainJFrame
      */
@@ -23,13 +24,19 @@ public class MainJFrame extends javax.swing.JFrame {
         business = new Business();
         truckDirectory = business.getTruckDirectory();
         initializeTruckData();
-                
+        initializeSupervisorData();         
     }
     
     private void initializeTruckData() {
         truckDirectory.addTruck("TR001", "Garbage Truck Small", 1000);
         truckDirectory.addTruck("TR002", "Garbage Truck Medium", 2000);
         truckDirectory.addTruck("TR003", "Garbage Truck Large", 3000);
+    }
+    
+    private void initializeSupervisorData() {
+        supervisorDirectory.addSupervisor("SV001", "Alice Johnson");
+        supervisorDirectory.addSupervisor("SV002", "Bob Smith");
+        // Add more supervisors as needed
     }
 
     /**
