@@ -7,18 +7,30 @@ package UI.Dashboard;
 import Model.Business.Business;
 import Model.Supervisor.Supervisor;
 import Model.Supervisor.SupervisorDirectory;
+import UI.Supervisor.SupervisorAssignDriver;
+import UI.Supervisor.SupervisorAssignTruck;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
  *
- * @author tawde
+ * @author arslanparkar
  */
 public class SupervisorDashboard extends javax.swing.JPanel {
+    
+    private JPanel userProcessContainer;
+    private Supervisor authenticatedSupervisor;
+    private SupervisorDirectory supervisorDirectory;
+    private Business business;
 
     /**
      * Creates new form SupervisorDashboard
      */
     public SupervisorDashboard(JPanel userProcessContainer, Business business, Supervisor authenticatedSupervisor, SupervisorDirectory supervisorDirectory) {
+        this.userProcessContainer = userProcessContainer;
+        this.business = business;
+        this.authenticatedSupervisor = authenticatedSupervisor;
+        this.supervisorDirectory = supervisorDirectory;
         initComponents();
     }
 
@@ -141,10 +153,17 @@ public class SupervisorDashboard extends javax.swing.JPanel {
 
     private void btnAssignTruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignTruckActionPerformed
         // TODO add your handling code here:
+        SupervisorAssignTruck assignTruckPanel = new SupervisorAssignTruck(userProcessContainer, business, authenticatedSupervisor, supervisorDirectory);
+        userProcessContainer.add("SupervisorAssignTruck", assignTruckPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAssignTruckActionPerformed
 
     private void btnAssignDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignDriverActionPerformed
-
+        SupervisorAssignDriver assignDriverPanel = new SupervisorAssignDriver(userProcessContainer, business, authenticatedSupervisor, supervisorDirectory);
+        userProcessContainer.add("SupervisorAssignDriver", assignDriverPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAssignDriverActionPerformed
 
     private void btnAssignRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignRouteActionPerformed

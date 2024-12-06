@@ -1,30 +1,24 @@
+package Model.Driver;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DriverDirectory {
-    private List<Driver> driverList;
+    private List<Driver> drivers;
 
     public DriverDirectory() {
-        driverList = new ArrayList<>();
+        drivers = new ArrayList<>();
     }
 
-    public Driver createDriver(String driverId, String name, String licenseNumber) {
+    public Driver addDriver(String driverId, String name, String licenseNumber) {
         Driver newDriver = new Driver(driverId, name, licenseNumber);
-        driverList.add(newDriver);
+        drivers.add(newDriver);
         return newDriver;
     }
 
     public List<Driver> getDrivers() {
-        return driverList;
+        return drivers;
     }
 
-    public Driver findDriverById(String driverId) {
-        for (Driver driver : driverList) {
-            if (driver.getDriverId().equals(driverId)) {
-                return driver;
-            }
-        }
-        return null; // No driver found
-    }
+    // Additional methods like find, delete, update could be added here
 }

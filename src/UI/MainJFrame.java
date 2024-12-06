@@ -5,6 +5,7 @@
 package UI;
 
 import Model.Business.Business;
+import Model.Driver.DriverDirectory;
 import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.TruckDirectory;
 import UI.Dashboard.SupervisorDashboard;
@@ -20,6 +21,7 @@ public class MainJFrame extends javax.swing.JFrame {
     Business business;
     TruckDirectory truckDirectory;
     SupervisorDirectory supervisorDirectory;
+    DriverDirectory driverDirectory; 
     /**
      * Creates new form MainJFrame
      */
@@ -28,8 +30,10 @@ public class MainJFrame extends javax.swing.JFrame {
         business = new Business();
         truckDirectory = business.getTruckDirectory();
         supervisorDirectory = business.getSupervisorDirectory();
+        driverDirectory = new DriverDirectory();  
         initializeTruckData();
-        initializeSupervisorData();         
+        initializeSupervisorData();
+        initializeDriverData(); 
     }
     
     private void initializeTruckData() {
@@ -44,6 +48,11 @@ public class MainJFrame extends javax.swing.JFrame {
         // Add more supervisors as needed
     }
 
+    private void initializeDriverData() {
+        driverDirectory.addDriver("DR001", "John Doe", "L1234567890");
+        driverDirectory.addDriver("DR002", "Jane Smith", "L0987654321");
+        // Add more drivers as needed
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,7 +75,7 @@ public class MainJFrame extends javax.swing.JFrame {
         splitPane.setDividerLocation(150);
         splitPane.setOpaque(false);
 
-        controlPanel.setBackground(new java.awt.Color(240, 240, 240));
+        controlPanel.setBackground(new java.awt.Color(54, 116, 99));
 
         btnAdminClick.setBackground(new java.awt.Color(181, 143, 120));
         btnAdminClick.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -124,7 +133,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         splitPane.setLeftComponent(controlPanel);
 
-        userProcessContainer.setBackground(new java.awt.Color(240, 240, 240));
+        userProcessContainer.setBackground(new java.awt.Color(54, 116, 99));
         userProcessContainer.setLayout(new java.awt.CardLayout());
         splitPane.setRightComponent(userProcessContainer);
 

@@ -4,6 +4,11 @@
  */
 package UI.Supervisor;
 
+import Model.Business.Business;
+import Model.Supervisor.Supervisor;
+import Model.Supervisor.SupervisorDirectory;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tawde
@@ -13,7 +18,7 @@ public class SupervisorAssignDriver extends javax.swing.JPanel {
     /**
      * Creates new form SupervisorAssignDriver
      */
-    public SupervisorAssignDriver() {
+    public SupervisorAssignDriver(JPanel userProcessContainer, Business business, Supervisor authenticatedSupervisor, SupervisorDirectory supervisorDirectory) {
         initComponents();
     }
 
