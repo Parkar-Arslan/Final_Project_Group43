@@ -22,7 +22,14 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         business = new Business();
         truckDirectory = business.getTruckDirectory();
+        initializeTruckData();
                 
+    }
+    
+    private void initializeTruckData() {
+        truckDirectory.addTruck("TR001", "Garbage Truck Small", 1000);
+        truckDirectory.addTruck("TR002", "Garbage Truck Medium", 2000);
+        truckDirectory.addTruck("TR003", "Garbage Truck Large", 3000);
     }
 
     /**
