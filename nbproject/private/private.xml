@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/UI/Supervisor/SupervisorAssignTruck.java</file>
-            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/Model/Complaint/Complaint.java</file>
-            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/UI/Dashboard/SupervisorDashboard.java</file>
-            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/UI/Supervisor/SupervisorAssignDriver.java</file>
-            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/UI/Supervisor/SupervisorCheckTrashCollection.java</file>
-            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/Model/Complaint/ComplaintDirectory.java</file>
-            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/Model/Trash/TrashCollection.java</file>
-            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/UI/Supervisor/SupervisorAssignRoute.java</file>
+            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/UI/MainJFrame.java</file>
+            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/Model/Truck/Truck.java</file>
+            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/Model/Truck/TruckDirectory.java</file>
+            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/Model/Truck/NewClass.java</file>
         </group>
     </open-files>
 </project-private>

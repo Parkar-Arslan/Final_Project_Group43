@@ -1,3 +1,4 @@
+package Model.Truck;
 
 public class Truck {
     private String truckId;

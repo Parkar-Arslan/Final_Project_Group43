@@ -1,9 +1,10 @@
+package Model.Truck;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TruckDirectory {
-    private List<Truck> truckList;
+    private  List<Truck> truckList;
 
     public TruckDirectory() {
         truckList = new ArrayList<>();

@@ -2,19 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Model;
+package UI;
+
+import Model.Business.Business;
+import Model.Truck.TruckDirectory;
 
 /**
  *
  * @author arslanparkar
  */
 public class MainJFrame extends javax.swing.JFrame {
-
+    Business business;
+    TruckDirectory truckDirectory;
+    
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+        business = new Business();
+        truckDirectory = business.getTruckDirectory();
+                
     }
 
     /**
