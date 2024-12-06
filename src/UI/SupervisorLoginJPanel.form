@@ -41,8 +41,8 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextFieldSupervisorID" max="32767" attributes="0"/>
-                          <Component id="jTextFieldSupervisorPassword" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="txtSupid" max="32767" attributes="0"/>
+                          <Component id="txtSuppass" min="-2" pref="140" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
                   </Group>
@@ -58,12 +58,12 @@
               <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblSupervisorLogin" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldSupervisorID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSupid" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblSupervisorPassword" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldSupervisorPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSuppass" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
               <Component id="btnSupervisorSubmit" min="-2" max="-2" attributes="0"/>
@@ -73,14 +73,14 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="jTextFieldSupervisorPassword">
+    <Component class="javax.swing.JTextField" name="txtSuppass">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldSupervisorPasswordActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSuppassActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldSupervisorID">
+    <Component class="javax.swing.JTextField" name="txtSupid">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldSupervisorIDActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSupidActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblSupervisorLogin">

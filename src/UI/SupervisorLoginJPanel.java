@@ -4,18 +4,36 @@
  */
 package UI;
 
+import Model.Business.Business;
+import Model.Supervisor.Supervisor;
+import Model.Supervisor.SupervisorDirectory;
+import UI.Dashboard.SupervisorDashboard;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tawde
  */
 public class SupervisorLoginJPanel extends javax.swing.JPanel {
+    
+    Business  business;
+    private SupervisorDirectory supervisorDirectory;
+    private JPanel userProcessContainer;
 
     /**
      * Creates new form SupervisorLoginJPanel
      */
-    public SupervisorLoginJPanel() {
+    public SupervisorLoginJPanel(JPanel userProcessContainer,Business business ,SupervisorDirectory supervisorDirectory1) {
         initComponents();
+        this.business = business;
+        this.userProcessContainer=userProcessContainer;
+        this.supervisorDirectory = supervisorDirectory;
+        supervisorDirectory = business.getSupervisorDirectory();
     }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,8 +44,8 @@ public class SupervisorLoginJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextFieldSupervisorPassword = new javax.swing.JTextField();
-        jTextFieldSupervisorID = new javax.swing.JTextField();
+        txtSuppass = new javax.swing.JTextField();
+        txtSupid = new javax.swing.JTextField();
         lblSupervisorLogin = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         lblSupervisorPassword = new javax.swing.JLabel();
@@ -35,15 +53,15 @@ public class SupervisorLoginJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(54, 116, 99));
 
-        jTextFieldSupervisorPassword.addActionListener(new java.awt.event.ActionListener() {
+        txtSuppass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldSupervisorPasswordActionPerformed(evt);
+                txtSuppassActionPerformed(evt);
             }
         });
 
-        jTextFieldSupervisorID.addActionListener(new java.awt.event.ActionListener() {
+        txtSupid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldSupervisorIDActionPerformed(evt);
+                txtSupidActionPerformed(evt);
             }
         });
 
@@ -90,8 +108,8 @@ public class SupervisorLoginJPanel extends javax.swing.JPanel {
                                 .addComponent(lblSupervisorPassword)
                                 .addGap(51, 51, 51)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldSupervisorID)
-                            .addComponent(jTextFieldSupervisorPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtSupid)
+                            .addComponent(txtSuppass, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(149, 149, 149))))
         );
         layout.setVerticalGroup(
@@ -102,36 +120,60 @@ public class SupervisorLoginJPanel extends javax.swing.JPanel {
                 .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSupervisorLogin)
-                    .addComponent(jTextFieldSupervisorID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSupid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSupervisorPassword)
-                    .addComponent(jTextFieldSupervisorPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSuppass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64)
                 .addComponent(btnSupervisorSubmit)
                 .addContainerGap(88, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldSupervisorPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSupervisorPasswordActionPerformed
+    private void txtSuppassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSuppassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldSupervisorPasswordActionPerformed
+    }//GEN-LAST:event_txtSuppassActionPerformed
 
-    private void jTextFieldSupervisorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSupervisorIDActionPerformed
+    private void txtSupidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSupidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldSupervisorIDActionPerformed
+    }//GEN-LAST:event_txtSupidActionPerformed
 
     private void btnSupervisorSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupervisorSubmitActionPerformed
         // TODO add your handling code here:
+        // Retrieve the user input
+    String supervisorId = txtSupid.getText().trim();
+    String password = txtSuppass.getText().trim();
+
+    // Check if the credentials are correct
+    if (supervisorDirectory != null) {
+        Supervisor authenticatedSupervisor = supervisorDirectory.authenticateSupervisor(supervisorId, password);
+        if (authenticatedSupervisor != null) {
+            // Login successful
+            JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            
+            // Assuming you have access to userProcessContainer from here, otherwise you need to pass it or get it from the parent JFrame
+            SupervisorDashboard dashboard = new SupervisorDashboard(userProcessContainer,business ,authenticatedSupervisor, supervisorDirectory);
+            userProcessContainer.add("SupervisorDashboard", dashboard);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } else {
+            // Login failed
+            JOptionPane.showMessageDialog(this, "Invalid supervisor ID or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
+        // If supervisorDirectory is not initialized
+        JOptionPane.showMessageDialog(this, "Login system not available.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnSupervisorSubmitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSupervisorSubmit;
-    private javax.swing.JTextField jTextFieldSupervisorID;
-    private javax.swing.JTextField jTextFieldSupervisorPassword;
     private javax.swing.JLabel lblSupervisorLogin;
     private javax.swing.JLabel lblSupervisorPassword;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTextField txtSupid;
+    private javax.swing.JTextField txtSuppass;
     // End of variables declaration//GEN-END:variables
 }
