@@ -23,6 +23,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         business = new Business();
         truckDirectory = business.getTruckDirectory();
+        supervisorDirectory = business.getSupervisorDirectory();
         initializeTruckData();
         initializeSupervisorData();         
     }

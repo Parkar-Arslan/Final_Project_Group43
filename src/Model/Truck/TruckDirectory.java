@@ -3,29 +3,24 @@ package Model.Truck;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Manages a directory of trucks.
+ */
 public class TruckDirectory {
-    private  List<Truck> truckList;
+    private List<Truck> trucks;
 
     public TruckDirectory() {
-        truckList = new ArrayList<>();
+        trucks = new ArrayList<>();
     }
 
-    public Truck addTruck(String truckId, String model, int capacity) {
-        Truck newTruck = new Truck(truckId, model, capacity);
-        truckList.add(newTruck);
-        return newTruck;
+    public void addTruck(String truckId, String model, int capacity) {
+        Truck truck = new Truck(truckId, model, capacity);
+        trucks.add(truck);
     }
 
     public List<Truck> getTrucks() {
-        return truckList;
+        return trucks;
     }
 
-    public Truck findTruckById(String truckId) {
-        for (Truck truck : truckList) {
-            if (truck.getTruckId().equals(truckId)) {
-                return truck;
-            }
-        }
-        return null; // No truck found
-    }
+    // Additional methods to find, update, and delete trucks can be added here.
 }
