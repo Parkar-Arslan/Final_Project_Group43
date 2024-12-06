@@ -7,6 +7,7 @@ package UI;
 import Model.Business.Business;
 import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.TruckDirectory;
+import UI.Dashboard.SupervisorDashboard;
 import UI.Supervisor.SupervisorAssignDriver;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -38,8 +39,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }
     
     private void initializeSupervisorData() {
-        supervisorDirectory.addSupervisor("SV001", "Alice Johnson");
-        supervisorDirectory.addSupervisor("SV002", "Bob Smith");
+        supervisorDirectory.addSupervisor("SV001", "Alice Johnson","sup1");
+        supervisorDirectory.addSupervisor("SV002", "Bob Smith","sup2");
         // Add more supervisors as needed
     }
 
@@ -152,8 +153,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnSupervisorClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupervisorClickActionPerformed
        
             
-        SupervisorAssignDriver SA = new SupervisorAssignDriver();
-        userProcessContainer.add("SupervisorAssignDriver", SA);
+        SupervisorLoginJPanel SL = new SupervisorLoginJPanel();
+        userProcessContainer.add("SupervisorLoginJPanel", SL);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnSupervisorClickActionPerformed

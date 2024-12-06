@@ -4,18 +4,30 @@
  */
 package UI;
 
+import Model.Business.Business;
+import Model.Supervisor.Supervisor;
+import Model.Supervisor.SupervisorDirectory;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author tawde
  */
 public class SupervisorLoginJPanel extends javax.swing.JPanel {
+    
+    Business  business;
+    SupervisorDirectory supervisorDirectory;
 
     /**
      * Creates new form SupervisorLoginJPanel
      */
     public SupervisorLoginJPanel() {
         initComponents();
+        business = new Business();
+        supervisorDirectory = business.getSupervisorDirectory();
     }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,6 +135,19 @@ public class SupervisorLoginJPanel extends javax.swing.JPanel {
 
     private void btnSupervisorSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupervisorSubmitActionPerformed
         // TODO add your handling code here:
+        
+        String supervisorId = jTextFieldSupervisorID.getText().trim();
+        String password = jTextFieldSupervisorPassword.getText().trim();
+    
+    // Assuming supervisorDirectory is accessible here, e.g., passed via constructor
+    Supervisor validSupervisor = supervisorDirectory.authenticateSupervisor(supervisorId, password);
+    
+    if (validSupervisor != null) {
+        JOptionPane.showMessageDialog(this, "Login successful", "Success", JOptionPane.INFORMATION_MESSAGE);
+        // Proceed to next panel or operation post successful login
+    } else {
+        JOptionPane.showMessageDialog(this, "Invalid ID or Password", "Login Failed", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnSupervisorSubmitActionPerformed
 
 
