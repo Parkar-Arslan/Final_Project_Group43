@@ -7,6 +7,9 @@ package UI;
 import Model.Business.Business;
 import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.TruckDirectory;
+import UI.Supervisor.SupervisorAssignDriver;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -49,47 +52,25 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainJpanel = new javax.swing.JPanel();
-        btnSupervisorClick = new javax.swing.JButton();
-        lblAdminLogin = new javax.swing.JLabel();
-        lblTitle = new javax.swing.JLabel();
-        lblSupervisorLogin = new javax.swing.JLabel();
+        splitPane = new javax.swing.JSplitPane();
+        controlPanel = new javax.swing.JPanel();
         btnAdminClick = new javax.swing.JButton();
         btnUserClick = new javax.swing.JButton();
-        lblUserLogin = new javax.swing.JLabel();
+        btnSupervisorClick = new javax.swing.JButton();
+        userProcessContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(54, 116, 99));
 
-        mainJpanel.setBackground(new java.awt.Color(54, 116, 99));
+        splitPane.setDividerLocation(150);
+        splitPane.setOpaque(false);
 
-        btnSupervisorClick.setBackground(new java.awt.Color(181, 143, 120));
-        btnSupervisorClick.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnSupervisorClick.setForeground(new java.awt.Color(255, 255, 255));
-        btnSupervisorClick.setText("Click Here");
-        btnSupervisorClick.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSupervisorClickActionPerformed(evt);
-            }
-        });
-
-        lblAdminLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblAdminLogin.setForeground(new java.awt.Color(255, 255, 255));
-        lblAdminLogin.setText("Admin Login");
-
-        lblTitle.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("Garbage Collection & Tracking");
-
-        lblSupervisorLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblSupervisorLogin.setForeground(new java.awt.Color(255, 255, 255));
-        lblSupervisorLogin.setText("Supervisor Login");
+        controlPanel.setBackground(new java.awt.Color(240, 240, 240));
 
         btnAdminClick.setBackground(new java.awt.Color(181, 143, 120));
         btnAdminClick.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAdminClick.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdminClick.setText("Click Here");
+        btnAdminClick.setText("Admin Login");
         btnAdminClick.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdminClickActionPerformed(evt);
@@ -106,71 +87,59 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        lblUserLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblUserLogin.setForeground(new java.awt.Color(255, 255, 255));
-        lblUserLogin.setText("User Login");
+        btnSupervisorClick.setBackground(new java.awt.Color(181, 143, 120));
+        btnSupervisorClick.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnSupervisorClick.setForeground(new java.awt.Color(255, 255, 255));
+        btnSupervisorClick.setText("Click Here");
+        btnSupervisorClick.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupervisorClickActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout mainJpanelLayout = new javax.swing.GroupLayout(mainJpanel);
-        mainJpanel.setLayout(mainJpanelLayout);
-        mainJpanelLayout.setHorizontalGroup(
-            mainJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainJpanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(mainJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAdminLogin)
-                    .addComponent(lblSupervisorLogin)
-                    .addComponent(lblUserLogin))
-                .addGap(18, 18, 18)
-                .addGroup(mainJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
+        controlPanel.setLayout(controlPanelLayout);
+        controlPanelLayout.setHorizontalGroup(
+            controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(controlPanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdminClick, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSupervisorClick, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUserClick, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(161, 161, 161))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
-        mainJpanelLayout.setVerticalGroup(
-            mainJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainJpanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lblTitle)
-                .addGap(89, 89, 89)
-                .addGroup(mainJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdminClick)
-                    .addComponent(lblAdminLogin))
+        controlPanelLayout.setVerticalGroup(
+            controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(controlPanelLayout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(btnAdminClick)
                 .addGap(18, 18, 18)
-                .addGroup(mainJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSupervisorClick)
-                    .addComponent(lblSupervisorLogin))
+                .addComponent(btnSupervisorClick)
                 .addGap(18, 18, 18)
-                .addGroup(mainJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUserClick)
-                    .addComponent(lblUserLogin))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addComponent(btnUserClick)
+                .addContainerGap(351, Short.MAX_VALUE))
         );
+
+        splitPane.setLeftComponent(controlPanel);
+
+        userProcessContainer.setBackground(new java.awt.Color(240, 240, 240));
+        userProcessContainer.setLayout(new java.awt.CardLayout());
+        splitPane.setRightComponent(userProcessContainer);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(300, Short.MAX_VALUE)
-                .addComponent(mainJpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(200, 200, 200))
+            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(mainJpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(224, Short.MAX_VALUE))
+            .addComponent(splitPane)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSupervisorClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupervisorClickActionPerformed
-
-    }//GEN-LAST:event_btnSupervisorClickActionPerformed
 
     private void btnAdminClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminClickActionPerformed
         // TODO add your handling code here:
@@ -179,6 +148,15 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnUserClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserClickActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUserClickActionPerformed
+
+    private void btnSupervisorClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupervisorClickActionPerformed
+       
+            
+        SupervisorAssignDriver SA = new SupervisorAssignDriver();
+        userProcessContainer.add("SupervisorAssignDriver", SA);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnSupervisorClickActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,10 +197,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnAdminClick;
     private javax.swing.JButton btnSupervisorClick;
     private javax.swing.JButton btnUserClick;
-    private javax.swing.JLabel lblAdminLogin;
-    private javax.swing.JLabel lblSupervisorLogin;
-    private javax.swing.JLabel lblTitle;
-    private javax.swing.JLabel lblUserLogin;
-    private javax.swing.JPanel mainJpanel;
+    private javax.swing.JPanel controlPanel;
+    private javax.swing.JSplitPane splitPane;
+    private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
 }
