@@ -10,15 +10,26 @@ public class DriverDirectory {
         drivers = new ArrayList<>();
     }
 
-    public Driver addDriver(String driverId, String name, String licenseNumber) {
-        Driver newDriver = new Driver(driverId, name, licenseNumber);
-        drivers.add(newDriver);
-        return newDriver;
+    public void addDriver(String driverId, String name) {
+        Driver driver = new Driver(driverId, name);
+        drivers.add(driver);
+    }
+    
+     public void addDriver(String driverId, String name, String licenseNumber) {
+        Driver driver = new Driver(driverId, name, licenseNumber);
+        drivers.add(driver);
     }
 
     public List<Driver> getDrivers() {
         return drivers;
     }
 
-    // Additional methods like find, delete, update could be added here
+    public Driver findDriverById(String driverId) {
+        for (Driver driver : drivers) {
+            if (driver.getDriverId().equals(driverId)) {
+                return driver;
+            }
+        }
+        return null;
+    }
 }
