@@ -4,18 +4,51 @@
  */
 package UI.Supervisor;
 
+import Model.Business.Business;
+import Model.Driver.Driver;
+import Model.Supervisor.Supervisor;
+import Model.Supervisor.SupervisorDirectory;
+import Model.Truck.Truck;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tawde
  */
 public class SupervisorAssignTruck extends javax.swing.JPanel {
 
+    private JPanel userProcessContainer;
+    private Supervisor authenticatedSupervisor;
+    private SupervisorDirectory supervisorDirectory;
+    private Business business;
+    
+
     /**
      * Creates new form SupervisorAssignTruck
      */
-    public SupervisorAssignTruck() {
-        initComponents();
+    public SupervisorAssignTruck(JPanel userProcessContainer, Business business, Supervisor authenticatedSupervisor, SupervisorDirectory supervisorDirectory) {
+        this.userProcessContainer = userProcessContainer;
+    this.business = business;
+    this.authenticatedSupervisor = authenticatedSupervisor;
+    this.supervisorDirectory = supervisorDirectory;
+    initComponents();  // Ensure that this initializes the combo boxes.
+   
+    initializeComboBoxes();  // Now call this after the combo boxes are initialized
+      
     }
+    
+    public void initializeComboBoxes() {
+    // Assuming you have methods getAvailableTrucks() and getAvailableDrivers()
+    // that return lists of trucks and drivers.
+    for (Truck truck : business.getTruckDirectory().getAvailableTrucks()) {
+        comboTruck.addItem(truck.getTruckId() + " - " + truck.getDescription());
+    }
+    for (Driver driver : business.getDriverDirectory().getAvailableDrivers()) {
+        comboDriver.addItem(driver.getDriverId() + " - " + driver.getName());
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,19 +59,110 @@ public class SupervisorAssignTruck extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblChooseTruck = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
+        lblChooseDriver = new javax.swing.JLabel();
+        btnAssignTruck = new javax.swing.JButton();
+        comboTruck = new javax.swing.JComboBox<>();
+        comboDriver = new javax.swing.JComboBox<>();
+
+        setBackground(new java.awt.Color(54, 116, 99));
+
+        lblChooseTruck.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblChooseTruck.setForeground(new java.awt.Color(255, 255, 255));
+        lblChooseTruck.setText("Choose Truck");
+
+        lblTitle.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("Assign Truck");
+
+        lblChooseDriver.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblChooseDriver.setForeground(new java.awt.Color(255, 255, 255));
+        lblChooseDriver.setText("Choose Driver");
+
+        btnAssignTruck.setBackground(new java.awt.Color(181, 143, 120));
+        btnAssignTruck.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAssignTruck.setForeground(new java.awt.Color(255, 255, 255));
+        btnAssignTruck.setText("Set");
+        btnAssignTruck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignTruckActionPerformed(evt);
+            }
+        });
+
+        comboTruck.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        comboDriver.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(147, 147, 147)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblChooseDriver)
+                    .addComponent(lblChooseTruck))
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboTruck, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAssignTruck, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(240, 240, 240))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblTitle)
+                .addGap(89, 89, 89)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblChooseTruck)
+                    .addComponent(comboTruck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblChooseDriver)
+                    .addComponent(comboDriver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(110, 110, 110)
+                .addComponent(btnAssignTruck)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAssignTruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignTruckActionPerformed
+        // TODO add your handling code here:
+        String selectedTruckInfo = (String) comboTruck.getSelectedItem();
+    String selectedDriverInfo = (String) comboDriver.getSelectedItem();
+    
+    // Extract truck and driver ID from the selection
+    String truckId = selectedTruckInfo.split(" - ")[0];
+    String driverId = selectedDriverInfo.split(" - ")[0];
+    
+    // Find Truck and Driver objects by their IDs
+    Truck assignedTruck = business.getTruckDirectory().findTruckById(truckId);
+    Driver assignedDriver = business.getDriverDirectory().findDriverById(driverId);
+    
+    if (assignedTruck != null && assignedDriver != null) {
+        // Example assignment logic, assuming you have such methods
+        assignedTruck.setDriver(assignedDriver);
+        JOptionPane.showMessageDialog(this, "Truck " + truckId + " assigned to driver " + assignedDriver.getName(), "Assignment Successful", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, "Error in assigning truck to driver.", "Assignment Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_btnAssignTruckActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAssignTruck;
+    private javax.swing.JComboBox<String> comboDriver;
+    private javax.swing.JComboBox<String> comboTruck;
+    private javax.swing.JLabel lblChooseDriver;
+    private javax.swing.JLabel lblChooseTruck;
+    private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }
