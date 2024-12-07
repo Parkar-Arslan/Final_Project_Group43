@@ -4,6 +4,7 @@
  */
 package Model.Business;
 
+import Model.Driver.DriverDirectory;
 import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.TruckDirectory;
 import Model.Driver.DriverDirectory;
@@ -15,7 +16,7 @@ public class Business {
     TruckDirectory truckDirectory;
     SupervisorDirectory supervisorDirectory;
     DriverDirectory driverDirectory;
-    
+
     public Business(){
     
         truckDirectory = new TruckDirectory();
@@ -30,9 +31,12 @@ public class Business {
     public SupervisorDirectory getSupervisorDirectory(){
         return supervisorDirectory;
     }
-    
-    public DriverDirectory getDriverDirectory(){
+
+
+    public DriverDirectory getDriverDirectory() {
         return driverDirectory;
     }
+    
+    
 }
 

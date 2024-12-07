@@ -7,18 +7,30 @@ package UI.Dashboard;
 import Model.Business.Business;
 import Model.Supervisor.Supervisor;
 import Model.Supervisor.SupervisorDirectory;
+import UI.Supervisor.SupervisorAssignDriver;
+import UI.Supervisor.SupervisorAssignTruck;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
  *
- * @author tawde
+ * @author arslanparkar
  */
 public class SupervisorDashboard extends javax.swing.JPanel {
+    
+    private JPanel userProcessContainer;
+    private Supervisor authenticatedSupervisor;
+    private SupervisorDirectory supervisorDirectory;
+    private Business business;
 
     /**
      * Creates new form SupervisorDashboard
      */
     public SupervisorDashboard(JPanel userProcessContainer, Business business, Supervisor authenticatedSupervisor, SupervisorDirectory supervisorDirectory) {
+        this.userProcessContainer = userProcessContainer;
+        this.business = business;
+        this.authenticatedSupervisor = authenticatedSupervisor;
+        this.supervisorDirectory = supervisorDirectory;
         initComponents();
     }
 
@@ -37,6 +49,8 @@ public class SupervisorDashboard extends javax.swing.JPanel {
         btnAssignDriver = new javax.swing.JButton();
         btnAssignRoute = new javax.swing.JButton();
         btnCheckUser = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableSupreport = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(54, 116, 99));
 
@@ -95,23 +109,45 @@ public class SupervisorDashboard extends javax.swing.JPanel {
             }
         });
 
+        jTableSupreport.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Driver", "Truck", "Route"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableSupreport);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(btnTotalTrash)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(465, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnCheckUser, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAssignDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAssignTruck, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAssignRoute))
-                .addGap(17, 17, 17))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnTotalTrash)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCheckUser, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAssignDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAssignTruck, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAssignRoute))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAssignDriver, btnAssignRoute, btnAssignTruck, btnCheckUser});
@@ -121,15 +157,18 @@ public class SupervisorDashboard extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblTitle)
-                .addGap(68, 68, 68)
-                .addComponent(btnAssignTruck)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAssignDriver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAssignRoute)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCheckUser)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAssignTruck)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAssignDriver)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAssignRoute)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCheckUser)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(btnTotalTrash)
                 .addGap(17, 17, 17))
         );
@@ -141,10 +180,17 @@ public class SupervisorDashboard extends javax.swing.JPanel {
 
     private void btnAssignTruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignTruckActionPerformed
         // TODO add your handling code here:
+        SupervisorAssignTruck assignTruckPanel = new SupervisorAssignTruck(userProcessContainer, business, authenticatedSupervisor, supervisorDirectory);
+        userProcessContainer.add("SupervisorAssignTruck", assignTruckPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAssignTruckActionPerformed
 
     private void btnAssignDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignDriverActionPerformed
-
+        SupervisorAssignDriver assignDriverPanel = new SupervisorAssignDriver(userProcessContainer, business, authenticatedSupervisor, supervisorDirectory);
+        userProcessContainer.add("SupervisorAssignDriver", assignDriverPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAssignDriverActionPerformed
 
     private void btnAssignRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignRouteActionPerformed
@@ -162,6 +208,8 @@ public class SupervisorDashboard extends javax.swing.JPanel {
     private javax.swing.JButton btnAssignTruck;
     private javax.swing.JButton btnCheckUser;
     private javax.swing.JButton btnTotalTrash;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableSupreport;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }
