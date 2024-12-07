@@ -19,6 +19,11 @@ public class DriverDirectory {
         Driver driver = new Driver(driverId, name, licenseNumber);
         drivers.add(driver);
     }
+     
+    public List<Driver> getAvailableDrivers() {
+        // Simple implementation, returning all drivers
+        return drivers;
+    }
 
     public List<Driver> getDrivers() {
         return drivers;

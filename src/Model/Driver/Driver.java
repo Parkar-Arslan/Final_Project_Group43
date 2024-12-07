@@ -20,6 +20,18 @@ public class Driver {
         this.licenseNumber = licenseNumber;
     }
 
+    public void setDriverId(String driverId) {
+        this.driverId = driverId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAssignedTruck(Truck assignedTruck) {
+        this.assignedTruck = assignedTruck;
+    }
+
     // Getters
     public String getDriverId() {
         return driverId;

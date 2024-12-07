@@ -10,6 +10,7 @@ import Model.Supervisor.Supervisor;
 import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.Truck;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -22,17 +23,19 @@ public class SupervisorAssignTruck extends javax.swing.JPanel {
     private Supervisor authenticatedSupervisor;
     private SupervisorDirectory supervisorDirectory;
     private Business business;
+    
 
     /**
      * Creates new form SupervisorAssignTruck
      */
     public SupervisorAssignTruck(JPanel userProcessContainer, Business business, Supervisor authenticatedSupervisor, SupervisorDirectory supervisorDirectory) {
-         this.userProcessContainer = userProcessContainer;
-        this.business = business;
-        this.authenticatedSupervisor = authenticatedSupervisor;
-        this.supervisorDirectory = supervisorDirectory;
-        initComponents();
-        initializeComboBoxes();
+        this.userProcessContainer = userProcessContainer;
+    this.business = business;
+    this.authenticatedSupervisor = authenticatedSupervisor;
+    this.supervisorDirectory = supervisorDirectory;
+    initComponents();  // Ensure that this initializes the combo boxes.
+   
+    initializeComboBoxes();  // Now call this after the combo boxes are initialized
       
     }
     
@@ -60,8 +63,8 @@ public class SupervisorAssignTruck extends javax.swing.JPanel {
         lblTitle = new javax.swing.JLabel();
         lblChooseDriver = new javax.swing.JLabel();
         btnAssignTruck = new javax.swing.JButton();
-        txtChooseDriver = new javax.swing.JTextField();
-        txtChooseTruck = new javax.swing.JTextField();
+        comboTruck = new javax.swing.JComboBox<>();
+        comboDriver = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(54, 116, 99));
 
@@ -88,17 +91,9 @@ public class SupervisorAssignTruck extends javax.swing.JPanel {
             }
         });
 
-        txtChooseDriver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtChooseDriverActionPerformed(evt);
-            }
-        });
+        comboTruck.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        txtChooseTruck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtChooseTruckActionPerformed(evt);
-            }
-        });
+        comboDriver.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -110,11 +105,11 @@ public class SupervisorAssignTruck extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblChooseDriver)
                     .addComponent(lblChooseTruck))
-                .addGap(55, 55, 55)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtChooseDriver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtChooseTruck, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(146, Short.MAX_VALUE))
+                    .addComponent(comboTruck, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAssignTruck, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -126,16 +121,14 @@ public class SupervisorAssignTruck extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(lblTitle)
                 .addGap(89, 89, 89)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblChooseTruck)
-                            .addComponent(txtChooseTruck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblChooseDriver)
-                        .addGap(12, 12, 12))
-                    .addComponent(txtChooseDriver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(100, 100, 100)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblChooseTruck)
+                    .addComponent(comboTruck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblChooseDriver)
+                    .addComponent(comboDriver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(110, 110, 110)
                 .addComponent(btnAssignTruck)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -143,23 +136,33 @@ public class SupervisorAssignTruck extends javax.swing.JPanel {
 
     private void btnAssignTruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignTruckActionPerformed
         // TODO add your handling code here:
+        String selectedTruckInfo = (String) comboTruck.getSelectedItem();
+    String selectedDriverInfo = (String) comboDriver.getSelectedItem();
+    
+    // Extract truck and driver ID from the selection
+    String truckId = selectedTruckInfo.split(" - ")[0];
+    String driverId = selectedDriverInfo.split(" - ")[0];
+    
+    // Find Truck and Driver objects by their IDs
+    Truck assignedTruck = business.getTruckDirectory().findTruckById(truckId);
+    Driver assignedDriver = business.getDriverDirectory().findDriverById(driverId);
+    
+    if (assignedTruck != null && assignedDriver != null) {
+        // Example assignment logic, assuming you have such methods
+        assignedTruck.setDriver(assignedDriver);
+        JOptionPane.showMessageDialog(this, "Truck " + truckId + " assigned to driver " + assignedDriver.getName(), "Assignment Successful", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, "Error in assigning truck to driver.", "Assignment Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnAssignTruckActionPerformed
-
-    private void txtChooseDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtChooseDriverActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtChooseDriverActionPerformed
-
-    private void txtChooseTruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtChooseTruckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtChooseTruckActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAssignTruck;
+    private javax.swing.JComboBox<String> comboDriver;
+    private javax.swing.JComboBox<String> comboTruck;
     private javax.swing.JLabel lblChooseDriver;
     private javax.swing.JLabel lblChooseTruck;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JTextField txtChooseDriver;
-    private javax.swing.JTextField txtChooseTruck;
     // End of variables declaration//GEN-END:variables
 }

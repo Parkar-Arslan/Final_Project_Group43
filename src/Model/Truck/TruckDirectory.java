@@ -14,6 +14,13 @@ public class TruckDirectory {
         Truck truck = new Truck(truckId, description, capacity);
         trucks.add(truck);
     }
+    
+    public List<Truck> getAvailableTrucks() {
+        // Simple implementation, returning all trucks
+        return trucks;
+    }
+    
+    
 
     public List<Truck> getTrucks() {
         return trucks;

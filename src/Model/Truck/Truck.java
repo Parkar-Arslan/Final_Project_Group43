@@ -1,16 +1,20 @@
 package Model.Truck;
 
+import Model.Driver.Driver;
+
 public class Truck {
     private String truckId;
     private String description;
     private int capacity;
     private boolean isAssigned;
+    private Driver assignedDriver; 
 
     public Truck(String truckId, String description, int capacity) {
         this.truckId = truckId;
         this.description = description;
         this.capacity = capacity;
         this.isAssigned = false;
+        this.assignedDriver = null; 
     }
 
     // Getters
@@ -33,5 +37,41 @@ public class Truck {
     // Setters
     public void setAssigned(boolean assigned) {
         isAssigned = assigned;
+    }
+
+    public void setTruckId(String truckId) {
+        this.truckId = truckId;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void setIsAssigned(boolean isAssigned) {
+        this.isAssigned = isAssigned;
+    }
+
+    public void setAssignedDriver(Driver assignedDriver) {
+        this.assignedDriver = assignedDriver;
+    }
+
+    public boolean isIsAssigned() {
+        return isAssigned;
+    }
+
+    public Driver getAssignedDriver() {
+        return assignedDriver;
+    }
+    
+    public void setDriver(Driver driver) {
+        this.assignedDriver = driver;
+    }
+
+    public Driver getDriver() {
+        return assignedDriver;
     }
 }
