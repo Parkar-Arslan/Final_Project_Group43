@@ -41,4 +41,14 @@ public class DriverDirectory {
         }
         return null;
     }
+
+    public List<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(List<Driver> drivers) {
+        this.drivers = drivers;
+    }
+    
+    
 }

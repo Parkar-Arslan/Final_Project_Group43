@@ -9,7 +9,7 @@ import Model.Driver.DriverDirectory;
 import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.TruckDirectory;
 import UI.Dashboard.SupervisorDashboard;
-import UI.Supervisor.SupervisorAssignDriver;
+import UI.Supervisor.SupervisorCreateRoute;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 

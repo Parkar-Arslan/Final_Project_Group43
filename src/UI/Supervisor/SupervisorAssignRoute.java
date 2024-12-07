@@ -27,13 +27,11 @@ public class SupervisorAssignRoute extends javax.swing.JPanel {
     private void initComponents() {
 
         btnAssignRouteSet = new javax.swing.JButton();
-        jTextFieldRouteID = new javax.swing.JTextField();
-        lblRouteID = new javax.swing.JLabel();
-        jTextFieldRouteNo = new javax.swing.JTextField();
-        jTextFieldChooseTruck = new javax.swing.JTextField();
         lblChooseTruck = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         lblRouteNo = new javax.swing.JLabel();
+        comboRoute = new javax.swing.JComboBox<>();
+        comboTruck = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(54, 116, 99));
 
@@ -44,28 +42,6 @@ public class SupervisorAssignRoute extends javax.swing.JPanel {
         btnAssignRouteSet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAssignRouteSetActionPerformed(evt);
-            }
-        });
-
-        jTextFieldRouteID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldRouteIDActionPerformed(evt);
-            }
-        });
-
-        lblRouteID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblRouteID.setForeground(new java.awt.Color(255, 255, 255));
-        lblRouteID.setText("Route ID");
-
-        jTextFieldRouteNo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldRouteNoActionPerformed(evt);
-            }
-        });
-
-        jTextFieldChooseTruck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldChooseTruckActionPerformed(evt);
             }
         });
 
@@ -82,6 +58,10 @@ public class SupervisorAssignRoute extends javax.swing.JPanel {
         lblRouteNo.setForeground(new java.awt.Color(255, 255, 255));
         lblRouteNo.setText("Route No");
 
+        comboRoute.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        comboTruck.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,15 +70,13 @@ public class SupervisorAssignRoute extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(147, 147, 147)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblRouteID)
                     .addComponent(lblRouteNo)
                     .addComponent(lblChooseTruck))
-                .addGap(55, 55, 55)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldRouteID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldRouteNo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldChooseTruck, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(149, Short.MAX_VALUE))
+                    .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboTruck, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAssignRouteSet, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,23 +88,18 @@ public class SupervisorAssignRoute extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(lblTitle)
                 .addGap(89, 89, 89)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblChooseTruck)
-                            .addComponent(jTextFieldChooseTruck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblChooseTruck)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblRouteNo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblRouteID)
-                        .addGap(6, 6, 6))
+                        .addComponent(lblRouteNo))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextFieldRouteNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboTruck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldRouteID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(48, 48, 48)
+                        .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(89, 89, 89)
                 .addComponent(btnAssignRouteSet)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -134,26 +107,12 @@ public class SupervisorAssignRoute extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAssignRouteSetActionPerformed
 
-    private void jTextFieldRouteIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRouteIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldRouteIDActionPerformed
-
-    private void jTextFieldRouteNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRouteNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldRouteNoActionPerformed
-
-    private void jTextFieldChooseTruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldChooseTruckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldChooseTruckActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAssignRouteSet;
-    private javax.swing.JTextField jTextFieldChooseTruck;
-    private javax.swing.JTextField jTextFieldRouteID;
-    private javax.swing.JTextField jTextFieldRouteNo;
+    private javax.swing.JComboBox<String> comboRoute;
+    private javax.swing.JComboBox<String> comboTruck;
     private javax.swing.JLabel lblChooseTruck;
-    private javax.swing.JLabel lblRouteID;
     private javax.swing.JLabel lblRouteNo;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables

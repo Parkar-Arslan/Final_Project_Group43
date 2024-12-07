@@ -5,12 +5,15 @@
 package UI.Dashboard;
 
 import Model.Business.Business;
+import Model.Driver.Driver;
 import Model.Supervisor.Supervisor;
 import Model.Supervisor.SupervisorDirectory;
-import UI.Supervisor.SupervisorAssignDriver;
+import Model.Truck.Truck;
+import UI.Supervisor.SupervisorCreateRoute;
 import UI.Supervisor.SupervisorAssignTruck;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,9 +34,30 @@ public class SupervisorDashboard extends javax.swing.JPanel {
         this.business = business;
         this.authenticatedSupervisor = authenticatedSupervisor;
         this.supervisorDirectory = supervisorDirectory;
+        
         initComponents();
+        populateDriverTruckTable();
+        updateTableAfterAssignment();
     }
 
+    public void updateTableAfterAssignment() {
+    populateDriverTruckTable();  // This method refreshes the JTable
+    System.out.println("Refreshing driver-truck table data...");
+    }
+    public void populateDriverTruckTable() {
+    DefaultTableModel model = (DefaultTableModel) jTableSupreport.getModel();
+    model.setRowCount(0); // Clear existing rows
+
+    for (Driver driver : business.getDriverDirectory().getDrivers()) {
+        Truck truck = driver.getAssignedTruck();
+        if (truck != null) { // Only display drivers with assigned trucks
+            // Concatenate truck ID and description for display
+            String truckDisplay = truck.getTruckId() + " - " + truck.getDescription();
+            model.addRow(new Object[]{driver.getName(), truckDisplay});
+            }
+        }
+        System.out.println("Table refreshed with current truck assignments.");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -180,14 +204,14 @@ public class SupervisorDashboard extends javax.swing.JPanel {
 
     private void btnAssignTruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignTruckActionPerformed
         // TODO add your handling code here:
-        SupervisorAssignTruck assignTruckPanel = new SupervisorAssignTruck(userProcessContainer, business, authenticatedSupervisor, supervisorDirectory);
+        SupervisorAssignTruck assignTruckPanel = new SupervisorAssignTruck(userProcessContainer, business, authenticatedSupervisor, supervisorDirectory, this);
         userProcessContainer.add("SupervisorAssignTruck", assignTruckPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAssignTruckActionPerformed
 
     private void btnAssignDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignDriverActionPerformed
-        SupervisorAssignDriver assignDriverPanel = new SupervisorAssignDriver(userProcessContainer, business, authenticatedSupervisor, supervisorDirectory);
+        SupervisorCreateRoute assignDriverPanel = new SupervisorCreateRoute(userProcessContainer, business, authenticatedSupervisor, supervisorDirectory);
         userProcessContainer.add("SupervisorAssignDriver", assignDriverPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

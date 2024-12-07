@@ -1,16 +1,16 @@
+package Model.Route;
 
 public class Route {
     private String routeId;
-    private String startLocation;
-    private String endLocation;
+    private String start;
+    private String end;
 
-    public Route(String routeId, String startLocation, String endLocation) {
+    public Route(String routeId, String start, String end) {
         this.routeId = routeId;
-        this.startLocation = startLocation;
-        this.endLocation = endLocation;
+        this.start = start;
+        this.end = end;
     }
 
-    // Getters and Setters
     public String getRouteId() {
         return routeId;
     }
@@ -19,19 +19,19 @@ public class Route {
         this.routeId = routeId;
     }
 
-    public String getStartLocation() {
-        return startLocation;
+    public String getStart() {
+        return start;
     }
 
-    public void setStartLocation(String startLocation) {
-        this.startLocation = startLocation;
+    public void setStart(String start) {
+        this.start = start;
     }
 
-    public String getEndLocation() {
-        return endLocation;
+    public String getEnd() {
+        return end;
     }
 
-    public void setEndLocation(String endLocation) {
-        this.endLocation = endLocation;
+    public void setEnd(String end) {
+        this.end = end;
     }
 }
