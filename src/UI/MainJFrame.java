@@ -37,7 +37,6 @@ public class MainJFrame extends javax.swing.JFrame {
         initializeSupervisorData();
         
         
-        
     }
     
     private void initializeTruckData() {
