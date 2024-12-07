@@ -1,4 +1,7 @@
 
+import Model.Driver.Driver;
+
+
 public class DriverDAO {
     // This class would interact with the database directly for driver data
     public void saveDriver(Driver driver) {

@@ -1,4 +1,8 @@
+package Model.Truck;
 
+/**
+ * Represents a truck in the garbage collection system.
+ */
 public class Truck {
     private String truckId;
     private String model;
@@ -10,7 +14,7 @@ public class Truck {
         this.capacity = capacity;
     }
 
-    // Getters and Setters
+    // Getters and setters
     public String getTruckId() {
         return truckId;
     }

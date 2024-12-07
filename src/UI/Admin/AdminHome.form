@@ -25,15 +25,15 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblAdminLogin" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblSupervisorLogin" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblUserLogin" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCreateDriver" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCreateTruck" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCreateSupervisor" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnAdminClick" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                  <Component id="btnDriverClick" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                  <Component id="btnTruckClick" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
                   <Component id="btnSupervisorClick" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
-                  <Component id="btnUserClick" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
           </Group>
@@ -46,18 +46,18 @@
               <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnAdminClick" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblAdminLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnDriverClick" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCreateDriver" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnTruckClick" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCreateTruck" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSupervisorClick" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblSupervisorLogin" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnUserClick" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblUserLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCreateSupervisor" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="115" max="32767" attributes="0"/>
           </Group>
@@ -65,7 +65,41 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btnAdminClick">
+    <Component class="javax.swing.JLabel" name="lblCreateDriver">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Create Driver"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTitle">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="36" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Admin Home Page"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCreateTruck">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Create Truck"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnDriverClick">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="78" green="8f" red="b5" type="rgb"/>
@@ -79,36 +113,8 @@
         <Property name="text" type="java.lang.String" value="Click Here"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdminClickActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDriverClickActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnUserClick">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="78" green="8f" red="b5" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Click Here"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUserClickActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblUserLogin">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="User Login"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnSupervisorClick">
       <Properties>
@@ -127,7 +133,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSupervisorClickActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblAdminLogin">
+    <Component class="javax.swing.JLabel" name="lblCreateSupervisor">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
@@ -135,31 +141,25 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Admin Login"/>
+        <Property name="text" type="java.lang.String" value="Create Supervisor"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblTitle">
+    <Component class="javax.swing.JButton" name="btnTruckClick">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="36" style="0"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="78" green="8f" red="b5" type="rgb"/>
         </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Garbage Collection &amp; Tracking"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblSupervisorLogin">
-      <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Supervisor Login"/>
+        <Property name="text" type="java.lang.String" value="Click Here"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTruckClickActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
