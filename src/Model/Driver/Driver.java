@@ -6,33 +6,15 @@ public class Driver {
     private String driverId;
     private String name;
     private Truck assignedTruck;
-    private String licenseNumber; // Adding license number field
+    private String licenseNumber; // Including license number for completeness
 
-    public Driver(String driverId, String name) {
-        this.driverId = driverId;
-        this.name = name;
-        this.assignedTruck = null;
-    }
-    
     public Driver(String driverId, String name, String licenseNumber) {
         this.driverId = driverId;
         this.name = name;
+        this.assignedTruck = null;
         this.licenseNumber = licenseNumber;
     }
 
-    public void setDriverId(String driverId) {
-        this.driverId = driverId;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAssignedTruck(Truck assignedTruck) {
-        this.assignedTruck = assignedTruck;
-    }
-
-    // Getters
     public String getDriverId() {
         return driverId;
     }
@@ -45,19 +27,14 @@ public class Driver {
         return assignedTruck;
     }
 
-    // Setter
-    public void assignTruck(Truck truck) {
-        this.assignedTruck = truck;
-        truck.setAssigned(true);
-    }
-
     public String getLicenseNumber() {
         return licenseNumber;
     }
 
-    public void setLicenseNumber(String licenseNumber) {
-        this.licenseNumber = licenseNumber;
+    public void setAssignedTruck(Truck assignedTruck) {
+        this.assignedTruck = assignedTruck;
+        if (assignedTruck != null) {
+            assignedTruck.setAssignedDriver(this); // Assume Truck has a method to link back to the driver
+        }
     }
-    
-    
 }

@@ -26,12 +26,20 @@ public class TruckDirectory {
         return trucks;
     }
 
-    public Truck findTruckById(String truckId) {
-        for (Truck truck : trucks) {
-            if (truck.getTruckId().equals(truckId)) {
-                return truck;
-            }
+    public Truck findTruckById(String id) {
+    for (Truck truck : trucks) {  // Assuming there's an iterable list of trucks
+        if (truck.getTruckId().equals(id)) {
+            return truck;
         }
-        return null;
     }
+    return null;
+    }
+//    public Truck findTruckById(String truckId) {
+//        for (Truck truck : trucks) {
+//            if (truck.getTruckId().equals(truckId)) {
+//                return truck;
+//            }
+//        }
+//        return null;
+//    }
 }

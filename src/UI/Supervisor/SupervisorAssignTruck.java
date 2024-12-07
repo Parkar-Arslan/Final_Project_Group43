@@ -29,24 +29,28 @@ public class SupervisorAssignTruck extends javax.swing.JPanel {
      * Creates new form SupervisorAssignTruck
      */
     public SupervisorAssignTruck(JPanel userProcessContainer, Business business, Supervisor authenticatedSupervisor, SupervisorDirectory supervisorDirectory) {
-        this.userProcessContainer = userProcessContainer;
+       this.userProcessContainer = userProcessContainer;
     this.business = business;
     this.authenticatedSupervisor = authenticatedSupervisor;
     this.supervisorDirectory = supervisorDirectory;
-    initComponents();  // Ensure that this initializes the combo boxes.
-   
-    initializeComboBoxes();  // Now call this after the combo boxes are initialized
+    initComponents();
+//    comboTruck = new JComboBox<>();
+//    comboDriver = new JComboBox<>();
+    initializeComboBoxes();  // Populate combo boxes after they have been initialized // Now call this after the combo boxes are initialized
       
     }
     
-    public void initializeComboBoxes() {
-    // Assuming you have methods getAvailableTrucks() and getAvailableDrivers()
-    // that return lists of trucks and drivers.
+     public void initializeComboBoxes() {
+    System.out.println("Initializing combo boxes...");
+    comboTruck.removeAllItems();
+    comboDriver.removeAllItems();
     for (Truck truck : business.getTruckDirectory().getAvailableTrucks()) {
         comboTruck.addItem(truck.getTruckId() + " - " + truck.getDescription());
+        System.out.println("Added truck: " + truck.getTruckId());
     }
     for (Driver driver : business.getDriverDirectory().getAvailableDrivers()) {
         comboDriver.addItem(driver.getDriverId() + " - " + driver.getName());
+        System.out.println("Added driver: " + driver.getName());
     }
 }
 
@@ -120,15 +124,15 @@ public class SupervisorAssignTruck extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblTitle)
-                .addGap(89, 89, 89)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblChooseTruck)
-                    .addComponent(comboTruck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblChooseDriver)
                     .addComponent(comboDriver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(110, 110, 110)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblChooseTruck)
+                    .addComponent(comboTruck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(149, 149, 149)
                 .addComponent(btnAssignTruck)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -136,20 +140,19 @@ public class SupervisorAssignTruck extends javax.swing.JPanel {
 
     private void btnAssignTruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignTruckActionPerformed
         // TODO add your handling code here:
-        String selectedTruckInfo = (String) comboTruck.getSelectedItem();
-    String selectedDriverInfo = (String) comboDriver.getSelectedItem();
-    
+     String selectedTruckInfo = comboTruck.getSelectedItem().toString();
+    String selectedDriverInfo = comboDriver.getSelectedItem().toString();
+
     // Extract truck and driver ID from the selection
     String truckId = selectedTruckInfo.split(" - ")[0];
     String driverId = selectedDriverInfo.split(" - ")[0];
-    
+
     // Find Truck and Driver objects by their IDs
     Truck assignedTruck = business.getTruckDirectory().findTruckById(truckId);
     Driver assignedDriver = business.getDriverDirectory().findDriverById(driverId);
-    
+
     if (assignedTruck != null && assignedDriver != null) {
-        // Example assignment logic, assuming you have such methods
-        assignedTruck.setDriver(assignedDriver);
+        assignedTruck.setDriver(assignedDriver); // Assuming a method to set the driver for a truck
         JOptionPane.showMessageDialog(this, "Truck " + truckId + " assigned to driver " + assignedDriver.getName(), "Assignment Successful", JOptionPane.INFORMATION_MESSAGE);
     } else {
         JOptionPane.showMessageDialog(this, "Error in assigning truck to driver.", "Assignment Error", JOptionPane.ERROR_MESSAGE);
