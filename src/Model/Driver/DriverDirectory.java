@@ -10,31 +10,37 @@ public class DriverDirectory {
         drivers = new ArrayList<>();
     }
 
-    public void addDriver(String driverId, String name) {
-        Driver driver = new Driver(driverId, name);
-        drivers.add(driver);
-    }
-    
-     public void addDriver(String driverId, String name, String licenseNumber) {
+    // Adds a driver with a license number, ensuring details are logged for confirmation.
+    public void addDriver(String driverId, String name, String licenseNumber) {
         Driver driver = new Driver(driverId, name, licenseNumber);
         drivers.add(driver);
+        System.out.println("Driver added: " + driverId + " - " + name);
     }
-     
+
+    // Returns a list of all available drivers, with debug output to check contents.
+//    public List<Driver> getAvailableDrivers() {
+//        System.out.println("Listing available drivers:");
+//        if (drivers.isEmpty()) {
+//            System.out.println("No drivers available.");
+//        }
+//        for (Driver driver : drivers) {
+//            System.out.println("Driver ID: " + driver.getDriverId() + ", Name: " + driver.getName());
+//        }
+//        return new ArrayList<>(drivers);  // Returning a copy to avoid modification issues
+//    }
+    
     public List<Driver> getAvailableDrivers() {
-        // Simple implementation, returning all drivers
+        // Simple implementation, returning all trucks
         return drivers;
     }
 
-    public List<Driver> getDrivers() {
-        return drivers;
-    }
-
-    public Driver findDriverById(String driverId) {
+    // Finds a driver by ID, returning null if not found.
+    public Driver findDriverById(String id) {
         for (Driver driver : drivers) {
-            if (driver.getDriverId().equals(driverId)) {
+            if (driver.getDriverId().equals(id)) {
                 return driver;
             }
         }
-        return null;
+        return null; // Return null if no driver is found with the given ID
     }
 }

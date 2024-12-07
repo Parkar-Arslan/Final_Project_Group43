@@ -30,10 +30,14 @@ public class MainJFrame extends javax.swing.JFrame {
         business = new Business();
         truckDirectory = business.getTruckDirectory();
         supervisorDirectory = business.getSupervisorDirectory();
-        driverDirectory = new DriverDirectory();  
+        driverDirectory = new DriverDirectory(); 
+        //driverDirectory = DriverDirectory.getInstance();
         initializeTruckData();
-        initializeSupervisorData();
         initializeDriverData(); 
+        initializeSupervisorData();
+        
+        
+        
     }
     
     private void initializeTruckData() {

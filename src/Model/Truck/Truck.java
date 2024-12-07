@@ -55,9 +55,7 @@ public class Truck {
         this.isAssigned = isAssigned;
     }
 
-    public void setAssignedDriver(Driver assignedDriver) {
-        this.assignedDriver = assignedDriver;
-    }
+    
 
     public boolean isIsAssigned() {
         return isAssigned;
@@ -73,5 +71,14 @@ public class Truck {
 
     public Driver getDriver() {
         return assignedDriver;
+    }
+    
+    public void setAssignedDriver(Driver assignedDriver) {
+        this.assignedDriver = assignedDriver;
+        if (assignedDriver != null) {
+            this.isAssigned = true; // Automatically mark the truck as assigned if a driver is set
+        } else {
+            this.isAssigned = false; // Automatically unassign the truck if the driver is removed
+        }
     }
 }
