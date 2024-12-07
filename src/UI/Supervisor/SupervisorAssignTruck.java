@@ -6,9 +6,12 @@ package UI.Supervisor;
 
 import Model.Business.Business;
 import Model.Driver.Driver;
+import Model.Driver.DriverDirectory;
+
 import Model.Supervisor.Supervisor;
 import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.Truck;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -41,18 +44,18 @@ public class SupervisorAssignTruck extends javax.swing.JPanel {
     }
     
      public void initializeComboBoxes() {
-    System.out.println("Initializing combo boxes...");
-    comboTruck.removeAllItems();
-    comboDriver.removeAllItems();
-    for (Truck truck : business.getTruckDirectory().getAvailableTrucks()) {
-        comboTruck.addItem(truck.getTruckId() + " - " + truck.getDescription());
-        System.out.println("Added truck: " + truck.getTruckId());
+        comboTruck.removeAllItems();
+        comboDriver.removeAllItems();
+
+        business.getTruckDirectory().getAvailableTrucks().forEach(truck ->
+            comboTruck.addItem(truck.getTruckId() + " - " + truck.getDescription())
+        );
+
+        DriverDirectory.getInstance().getAvailableDrivers().forEach(driver ->
+            comboDriver.addItem(driver.getDriverId() + " - " + driver.getName())
+        );
     }
-    for (Driver driver : business.getDriverDirectory().getAvailableDrivers()) {
-        comboDriver.addItem(driver.getDriverId() + " - " + driver.getName());
-        System.out.println("Added driver: " + driver.getName());
-    }
-}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -140,23 +143,26 @@ public class SupervisorAssignTruck extends javax.swing.JPanel {
 
     private void btnAssignTruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignTruckActionPerformed
         // TODO add your handling code here:
-     String selectedTruckInfo = comboTruck.getSelectedItem().toString();
-    String selectedDriverInfo = comboDriver.getSelectedItem().toString();
+     if (comboTruck.getSelectedItem() == null || comboDriver.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Please select both a truck and a driver.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    // Extract truck and driver ID from the selection
-    String truckId = selectedTruckInfo.split(" - ")[0];
-    String driverId = selectedDriverInfo.split(" - ")[0];
+        String selectedTruckInfo = comboTruck.getSelectedItem().toString();
+        String selectedDriverInfo = comboDriver.getSelectedItem().toString();
 
-    // Find Truck and Driver objects by their IDs
-    Truck assignedTruck = business.getTruckDirectory().findTruckById(truckId);
-    Driver assignedDriver = business.getDriverDirectory().findDriverById(driverId);
+        String truckId = selectedTruckInfo.split(" - ")[0];
+        String driverId = selectedDriverInfo.split(" - ")[0];
 
-    if (assignedTruck != null && assignedDriver != null) {
-        assignedTruck.setDriver(assignedDriver); // Assuming a method to set the driver for a truck
-        JOptionPane.showMessageDialog(this, "Truck " + truckId + " assigned to driver " + assignedDriver.getName(), "Assignment Successful", JOptionPane.INFORMATION_MESSAGE);
-    } else {
-        JOptionPane.showMessageDialog(this, "Error in assigning truck to driver.", "Assignment Error", JOptionPane.ERROR_MESSAGE);
-    }
+        Truck assignedTruck = business.getTruckDirectory().findTruckById(truckId);
+        Driver assignedDriver = DriverDirectory.getInstance().findDriverById(driverId);
+
+        if (assignedTruck != null && assignedDriver != null) {
+            assignedTruck.setDriver(assignedDriver);
+            JOptionPane.showMessageDialog(this, "Truck " + truckId + " assigned to driver " + assignedDriver.getName(), "Assignment Successful", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error in assigning truck to driver.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnAssignTruckActionPerformed
 
 

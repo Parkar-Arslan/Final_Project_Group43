@@ -5,42 +5,40 @@ import java.util.List;
 
 public class DriverDirectory {
     private List<Driver> drivers;
+    private static DriverDirectory instance = null; // Singleton instance
 
+    // Private constructor for singleton
     public DriverDirectory() {
         drivers = new ArrayList<>();
     }
 
-    // Adds a driver with a license number, ensuring details are logged for confirmation.
+    // Public method to get the singleton instance
+    public static DriverDirectory getInstance() {
+        if (instance == null) {
+            instance = new DriverDirectory();
+        }
+        return instance;
+    }
+
+    // Method to add a driver
     public void addDriver(String driverId, String name, String licenseNumber) {
         Driver driver = new Driver(driverId, name, licenseNumber);
         drivers.add(driver);
         System.out.println("Driver added: " + driverId + " - " + name);
     }
 
-    // Returns a list of all available drivers, with debug output to check contents.
-//    public List<Driver> getAvailableDrivers() {
-//        System.out.println("Listing available drivers:");
-//        if (drivers.isEmpty()) {
-//            System.out.println("No drivers available.");
-//        }
-//        for (Driver driver : drivers) {
-//            System.out.println("Driver ID: " + driver.getDriverId() + ", Name: " + driver.getName());
-//        }
-//        return new ArrayList<>(drivers);  // Returning a copy to avoid modification issues
-//    }
-    
+    // Method to return a copy of the list of all drivers
     public List<Driver> getAvailableDrivers() {
-        // Simple implementation, returning all trucks
-        return drivers;
+        return new ArrayList<>(drivers);
     }
 
-    // Finds a driver by ID, returning null if not found.
+    // Method to find a driver by ID
     public Driver findDriverById(String id) {
         for (Driver driver : drivers) {
             if (driver.getDriverId().equals(id)) {
                 return driver;
             }
         }
-        return null; // Return null if no driver is found with the given ID
+        return null;
     }
 }

@@ -21,7 +21,7 @@ public class MainJFrame extends javax.swing.JFrame {
     Business business;
     TruckDirectory truckDirectory;
     SupervisorDirectory supervisorDirectory;
-    DriverDirectory driverDirectory; 
+     DriverDirectory driverDirectory; 
     /**
      * Creates new form MainJFrame
      */
@@ -31,7 +31,7 @@ public class MainJFrame extends javax.swing.JFrame {
         truckDirectory = business.getTruckDirectory();
         supervisorDirectory = business.getSupervisorDirectory();
         driverDirectory = new DriverDirectory(); 
-        //driverDirectory = DriverDirectory.getInstance();
+        driverDirectory = DriverDirectory.getInstance();
         initializeTruckData();
         initializeDriverData(); 
         initializeSupervisorData();
