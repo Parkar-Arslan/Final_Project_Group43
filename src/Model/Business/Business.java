@@ -20,7 +20,7 @@ public class Business {
     
         truckDirectory = new TruckDirectory();
         supervisorDirectory = new SupervisorDirectory();
-        driverDirectory = new DriverDirectory();
+        driverDirectory =  DriverDirectory.getInstance();
     }
     
     public TruckDirectory getTruckDirectory(){
