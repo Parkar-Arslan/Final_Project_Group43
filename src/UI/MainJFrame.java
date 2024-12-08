@@ -6,6 +6,7 @@ package UI;
 
 import Model.Admin.AdminDirectory;
 import Model.Business.Business;
+import Model.Complaint.ComplaintDirectory;
 import Model.Driver.DriverDirectory;
 import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.TruckDirectory;
@@ -13,6 +14,11 @@ import UI.Dashboard.SupervisorDashboard;
 import UI.Supervisor.SupervisorAssignDriver;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import Model.User.UserDirectory; // Adjust this based on your actual package structure
+import Model.User.UserDirectory;
+import Model.User.User; // Adjust the package as per your structure
+
+
 
 /**
  *
@@ -22,8 +28,10 @@ public class MainJFrame extends javax.swing.JFrame {
     Business business;
     TruckDirectory truckDirectory;
     SupervisorDirectory supervisorDirectory;
-     DriverDirectory driverDirectory; 
-     AdminDirectory adminDirectory;
+    DriverDirectory driverDirectory; 
+    UserDirectory userDirectory;
+    ComplaintDirectory complaintDirectory;
+
     /**
      * Creates new form MainJFrame
      */
@@ -32,8 +40,33 @@ public class MainJFrame extends javax.swing.JFrame {
         business = new Business();
         truckDirectory = business.getTruckDirectory();
         supervisorDirectory = business.getSupervisorDirectory();
-        driverDirectory = new DriverDirectory(); 
+        driverDirectory = new DriverDirectory();
         driverDirectory = DriverDirectory.getInstance();
+        complaintDirectory = new ComplaintDirectory();
+        userDirectory = business.getUserDirectory();
+        
+        if (userDirectory == null) {
+        userDirectory = new UserDirectory();
+        business.setUserDirectory(userDirectory);
+    }
+        
+        initializeTruckData();
+        initializeDriverData(); 
+        initializeSupervisorData();
+        initializeUserData();   
+    }
+    
+    private void initializeUserData() {
+        userDirectory.createUser("U001", "Arjun Kapoor", "arjun.kapoor@example.com", "arjun123");
+        userDirectory.createUser("U002", "Priya Sharma", "priya.sharma@example.com", "priya123");
+        userDirectory.createUser("U003", "Ravi Verma", "ravi.verma@example.com", "ravi123");
+        userDirectory.createUser("U004", "Meena Joshi", "meena.joshi@example.com", "meena123");
+        userDirectory.createUser("U005", "Vikram Singh", "vikram.singh@example.com", "vikram123");
+        userDirectory.createUser("U006", "Anjali Nair", "anjali.nair@example.com", "anjali123");
+        userDirectory.createUser("U007", "Karan Gupta", "karan.gupta@example.com", "karan123");
+        userDirectory.createUser("U008", "Sneha Patel", "sneha.patel@example.com", "sneha123");
+        userDirectory.createUser("U009", "Rohit Mehta", "rohit.mehta@example.com", "rohit123");
+        userDirectory.createUser("U010", "Sana Khan", "sana.khan@example.com", "sana123");
         adminDirectory = business.getAdminDirectory();
         initializeTruckData();
         initializeDriverData(); 
@@ -77,7 +110,7 @@ public class MainJFrame extends javax.swing.JFrame {
         splitPane = new javax.swing.JSplitPane();
         controlPanel = new javax.swing.JPanel();
         btnAdminClick = new javax.swing.JButton();
-        btnUserClick = new javax.swing.JButton();
+        btnUserLogin = new javax.swing.JButton();
         btnSupervisorClick = new javax.swing.JButton();
         userProcessContainer = new javax.swing.JPanel();
 
@@ -99,13 +132,13 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnUserClick.setBackground(new java.awt.Color(181, 143, 120));
-        btnUserClick.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnUserClick.setForeground(new java.awt.Color(255, 255, 255));
-        btnUserClick.setText("Click Here");
-        btnUserClick.addActionListener(new java.awt.event.ActionListener() {
+        btnUserLogin.setBackground(new java.awt.Color(181, 143, 120));
+        btnUserLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnUserLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnUserLogin.setText("User Login");
+        btnUserLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUserClickActionPerformed(evt);
+                btnUserLoginActionPerformed(evt);
             }
         });
 
@@ -127,9 +160,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnSupervisorClick, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUserClick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUserLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAdminClick, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +172,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnSupervisorClick)
                 .addGap(18, 18, 18)
-                .addComponent(btnUserClick)
+                .addComponent(btnUserLogin)
                 .addContainerGap(351, Short.MAX_VALUE))
         );
 
@@ -165,20 +198,26 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnAdminClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminClickActionPerformed
         // TODO add your handling code here:
-        AdminLoginJPanel AL = new AdminLoginJPanel(userProcessContainer,business, adminDirectory);
-        userProcessContainer.add("AdminLoginJPanel", AL);
+        AdminLoginJPanel AL = new AdminLoginJPanel(userProcessContainer,business ,supervisorDirectory,complaintDirectory,userDirectory);
+        userProcessContainer.add("SupervisorLoginJPanel", AL);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+        
+
     }//GEN-LAST:event_btnAdminClickActionPerformed
 
-    private void btnUserClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserClickActionPerformed
+    private void btnUserLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUserClickActionPerformed
+        UserLoginJPanel UL = new UserLoginJPanel(userProcessContainer,business , supervisorDirectory, complaintDirectory, business.getUserDirectory());
+        userProcessContainer.add("SupervisorLoginJPanel", UL);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnUserLoginActionPerformed
 
     private void btnSupervisorClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupervisorClickActionPerformed
        
             
-        SupervisorLoginJPanel SL = new SupervisorLoginJPanel(userProcessContainer,business ,supervisorDirectory);
+        SupervisorLoginJPanel SL = new SupervisorLoginJPanel(userProcessContainer,business ,supervisorDirectory,complaintDirectory,userDirectory);
         userProcessContainer.add("SupervisorLoginJPanel", SL);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -222,9 +261,11 @@ public class MainJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdminClick;
     private javax.swing.JButton btnSupervisorClick;
-    private javax.swing.JButton btnUserClick;
+    private javax.swing.JButton btnUserLogin;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
+
+    
 }

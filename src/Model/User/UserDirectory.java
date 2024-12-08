@@ -1,4 +1,4 @@
-
+package Model.User;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,5 +26,13 @@ public class UserDirectory {
             }
         }
         return null; // No user found
+    }
+    public User authenticateUser(String userId, String password) {
+        for (User user : userList) {
+            if (user.getId().equals(userId) && user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+        return null;  // Return null if no matching user is found
     }
 }
