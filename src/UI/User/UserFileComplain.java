@@ -6,6 +6,7 @@ package UI.User;
 
 import Model.Complaint.Complaint;
 import Model.Complaint.ComplaintDirectory;
+import javax.swing.JPanel;
 
 /**
  *
@@ -13,13 +14,15 @@ import Model.Complaint.ComplaintDirectory;
  */
 public class UserFileComplain extends javax.swing.JPanel {
     private ComplaintDirectory complaintDirectory;
+    private JPanel userProcessContainer;
 
     /**
      * Creates new form UserFileComplain
      */
-    public UserFileComplain() {
+    public UserFileComplain(ComplaintDirectory complaintDirectory,JPanel userProcessContainer) {
         initComponents();
-        complaintDirectory = new ComplaintDirectory();
+        this.userProcessContainer=userProcessContainer;
+        this.complaintDirectory=complaintDirectory;
     }
 
     /**

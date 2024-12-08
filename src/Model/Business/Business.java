@@ -4,7 +4,11 @@
  */
 package Model.Business;
 
+<<<<<<< HEAD
+import Model.Bill.BillDirectory;
+=======
 import Model.Admin.AdminDirectory;
+>>>>>>> cda030ddc2cfb7f9a7191d3f3d83823f5051d5f5
 import Model.Driver.DriverDirectory;
 import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.TruckDirectory;
@@ -20,7 +24,19 @@ public class Business {
     DriverDirectory driverDirectory;
 
     UserDirectory userDirectory;
+<<<<<<< HEAD
+    BillDirectory billDirectory;
+
+    public BillDirectory getBillDirectory() {
+        return billDirectory;
+    }
+
+    public void setBillDirectory(BillDirectory billDirectory) {
+        this.billDirectory = billDirectory;
+    }
+=======
     AdminDirectory adminDirectory;
+>>>>>>> cda030ddc2cfb7f9a7191d3f3d83823f5051d5f5
 
     public Business(){
     

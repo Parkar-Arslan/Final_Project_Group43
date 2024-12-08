@@ -7,6 +7,9 @@ package UI.Dashboard;
 import Model.Business.Business;
 import Model.Complaint.ComplaintDirectory;
 import Model.Supervisor.SupervisorDirectory;
+import UI.Supervisor.SupervisorAssignTruck;
+import UI.User.UserFileComplain;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -86,7 +89,7 @@ public class UserDashboard extends javax.swing.JPanel {
         btnComplain.setBackground(new java.awt.Color(181, 143, 120));
         btnComplain.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnComplain.setForeground(new java.awt.Color(255, 255, 255));
-        btnComplain.setText("Complain");
+        btnComplain.setText("Complaint");
         btnComplain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnComplainActionPerformed(evt);
@@ -107,7 +110,7 @@ public class UserDashboard extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(btnTotalTrash)
@@ -134,7 +137,7 @@ public class UserDashboard extends javax.swing.JPanel {
                 .addComponent(btnComplain)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAddRemove)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addComponent(btnTotalTrash)
                 .addGap(17, 17, 17))
         );
@@ -154,6 +157,10 @@ public class UserDashboard extends javax.swing.JPanel {
 
     private void btnComplainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComplainActionPerformed
         // TODO add your handling code here:
+        UserFileComplain ufc = new UserFileComplain(complaintDirectory, userProcessContainer);
+        userProcessContainer.add("UserFileComplain", ufc);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnComplainActionPerformed
 
     private void btnAddRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRemoveActionPerformed
