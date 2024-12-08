@@ -21,6 +21,7 @@ public class Business {
     
     public Business(){
     
+        
         truckDirectory = new TruckDirectory();
         supervisorDirectory = new SupervisorDirectory();
         driverDirectory =  DriverDirectory.getInstance();

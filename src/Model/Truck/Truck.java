@@ -1,6 +1,7 @@
 package Model.Truck;
 
 import Model.Driver.Driver;
+import Model.Route.Route;
 
 public class Truck {
     private String truckId;
@@ -8,6 +9,7 @@ public class Truck {
     private int capacity;
     private boolean isAssigned;
     private Driver assignedDriver; 
+    private Route assignedRoute;
 
     public Truck(String truckId, String description, int capacity) {
         this.truckId = truckId;
@@ -15,6 +17,7 @@ public class Truck {
         this.capacity = capacity;
         this.isAssigned = false;
         this.assignedDriver = null; 
+        this.assignedRoute = null; 
     }
 
     // Getters
@@ -55,6 +58,15 @@ public class Truck {
         this.isAssigned = isAssigned;
     }
 
+    public Route getAssignedRoute() {
+        return assignedRoute;
+    }
+
+    public void setAssignedRoute(Route assignedRoute) {
+        this.assignedRoute = assignedRoute;
+    }
+
+    
     
 
     public boolean isIsAssigned() {

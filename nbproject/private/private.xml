@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/UI/MainJFrame.java</file>
+            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/Model/Truck/Truck.java</file>
+            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/UI/Supervisor/SupervisorCreateRoute.java</file>
+            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/Model/Route/Route.java</file>
+            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/Model/Route/RouteDirectory.java</file>
+            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/UI/Dashboard/SupervisorDashboard.java</file>
+            <file>file:/Users/arslanparkar/Documents/GitHub/Final_Project_Group43/src/UI/Supervisor/SupervisorAssignRoute.java</file>
+        </group>
     </open-files>
 </project-private>
