@@ -4,6 +4,10 @@
  */
 package UI.Driver;
 
+import Model.Business.Business;
+import Model.Role.Driver;
+import javax.swing.JPanel;
+
 /**
  *
  * @author arslanparkar
@@ -13,7 +17,7 @@ public class DriverDashboard extends javax.swing.JPanel {
     /**
      * Creates new form DriverDashboard
      */
-    public DriverDashboard() {
+    public DriverDashboard(JPanel userProcessContainer, Business business, Driver driver) {
         initComponents();
     }
 
@@ -95,23 +99,15 @@ public class DriverDashboard extends javax.swing.JPanel {
 
         jTableSupreport.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Driver", "Truck", "Route"
+                "Truck", "Route", "Trash", "Status"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTableSupreport);
 
         btnCheckComplaints.setBackground(new java.awt.Color(181, 143, 120));
@@ -151,15 +147,14 @@ public class DriverDashboard extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btnTotalTrash)
                         .addGap(17, 17, 17))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
                         .addComponent(btnAssignTruck)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCreateRoute)
@@ -167,7 +162,7 @@ public class DriverDashboard extends javax.swing.JPanel {
                         .addComponent(btnAssignRoute)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCheckUser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
                         .addComponent(btnCheckComplaints)
                         .addGap(27, 27, 27))))
         );

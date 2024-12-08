@@ -6,7 +6,6 @@ package UI;
 
 import Model.Enterprise.bill.Bill;
 import Model.Enterprise.bill.BillDirectory;
-import Model.Role.AdminDirectory;
 
 import Model.Business.Business;
 import Model.Enterprise.Compliance.ComplaintDirectory;
@@ -20,6 +19,7 @@ import javax.swing.JPanel;
 import Model.Role.UserDirectory; // Adjust this based on your actual package structure
 import Model.Role.UserDirectory;
 import Model.Role.User; // Adjust the package as per your structure
+import UI.Driver.DriverLoginJPanel;
 
 
 
@@ -35,7 +35,6 @@ public class MainJFrame extends javax.swing.JFrame {
     UserDirectory userDirectory;
     ComplaintDirectory complaintDirectory;
     private BillDirectory billDirectory;
-    AdminDirectory adminDirectory;
     
 
     /**
@@ -51,7 +50,6 @@ public class MainJFrame extends javax.swing.JFrame {
         complaintDirectory = new ComplaintDirectory();
         userDirectory = business.getUserDirectory();
         billDirectory = new BillDirectory();
-        adminDirectory = business.getAdminDirectory();
         
         if (userDirectory == null) {
         userDirectory = new UserDirectory();
@@ -76,11 +74,7 @@ public class MainJFrame extends javax.swing.JFrame {
         userDirectory.createUser("U008", "Sneha Patel", "sneha.patel@example.com", "sneha123");
         userDirectory.createUser("U009", "Rohit Mehta", "rohit.mehta@example.com", "rohit123");
         userDirectory.createUser("U010", "Sana Khan", "sana.khan@example.com", "sana123");
-       // adminDirectory = business.getAdminDirectory();
-        initializeTruckData();
-        initializeDriverData(); 
-        initializeSupervisorData();
-        initializeAdminData();
+      
         
     }
     
@@ -97,16 +91,12 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     private void initializeDriverData() {
-        driverDirectory.addDriver("DR001", "John Doe", "L1234567890");
-        driverDirectory.addDriver("DR002", "Jane Smith", "L0987654321");
+        driverDirectory.addDriver("DR001", "John Doe", "L1234567890","d1");
+        driverDirectory.addDriver("DR002", "Jane Smith", "L0987654321","d2");
         // Add more drivers as needed
     }
     
-    private void initializeAdminData() {
-       adminDirectory.createAdmin("A01", "sa", "ABC", "sa");
-        adminDirectory.createAdmin("A02", "sb", "DEF", "sb");
-        // Add more drivers as needed
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -239,7 +229,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDriverActionPerformed
        
-
+        DriverLoginJPanel Dl = new DriverLoginJPanel(userProcessContainer,business ,supervisorDirectory,complaintDirectory, userDirectory);
+        userProcessContainer.add("DriverLoginJPanel", Dl);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
         
     }//GEN-LAST:event_btnDriverActionPerformed
 
