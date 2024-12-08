@@ -11,6 +11,7 @@ import Model.Role.SupervisorDirectory;
 import Model.Enterprise.Vehicle.Truck;
 import UI.Dashboard.SupervisorDashboard;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -180,9 +181,18 @@ public class SupervisorAssignRoute extends javax.swing.JPanel {
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
+                                           
+    userProcessContainer.remove(this);
     CardLayout layout = (CardLayout) userProcessContainer.getLayout();
     layout.previous(userProcessContainer);
+    Component[] components = userProcessContainer.getComponents();
+    for (Component component : components) {
+        if (component instanceof SupervisorDashboard) {
+            SupervisorDashboard dashboard = (SupervisorDashboard) component;
+            dashboard.populateDriverTruckTable();
+        }
+    }
+
     }//GEN-LAST:event_btnbackActionPerformed
 
 

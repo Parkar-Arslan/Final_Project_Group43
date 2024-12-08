@@ -35,6 +35,8 @@ public class MainJFrame extends javax.swing.JFrame {
     UserDirectory userDirectory;
     ComplaintDirectory complaintDirectory;
     private BillDirectory billDirectory;
+    AdminDirectory adminDirectory;
+    
 
     /**
      * Creates new form MainJFrame
@@ -49,6 +51,7 @@ public class MainJFrame extends javax.swing.JFrame {
         complaintDirectory = new ComplaintDirectory();
         userDirectory = business.getUserDirectory();
         billDirectory = new BillDirectory();
+        adminDirectory = business.getAdminDirectory();
         
         if (userDirectory == null) {
         userDirectory = new UserDirectory();
@@ -100,8 +103,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }
     
     private void initializeAdminData() {
-       // adminDirectory.createAdmin("A01", "sa", "ABC", "sa");
-        //adminDirectory.createAdmin("A02", "sb", "DEF", "sb");
+       adminDirectory.createAdmin("A01", "sa", "ABC", "sa");
+        adminDirectory.createAdmin("A02", "sb", "DEF", "sb");
         // Add more drivers as needed
     }
     /**
