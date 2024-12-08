@@ -5,14 +5,22 @@
 package UI.Admin;
 
 import Model.Business.Business;
+import Model.Driver.Driver;
 import Model.Driver.DriverDirectory;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
  * @author tawde
  */
+
 public class CreateDriver extends javax.swing.JPanel {
+    JPanel userProcessContainer;
+    Business business;
+    private String DriverID;
+    private String DriverName;
+    private String LicenseNumber;
 
     /**
      * Creates new form CreateDriver
@@ -143,6 +151,23 @@ public class CreateDriver extends javax.swing.JPanel {
 
     private void btnCreateDriverSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDriverSubmitActionPerformed
         // TODO add your handling code here:
+        try {
+            DriverID = jTextFieldDriverID.getText();
+            DriverName = jTextFieldDriverName.getText();
+            LicenseNumber = jTextFieldLicenseNumber.getText();
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Please check the Driver ID, Name, License Number", "Info", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        DriverDirectory directory = DriverDirectory.getInstance();
+        Driver d = directory.addDriver(DriverID, DriverName, LicenseNumber );
+        d.setDriverId(DriverID);
+        d.setName(DriverName);
+        d.setLicenseNumber(LicenseNumber);
+        
     }//GEN-LAST:event_btnCreateDriverSubmitActionPerformed
 
     private void jTextFieldLicenseNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLicenseNumberActionPerformed
