@@ -28,7 +28,7 @@ public class SupervisorLoginJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SupervisorLoginJPanel
      */
-    public SupervisorLoginJPanel(JPanel userProcessContainer,Business business ,SupervisorDirectory supervisorDirectory1,ComplaintDirectory complaintdirectory, UserDirectory userDirectory) {
+    public SupervisorLoginJPanel(JPanel userProcessContainer,Business business ,SupervisorDirectory supervisorDirectory,ComplaintDirectory complaintdirectory, UserDirectory userDirectory) {
         initComponents();
         this.business = business;
         this.userProcessContainer=userProcessContainer;
