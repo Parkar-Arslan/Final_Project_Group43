@@ -10,6 +10,8 @@ public class Truck {
     private boolean isAssigned;
     private Driver assignedDriver; 
     private Route assignedRoute;
+    private int trashCollected; // Holds the amount of trash collected in kilograms
+    private String status; // Holds the current status of the truck
 
     public Truck(String truckId, String description, int capacity) {
         this.truckId = truckId;
@@ -18,7 +20,41 @@ public class Truck {
         this.isAssigned = false;
         this.assignedDriver = null; 
         this.assignedRoute = null; 
+        this.trashCollected = 0; // Initialize with no trash collected
+        this.status = "Idle"; // Default status of the truck
     }
+    
+     // Method to simulate trash collection
+    public int collectTrash(int amount) {
+        if (amount + this.trashCollected <= this.capacity) {
+            this.trashCollected += amount;
+            setStatus("Collecting"); // Update status when collecting trash
+            return amount;
+        } else {
+            int collectable = this.capacity - this.trashCollected;
+            this.trashCollected = this.capacity;
+            setStatus("Full"); // Update status to full when capacity is reached
+            return collectable;
+        }
+    }
+
+    public int getTrashCollected() {
+        return trashCollected;
+    }
+
+    public void setTrashCollected(int trashCollected) {
+        this.trashCollected = trashCollected;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    
 
     // Getters
     public String getTruckId() {

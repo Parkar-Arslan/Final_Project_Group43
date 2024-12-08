@@ -4,12 +4,16 @@
  */
 package UI.Supervisor;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tawde
  */
 public class SupervisorCheckTrashCollection extends javax.swing.JPanel {
 
+    private JPanel userProcessContainer;
     /**
      * Creates new form SupervisorCheckTrashCollection
      */
@@ -26,135 +30,90 @@ public class SupervisorCheckTrashCollection extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnAssignTruckSet = new javax.swing.JButton();
-        jTextFieldRegion = new javax.swing.JTextField();
-        lblRegion = new javax.swing.JLabel();
-        jTextFieldArea = new javax.swing.JTextField();
-        jTextFieldChooseTruck = new javax.swing.JTextField();
-        lblChooseTruck = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
-        lblArea = new javax.swing.JLabel();
+        btnback = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableSupreport = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(54, 116, 99));
-
-        btnAssignTruckSet.setBackground(new java.awt.Color(181, 143, 120));
-        btnAssignTruckSet.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnAssignTruckSet.setForeground(new java.awt.Color(255, 255, 255));
-        btnAssignTruckSet.setText("Set");
-        btnAssignTruckSet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAssignTruckSetActionPerformed(evt);
-            }
-        });
-
-        jTextFieldRegion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldRegionActionPerformed(evt);
-            }
-        });
-
-        lblRegion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblRegion.setForeground(new java.awt.Color(255, 255, 255));
-        lblRegion.setText("Region");
-
-        jTextFieldArea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAreaActionPerformed(evt);
-            }
-        });
-
-        jTextFieldChooseTruck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldChooseTruckActionPerformed(evt);
-            }
-        });
-
-        lblChooseTruck.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblChooseTruck.setForeground(new java.awt.Color(255, 255, 255));
-        lblChooseTruck.setText("Choose Truck");
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("Check Trash Collection");
 
-        lblArea.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblArea.setForeground(new java.awt.Color(255, 255, 255));
-        lblArea.setText("Area");
+        btnback.setBackground(new java.awt.Color(181, 143, 120));
+        btnback.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnback.setForeground(new java.awt.Color(255, 255, 255));
+        btnback.setText("<<Back");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
+
+        jTableSupreport.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Driver", "Truck", "Route", "Status", "Trash", "User"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableSupreport);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblRegion)
-                    .addComponent(lblArea)
-                    .addComponent(lblChooseTruck))
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldRegion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldArea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldChooseTruck, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(149, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAssignTruckSet, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(240, 240, 240))
+                .addGap(17, 17, 17)
+                .addComponent(btnback)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(lblTitle)
-                .addGap(89, 89, 89)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblChooseTruck)
-                            .addComponent(jTextFieldChooseTruck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblArea)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblRegion)
-                        .addGap(6, 6, 6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextFieldArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(48, 48, 48)
-                .addComponent(btnAssignTruckSet)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitle)
+                    .addComponent(btnback))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(49, 49, 49))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAssignTruckSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignTruckSetActionPerformed
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAssignTruckSetActionPerformed
 
-    private void jTextFieldRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRegionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldRegionActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
 
-    private void jTextFieldAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAreaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAreaActionPerformed
-
-    private void jTextFieldChooseTruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldChooseTruckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldChooseTruckActionPerformed
+    }//GEN-LAST:event_btnbackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAssignTruckSet;
-    private javax.swing.JTextField jTextFieldArea;
-    private javax.swing.JTextField jTextFieldChooseTruck;
-    private javax.swing.JTextField jTextFieldRegion;
-    private javax.swing.JLabel lblArea;
-    private javax.swing.JLabel lblChooseTruck;
-    private javax.swing.JLabel lblRegion;
+    private javax.swing.JButton btnback;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableSupreport;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }

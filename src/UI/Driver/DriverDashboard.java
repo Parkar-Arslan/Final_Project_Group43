@@ -5,21 +5,48 @@
 package UI.Driver;
 
 import Model.Business.Business;
+import Model.Enterprise.Vehicle.Truck;
 import Model.Role.Driver;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author arslanparkar
  */
 public class DriverDashboard extends javax.swing.JPanel {
+    
+     private Business business;
+    private Driver driver;
+    private JPanel userProcessContainer;
 
     /**
      * Creates new form DriverDashboard
      */
     public DriverDashboard(JPanel userProcessContainer, Business business, Driver driver) {
+        this.userProcessContainer = userProcessContainer;
+        this.business = business;
+        this.driver = driver;
         initComponents();
     }
+    
+    
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableSupreport.getModel();
+        model.setRowCount(0); // Clear existing data
+
+        Truck truck = driver.getAssignedTruck();
+        if (truck != null) {
+            Object[] row = new Object[4];
+            row[0] = truck.getTruckId();
+            row[1] = truck.getAssignedRoute() != null ? truck.getAssignedRoute().getRouteId() : "Not assigned";
+            row[2] = truck.getTrashCollected() + " kg"; // Assuming there is a method to get collected trash
+            row[3] = truck.getStatus(); // Assuming there is a method to get the current status
+            model.addRow(row);
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,70 +57,36 @@ public class DriverDashboard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnTotalTrash = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
-        btnAssignTruck = new javax.swing.JButton();
-        btnCreateRoute = new javax.swing.JButton();
-        btnAssignRoute = new javax.swing.JButton();
-        btnCheckUser = new javax.swing.JButton();
+        btnCollectTrash = new javax.swing.JButton();
+        btnTrashComplain = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSupreport = new javax.swing.JTable();
-        btnCheckComplaints = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(54, 116, 99));
-
-        btnTotalTrash.setBackground(new java.awt.Color(181, 143, 120));
-        btnTotalTrash.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnTotalTrash.setForeground(new java.awt.Color(255, 255, 255));
-        btnTotalTrash.setText("Total Trash");
-        btnTotalTrash.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTotalTrashActionPerformed(evt);
-            }
-        });
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("Driver Dashboard");
 
-        btnAssignTruck.setBackground(new java.awt.Color(181, 143, 120));
-        btnAssignTruck.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAssignTruck.setForeground(new java.awt.Color(255, 255, 255));
-        btnAssignTruck.setText("Assign Truck");
-        btnAssignTruck.addActionListener(new java.awt.event.ActionListener() {
+        btnCollectTrash.setBackground(new java.awt.Color(181, 143, 120));
+        btnCollectTrash.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCollectTrash.setForeground(new java.awt.Color(255, 255, 255));
+        btnCollectTrash.setText("Collect trash");
+        btnCollectTrash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAssignTruckActionPerformed(evt);
+                btnCollectTrashActionPerformed(evt);
             }
         });
 
-        btnCreateRoute.setBackground(new java.awt.Color(181, 143, 120));
-        btnCreateRoute.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCreateRoute.setForeground(new java.awt.Color(255, 255, 255));
-        btnCreateRoute.setText("Create Route");
-        btnCreateRoute.addActionListener(new java.awt.event.ActionListener() {
+        btnTrashComplain.setBackground(new java.awt.Color(181, 143, 120));
+        btnTrashComplain.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnTrashComplain.setForeground(new java.awt.Color(255, 255, 255));
+        btnTrashComplain.setText("Complain");
+        btnTrashComplain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateRouteActionPerformed(evt);
-            }
-        });
-
-        btnAssignRoute.setBackground(new java.awt.Color(181, 143, 120));
-        btnAssignRoute.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAssignRoute.setForeground(new java.awt.Color(255, 255, 255));
-        btnAssignRoute.setText("Assign Route ");
-        btnAssignRoute.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAssignRouteActionPerformed(evt);
-            }
-        });
-
-        btnCheckUser.setBackground(new java.awt.Color(181, 143, 120));
-        btnCheckUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCheckUser.setForeground(new java.awt.Color(255, 255, 255));
-        btnCheckUser.setText("Check User ");
-        btnCheckUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCheckUserActionPerformed(evt);
+                btnTrashComplainActionPerformed(evt);
             }
         });
 
@@ -110,16 +103,6 @@ public class DriverDashboard extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTableSupreport);
 
-        btnCheckComplaints.setBackground(new java.awt.Color(181, 143, 120));
-        btnCheckComplaints.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCheckComplaints.setForeground(new java.awt.Color(255, 255, 255));
-        btnCheckComplaints.setText("Check User ");
-        btnCheckComplaints.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCheckComplaintsActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,19 +110,11 @@ public class DriverDashboard extends javax.swing.JPanel {
             .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnTotalTrash)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCheckComplaints, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCheckUser, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCreateRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAssignTruck, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAssignRoute))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnTrashComplain, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCollectTrash, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -151,57 +126,31 @@ public class DriverDashboard extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTotalTrash)
-                        .addGap(17, 17, 17))
+                        .addGap(61, 61, 61))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAssignTruck)
+                        .addComponent(btnCollectTrash)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCreateRoute)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAssignRoute)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCheckUser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
-                        .addComponent(btnCheckComplaints)
-                        .addGap(27, 27, 27))))
+                        .addComponent(btnTrashComplain)
+                        .addContainerGap(266, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnTotalTrashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalTrashActionPerformed
+    private void btnCollectTrashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectTrashActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnTotalTrashActionPerformed
+        DriverPickUpRegister pt = new DriverPickUpRegister(userProcessContainer, business, driver);
+        userProcessContainer.add("DriverDashboard", pt);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnCollectTrashActionPerformed
 
-    private void btnAssignTruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignTruckActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnAssignTruckActionPerformed
-
-    private void btnCreateRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateRouteActionPerformed
+    private void btnTrashComplainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrashComplainActionPerformed
        
-    }//GEN-LAST:event_btnCreateRouteActionPerformed
-
-    private void btnAssignRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignRouteActionPerformed
-
-       
-    }//GEN-LAST:event_btnAssignRouteActionPerformed
-
-    private void btnCheckUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCheckUserActionPerformed
-
-    private void btnCheckComplaintsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckComplaintsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCheckComplaintsActionPerformed
+    }//GEN-LAST:event_btnTrashComplainActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAssignRoute;
-    private javax.swing.JButton btnAssignTruck;
-    private javax.swing.JButton btnCheckComplaints;
-    private javax.swing.JButton btnCheckUser;
-    private javax.swing.JButton btnCreateRoute;
-    private javax.swing.JButton btnTotalTrash;
+    private javax.swing.JButton btnCollectTrash;
+    private javax.swing.JButton btnTrashComplain;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableSupreport;
     private javax.swing.JLabel lblTitle;
