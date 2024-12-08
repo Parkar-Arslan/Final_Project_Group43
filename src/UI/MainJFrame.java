@@ -4,6 +4,8 @@
  */
 package UI;
 
+import Model.Bill.Bill;
+import Model.Bill.BillDirectory;
 import Model.Business.Business;
 import Model.Complaint.ComplaintDirectory;
 import Model.Driver.DriverDirectory;
@@ -30,6 +32,7 @@ public class MainJFrame extends javax.swing.JFrame {
     DriverDirectory driverDirectory; 
     UserDirectory userDirectory;
     ComplaintDirectory complaintDirectory;
+    private BillDirectory billDirectory;
     /**
      * Creates new form MainJFrame
      */
@@ -42,6 +45,7 @@ public class MainJFrame extends javax.swing.JFrame {
         driverDirectory = DriverDirectory.getInstance();
         complaintDirectory = new ComplaintDirectory();
         userDirectory = business.getUserDirectory();
+        billDirectory = new BillDirectory();
         
         if (userDirectory == null) {
         userDirectory = new UserDirectory();
@@ -51,7 +55,8 @@ public class MainJFrame extends javax.swing.JFrame {
         initializeTruckData();
         initializeDriverData(); 
         initializeSupervisorData();
-        initializeUserData();   
+        initializeUserData();  
+        initializeBillData();
     }
     
     private void initializeUserData() {
@@ -251,6 +256,24 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
+
+    private void initializeBillData() {
+        createBillsForUser("U001", 3);
+        createBillsForUser("U002", 2);
+        createBillsForUser("U003", 4);
+        createBillsForUser("U004", 1);
+        createBillsForUser("U005", 3);
+    }
+    private void createBillsForUser(String userId, int numberOfBills) {
+        for (int i = 1; i <= numberOfBills; i++) {
+            Bill bill = new Bill();
+            bill.setBillId(userId + "-B" + i);
+            bill.setAmount(100 + Math.random() * 900); // Random amount between 100 and 1000
+            bill.setIsPaid(false);
+            bill.setDueDate("2024-12-31"); // Set a fixed due date for simplicity
+            billDirectory.addBill(userId, bill);
+        }
+    }
 
     
 }

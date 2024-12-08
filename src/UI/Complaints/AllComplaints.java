@@ -99,13 +99,13 @@ public class AllComplaints extends javax.swing.JPanel {
         model.setRowCount(0); // Clear existing rows
 
         for (Complaint complaint : complaintDirectory.getComplaints()) {
-            Object[] row = new Object[]{
-                complaint.getComplaintId(),
-                complaint.getDetails(),
-                complaint.isResolved() ? "Resolved" : "Pending"
-            };
+            System.out.println("Number of complaints: " + complaintDirectory.getComplaints().size());
+
+            Object[] row = new Object[3];
+            row[0] = complaint.getComplaintId();
+            row[1] = complaint.getDetails();
+            row[2] = complaint.isResolved(); // Assuming there is a boolean field for status
             model.addRow(row);
         }
-        
     }
 }

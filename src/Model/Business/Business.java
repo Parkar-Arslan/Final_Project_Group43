@@ -4,6 +4,7 @@
  */
 package Model.Business;
 
+import Model.Bill.BillDirectory;
 import Model.Driver.DriverDirectory;
 import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.TruckDirectory;
@@ -18,6 +19,15 @@ public class Business {
     SupervisorDirectory supervisorDirectory;
     DriverDirectory driverDirectory;
     UserDirectory userDirectory;
+    BillDirectory billDirectory;
+
+    public BillDirectory getBillDirectory() {
+        return billDirectory;
+    }
+
+    public void setBillDirectory(BillDirectory billDirectory) {
+        this.billDirectory = billDirectory;
+    }
 
     public Business(){
     
