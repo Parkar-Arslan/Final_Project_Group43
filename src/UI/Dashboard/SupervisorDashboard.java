@@ -5,13 +5,13 @@
 package UI.Dashboard;
 
 import Model.Business.Business;
-import Model.Complaint.ComplaintDirectory;
+import Model.Enterprise.Compliance.ComplaintDirectory;
 
 import Model.Role.Driver;
-import Model.Route.Route;
+import Model.Enterprise.Logistic.Route;
 import Model.Role.Supervisor;
 import Model.Role.SupervisorDirectory;
-import Model.Role.Truck;
+import Model.Enterprise.Vehicle.Truck;
 import UI.Supervisor.SupervisorAssignRoute;
 import UI.Supervisor.SupervisorCreateRoute;
 import UI.Supervisor.SupervisorAssignTruck;

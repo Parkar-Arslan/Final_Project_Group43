@@ -1,5 +1,6 @@
-package Model.Route;
+package Model.Enterprise.Logistic;
 
+import Model.Enterprise.Logistic.Route;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -5,10 +5,10 @@
 package UI.Supervisor;
 
 import Model.Business.Business;
-import Model.Route.Route;
+import Model.Enterprise.Logistic.Route;
 import Model.Role.Supervisor;
 import Model.Role.SupervisorDirectory;
-import Model.Role.Truck;
+import Model.Enterprise.Vehicle.Truck;
 import UI.Dashboard.SupervisorDashboard;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;

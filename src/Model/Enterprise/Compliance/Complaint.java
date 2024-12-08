@@ -1,4 +1,4 @@
-package Model.Complaint;
+package Model.Enterprise.Compliance;
 
 public class Complaint {
     private String complaintId;

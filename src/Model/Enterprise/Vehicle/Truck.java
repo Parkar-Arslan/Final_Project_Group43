@@ -1,6 +1,7 @@
-package Model.Role;
+package Model.Enterprise.Vehicle;
 
-import Model.Route.Route;
+import Model.Enterprise.Logistic.Route;
+import Model.Role.Driver;
 
 public class Truck {
     private String truckId;

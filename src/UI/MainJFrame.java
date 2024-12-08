@@ -4,15 +4,15 @@
  */
 package UI;
 
-import Model.Bill.Bill;
-import Model.Bill.BillDirectory;
-import Model.Admin.AdminDirectory;
+import Model.Enterprise.bill.Bill;
+import Model.Enterprise.bill.BillDirectory;
+import Model.Role.AdminDirectory;
 
 import Model.Business.Business;
-import Model.Complaint.ComplaintDirectory;
+import Model.Enterprise.Compliance.ComplaintDirectory;
 import Model.Role.DriverDirectory;
 import Model.Role.SupervisorDirectory;
-import Model.Role.TruckDirectory;
+import Model.Enterprise.Vehicle.TruckDirectory;
 import UI.Dashboard.SupervisorDashboard;
 import UI.Supervisor.SupervisorCreateRoute;
 import java.awt.CardLayout;

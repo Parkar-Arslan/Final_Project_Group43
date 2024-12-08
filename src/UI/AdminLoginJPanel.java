@@ -4,10 +4,10 @@
  */
 package UI;
 
-import Model.Admin.Admin;
-import Model.Admin.AdminDirectory;
+import Model.Role.Admin;
+import Model.Role.AdminDirectory;
 import Model.Business.Business;
-import Model.Complaint.ComplaintDirectory;
+import Model.Enterprise.Compliance.ComplaintDirectory;
 import Model.Role.SupervisorDirectory;
 import Model.Role.UserDirectory;
 import Model.Role.Supervisor;

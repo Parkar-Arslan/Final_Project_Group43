@@ -1,4 +1,4 @@
-package Model.Admin;
+package Model.Role;
 public class Admin {
     private String adminId;
     private String name;

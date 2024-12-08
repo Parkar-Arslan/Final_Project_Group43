@@ -4,14 +4,14 @@
  */
 package UI.Admin;
 
-import Model.Admin.Admin;
-import Model.Admin.AdminDirectory;
+import Model.Role.Admin;
+import Model.Role.AdminDirectory;
 import UI.Admin.CreateDriver;
 import java.awt.CardLayout;
 import Model.Business.Business;
 import Model.Role.DriverDirectory;
 import Model.Role.SupervisorDirectory;
-import Model.Role.TruckDirectory;
+import Model.Enterprise.Vehicle.TruckDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 

@@ -5,8 +5,8 @@
 package UI.Complaints;
 
 import Model.Business.Business;
-import Model.Complaint.Complaint;
-import Model.Complaint.ComplaintDirectory;
+import Model.Enterprise.Compliance.Complaint;
+import Model.Enterprise.Compliance.ComplaintDirectory;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 

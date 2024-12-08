@@ -5,7 +5,7 @@
 package UI;
 
 import Model.Business.Business;
-import Model.Complaint.ComplaintDirectory;
+import Model.Enterprise.Compliance.ComplaintDirectory;
 import Model.Role.Supervisor;
 import Model.Role.SupervisorDirectory;
 import Model.Role.UserDirectory;

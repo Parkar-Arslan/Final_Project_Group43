@@ -1,6 +1,6 @@
 package Model.Role;
 
-import Model.Role.Truck;
+import Model.Enterprise.Vehicle.Truck;
 
 public class Driver {
 

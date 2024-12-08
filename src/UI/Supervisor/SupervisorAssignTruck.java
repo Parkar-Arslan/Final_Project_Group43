@@ -10,7 +10,7 @@ import Model.Role.DriverDirectory;
 
 import Model.Role.Supervisor;
 import Model.Role.SupervisorDirectory;
-import Model.Role.Truck;
+import Model.Enterprise.Vehicle.Truck;
 import UI.Dashboard.SupervisorDashboard;
 import java.awt.CardLayout;
 import java.util.List;

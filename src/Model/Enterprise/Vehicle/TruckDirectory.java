@@ -1,6 +1,6 @@
-package Model.Role;
+package Model.Enterprise.Vehicle;
 
-import Model.Role.Truck;
+import Model.Enterprise.Vehicle.Truck;
 import java.util.ArrayList;
 import java.util.List;
 

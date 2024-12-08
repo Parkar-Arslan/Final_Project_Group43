@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model.Bill;
+package Model.Enterprise.bill;
 
+import Model.Enterprise.bill.Bill;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

@@ -1,4 +1,4 @@
-package Model.Role;
+package Model.Enterprise.Trash;
 
 
 import java.util.Date;

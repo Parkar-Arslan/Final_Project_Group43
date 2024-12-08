@@ -4,12 +4,12 @@
  */
 package Model.Business;
 
-import Model.Bill.BillDirectory;
-import Model.Admin.AdminDirectory;
+import Model.Enterprise.bill.BillDirectory;
+import Model.Role.AdminDirectory;
 import Model.Role.DriverDirectory;
-import Model.Route.RouteDirectory;
+import Model.Enterprise.Logistic.RouteDirectory;
 import Model.Role.SupervisorDirectory;
-import Model.Role.TruckDirectory;
+import Model.Enterprise.Vehicle.TruckDirectory;
 import Model.Role.DriverDirectory;
 import Model.Role.UserDirectory;
 /**
