@@ -1,30 +1,34 @@
+package Model.Route;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RouteDirectory {
-    private List<Route> routeList;
+    private List<Route> routes;
 
     public RouteDirectory() {
-        routeList = new ArrayList<>();
+        this.routes = new ArrayList<>();
     }
 
-    public Route createRoute(String routeId, String startLocation, String endLocation) {
-        Route newRoute = new Route(routeId, startLocation, endLocation);
-        routeList.add(newRoute);
-        return newRoute;
-    }
-
-    public List<Route> getRoutes() {
-        return routeList;
+    public void addRoute(String routeId, String start, String end) {
+        Route route = new Route(routeId, start, end);
+        routes.add(route);
     }
 
     public Route findRouteById(String routeId) {
-        for (Route route : routeList) {
+        for (Route route : routes) {
             if (route.getRouteId().equals(routeId)) {
                 return route;
             }
         }
-        return null; // No route found
+        return null;  // Return null if no route matches
+    }
+
+    public boolean removeRoute(String routeId) {
+        return routes.removeIf(route -> route.getRouteId().equals(routeId));
+    }
+
+    public List<Route> getRoutes() {
+        return routes;
     }
 }

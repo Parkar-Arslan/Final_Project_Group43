@@ -4,19 +4,17 @@
  */
 package UI;
 
-<<<<<<< HEAD
 import Model.Bill.Bill;
 import Model.Bill.BillDirectory;
-=======
 import Model.Admin.AdminDirectory;
->>>>>>> cda030ddc2cfb7f9a7191d3f3d83823f5051d5f5
+
 import Model.Business.Business;
 import Model.Complaint.ComplaintDirectory;
 import Model.Driver.DriverDirectory;
 import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.TruckDirectory;
 import UI.Dashboard.SupervisorDashboard;
-import UI.Supervisor.SupervisorAssignDriver;
+import UI.Supervisor.SupervisorCreateRoute;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import Model.User.UserDirectory; // Adjust this based on your actual package structure
@@ -36,11 +34,8 @@ public class MainJFrame extends javax.swing.JFrame {
     DriverDirectory driverDirectory; 
     UserDirectory userDirectory;
     ComplaintDirectory complaintDirectory;
-<<<<<<< HEAD
     private BillDirectory billDirectory;
-=======
 
->>>>>>> cda030ddc2cfb7f9a7191d3f3d83823f5051d5f5
     /**
      * Creates new form MainJFrame
      */
@@ -121,8 +116,10 @@ public class MainJFrame extends javax.swing.JFrame {
         splitPane = new javax.swing.JSplitPane();
         controlPanel = new javax.swing.JPanel();
         btnAdminClick = new javax.swing.JButton();
-        btnUserLogin = new javax.swing.JButton();
-        btnSupervisorClick = new javax.swing.JButton();
+
+        btnUserClick = new javax.swing.JButton();
+        btnDriver = new javax.swing.JButton();
+        btnSupervisorClick1 = new javax.swing.JButton();
         userProcessContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -153,13 +150,23 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnSupervisorClick.setBackground(new java.awt.Color(181, 143, 120));
-        btnSupervisorClick.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnSupervisorClick.setForeground(new java.awt.Color(255, 255, 255));
-        btnSupervisorClick.setText("Supervisor");
-        btnSupervisorClick.addActionListener(new java.awt.event.ActionListener() {
+        btnDriver.setBackground(new java.awt.Color(181, 143, 120));
+        btnDriver.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnDriver.setForeground(new java.awt.Color(255, 255, 255));
+        btnDriver.setText("Driver");
+        btnDriver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSupervisorClickActionPerformed(evt);
+                btnDriverActionPerformed(evt);
+            }
+        });
+
+        btnSupervisorClick1.setBackground(new java.awt.Color(181, 143, 120));
+        btnSupervisorClick1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnSupervisorClick1.setForeground(new java.awt.Color(255, 255, 255));
+        btnSupervisorClick1.setText("Supervisor");
+        btnSupervisorClick1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupervisorClick1ActionPerformed(evt);
             }
         });
 
@@ -169,11 +176,13 @@ public class MainJFrame extends javax.swing.JFrame {
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSupervisorClick, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUserLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAdminClick, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(19, Short.MAX_VALUE))
+
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSupervisorClick1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdminClick, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUserClick, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,10 +190,13 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(120, 120, 120)
                 .addComponent(btnAdminClick)
                 .addGap(18, 18, 18)
-                .addComponent(btnSupervisorClick)
+                .addComponent(btnSupervisorClick1)
                 .addGap(18, 18, 18)
-                .addComponent(btnUserLogin)
-                .addContainerGap(351, Short.MAX_VALUE))
+
+                .addComponent(btnUserClick)
+                .addGap(18, 18, 18)
+                .addComponent(btnDriver)
+                .addContainerGap(302, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(controlPanel);
@@ -225,14 +237,19 @@ public class MainJFrame extends javax.swing.JFrame {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnUserLoginActionPerformed
 
-    private void btnSupervisorClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupervisorClickActionPerformed
+    private void btnDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDriverActionPerformed
        
-            
-        SupervisorLoginJPanel SL = new SupervisorLoginJPanel(userProcessContainer,business ,supervisorDirectory,complaintDirectory,userDirectory);
+
+        
+    }//GEN-LAST:event_btnDriverActionPerformed
+
+    private void btnSupervisorClick1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupervisorClick1ActionPerformed
+        // TODO add your handling code here:
+        SupervisorLoginJPanel SL = new SupervisorLoginJPanel(userProcessContainer,business ,supervisorDirectory);
         userProcessContainer.add("SupervisorLoginJPanel", SL);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnSupervisorClickActionPerformed
+    }//GEN-LAST:event_btnSupervisorClick1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,8 +288,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdminClick;
-    private javax.swing.JButton btnSupervisorClick;
-    private javax.swing.JButton btnUserLogin;
+
+    private javax.swing.JButton btnDriver;
+    private javax.swing.JButton btnSupervisorClick1;
+    private javax.swing.JButton btnUserClick;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel userProcessContainer;

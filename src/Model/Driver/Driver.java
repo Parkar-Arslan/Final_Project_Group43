@@ -7,13 +7,14 @@ public class Driver {
 
     private String driverId;
     private String name;
-    private String licenseNumber; // Including license number for completeness
-    private Truck assignedTruck;
+
+    private Truck assignedTruck;  // Holds a reference to the assigned truck
+    private String licenseNumber; // Store license number for driver identification
 
     public Driver(String driverId, String name, String licenseNumber) {
         this.driverId = driverId;
         this.name = name;
-        this.assignedTruck = null;
+        this.assignedTruck = null;  // Initially, no truck is assigned
         this.licenseNumber = licenseNumber;
     }
     
@@ -25,14 +26,20 @@ public class Driver {
         this.driverId = driverId;
     }
 
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    // Returns the truck assigned to the driver, if any
+    public Truck getAssignedTruck() {
+        return assignedTruck;
+
     }
 
+    // Returns the driver's license number
     public String getLicenseNumber() {
         return licenseNumber;
     }
@@ -46,10 +53,14 @@ public class Driver {
         return assignedTruck;
     }
 
+
     public void setAssignedTruck(Truck assignedTruck) {
         this.assignedTruck = assignedTruck;
         if (assignedTruck != null) {
-            assignedTruck.setAssignedDriver(this); // Assume Truck has a method to link back to the driver
+            assignedTruck.setAssignedDriver(this);
+            System.out.println("Assigned truck " + assignedTruck.getDescription() + " to driver " + this.name);
+        } else {
+            System.out.println("No truck assigned to driver " + this.name);
         }
     }
 }

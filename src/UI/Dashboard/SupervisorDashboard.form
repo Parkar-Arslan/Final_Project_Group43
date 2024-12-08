@@ -23,14 +23,20 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="lblTitle" alignment="1" pref="700" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="529" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="btnCheckUser" linkSize="1" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
-                  <Component id="btnAssignDriver" linkSize="1" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
-                  <Component id="btnAssignTruck" linkSize="1" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
-                  <Component id="btnAssignRoute" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
+
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnTotalTrash" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="528" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="btnCheckUser" linkSize="1" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
+                          <Component id="btnCreateRoute" linkSize="1" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
+                          <Component id="btnAssignTruck" linkSize="1" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
+                          <Component id="btnAssignRoute" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
@@ -53,7 +59,7 @@
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Component id="btnAssignTruck" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnAssignDriver" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCreateRoute" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnAssignRoute" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -122,7 +128,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAssignTruckActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAssignDriver">
+    <Component class="javax.swing.JButton" name="btnCreateRoute">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="78" green="8f" red="b5" type="rgb"/>
@@ -133,10 +139,10 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Assign Driver"/>
+        <Property name="text" type="java.lang.String" value="Create Route"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAssignDriverActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateRouteActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAssignRoute">

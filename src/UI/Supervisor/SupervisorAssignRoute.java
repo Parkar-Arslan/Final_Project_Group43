@@ -4,17 +4,49 @@
  */
 package UI.Supervisor;
 
+import Model.Business.Business;
+import Model.Route.Route;
+import Model.Supervisor.Supervisor;
+import Model.Supervisor.SupervisorDirectory;
+import Model.Truck.Truck;
+import UI.Dashboard.SupervisorDashboard;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tawde
  */
 public class SupervisorAssignRoute extends javax.swing.JPanel {
 
+    private Business business; // Access to the central business model
+    private JPanel userProcessContainer;
+    private Supervisor authenticatedSupervisor;
+    private SupervisorDirectory supervisorDirectory;
+    private SupervisorDashboard dashboard;
     /**
      * Creates new form SupervisorAssignRoute
      */
-    public SupervisorAssignRoute() {
-        initComponents();
+    public SupervisorAssignRoute(JPanel userProcessContainer, Business business, Supervisor authenticatedSupervisor, SupervisorDirectory supervisorDirectory) {
+    this.userProcessContainer = userProcessContainer; // Fix: correctly assign the passed userProcessContainer
+    this.business = business;
+    this.authenticatedSupervisor = authenticatedSupervisor;
+    this.supervisorDirectory = supervisorDirectory;
+    initComponents();
+    populateComboBoxes();
+}
+    
+    private void populateComboBoxes() {
+        
+        comboTruck.removeAllItems();
+        comboRoute.removeAllItems();
+        for (Truck truck : business.getTruckDirectory().getTrucks()) {
+            comboTruck.addItem(truck.getTruckId() + " - " + truck.getDescription());
+        }
+        for (Route route : business.getRouteDirectory().getRoutes()) {
+            comboRoute.addItem(route.getRouteId() + " - From " + route.getStart() + " to " + route.getEnd());
+        }
     }
 
     /**
@@ -27,13 +59,12 @@ public class SupervisorAssignRoute extends javax.swing.JPanel {
     private void initComponents() {
 
         btnAssignRouteSet = new javax.swing.JButton();
-        jTextFieldRouteID = new javax.swing.JTextField();
-        lblRouteID = new javax.swing.JLabel();
-        jTextFieldRouteNo = new javax.swing.JTextField();
-        jTextFieldChooseTruck = new javax.swing.JTextField();
         lblChooseTruck = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         lblRouteNo = new javax.swing.JLabel();
+        comboRoute = new javax.swing.JComboBox<>();
+        comboTruck = new javax.swing.JComboBox<>();
+        btnback = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(54, 116, 99));
 
@@ -44,28 +75,6 @@ public class SupervisorAssignRoute extends javax.swing.JPanel {
         btnAssignRouteSet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAssignRouteSetActionPerformed(evt);
-            }
-        });
-
-        jTextFieldRouteID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldRouteIDActionPerformed(evt);
-            }
-        });
-
-        lblRouteID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblRouteID.setForeground(new java.awt.Color(255, 255, 255));
-        lblRouteID.setText("Route ID");
-
-        jTextFieldRouteNo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldRouteNoActionPerformed(evt);
-            }
-        });
-
-        jTextFieldChooseTruck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldChooseTruckActionPerformed(evt);
             }
         });
 
@@ -82,23 +91,40 @@ public class SupervisorAssignRoute extends javax.swing.JPanel {
         lblRouteNo.setForeground(new java.awt.Color(255, 255, 255));
         lblRouteNo.setText("Route No");
 
+        comboRoute.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        comboTruck.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnback.setBackground(new java.awt.Color(181, 143, 120));
+        btnback.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnback.setForeground(new java.awt.Color(255, 255, 255));
+        btnback.setText("<<Back");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                .addGap(35, 35, 35))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(147, 147, 147)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblRouteID)
                     .addComponent(lblRouteNo)
                     .addComponent(lblChooseTruck))
-                .addGap(55, 55, 55)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldRouteID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldRouteNo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldChooseTruck, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(149, Short.MAX_VALUE))
+                    .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboTruck, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(176, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAssignRouteSet, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -108,52 +134,64 @@ public class SupervisorAssignRoute extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(lblTitle)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitle)
+                    .addComponent(btnback))
                 .addGap(89, 89, 89)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblChooseTruck)
-                            .addComponent(jTextFieldChooseTruck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblChooseTruck)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblRouteNo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblRouteID)
-                        .addGap(6, 6, 6))
+                        .addComponent(lblRouteNo))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextFieldRouteNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboTruck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldRouteID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(48, 48, 48)
+                        .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(89, 89, 89)
                 .addComponent(btnAssignRouteSet)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAssignRouteSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignRouteSetActionPerformed
         // TODO add your handling code here:
+        
+        // Get selected items from combo boxes
+        String selectedTruck = (String) comboTruck.getSelectedItem();
+        String selectedRoute = (String) comboRoute.getSelectedItem();
+        if (selectedTruck == null || selectedRoute == null) {
+            JOptionPane.showMessageDialog(this, "Please select both a truck and a route.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String truckId = selectedTruck.split(" - ")[0];
+        String routeId = selectedRoute.split(" - ")[0];
+
+        Truck truck = business.getTruckDirectory().findTruckById(truckId);
+        Route route = business.getRouteDirectory().findRouteById(routeId);
+        
+        if (truck != null && route != null) {
+            truck.setAssignedRoute(route);
+            JOptionPane.showMessageDialog(this, "Route " + routeId + " assigned to truck " + truckId, "Assignment Successful", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error in assigning route to truck.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnAssignRouteSetActionPerformed
 
-    private void jTextFieldRouteIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRouteIDActionPerformed
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldRouteIDActionPerformed
-
-    private void jTextFieldRouteNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRouteNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldRouteNoActionPerformed
-
-    private void jTextFieldChooseTruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldChooseTruckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldChooseTruckActionPerformed
+        userProcessContainer.remove(this);
+    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+    layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnbackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAssignRouteSet;
-    private javax.swing.JTextField jTextFieldChooseTruck;
-    private javax.swing.JTextField jTextFieldRouteID;
-    private javax.swing.JTextField jTextFieldRouteNo;
+    private javax.swing.JButton btnback;
+    private javax.swing.JComboBox<String> comboRoute;
+    private javax.swing.JComboBox<String> comboTruck;
     private javax.swing.JLabel lblChooseTruck;
-    private javax.swing.JLabel lblRouteID;
     private javax.swing.JLabel lblRouteNo;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables

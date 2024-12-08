@@ -4,12 +4,10 @@
  */
 package Model.Business;
 
-<<<<<<< HEAD
 import Model.Bill.BillDirectory;
-=======
 import Model.Admin.AdminDirectory;
->>>>>>> cda030ddc2cfb7f9a7191d3f3d83823f5051d5f5
 import Model.Driver.DriverDirectory;
+import Model.Route.RouteDirectory;
 import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.TruckDirectory;
 import Model.Driver.DriverDirectory;
@@ -23,8 +21,8 @@ public class Business {
     SupervisorDirectory supervisorDirectory;
     DriverDirectory driverDirectory;
 
+
     UserDirectory userDirectory;
-<<<<<<< HEAD
     BillDirectory billDirectory;
 
     public BillDirectory getBillDirectory() {
@@ -34,16 +32,20 @@ public class Business {
     public void setBillDirectory(BillDirectory billDirectory) {
         this.billDirectory = billDirectory;
     }
-=======
     AdminDirectory adminDirectory;
->>>>>>> cda030ddc2cfb7f9a7191d3f3d83823f5051d5f5
 
+    RouteDirectory routeDirectory;
+    
     public Business(){
     
+        
         truckDirectory = new TruckDirectory();
         supervisorDirectory = new SupervisorDirectory();
         driverDirectory =  DriverDirectory.getInstance();
+
         this.userDirectory = new UserDirectory();
+
+        routeDirectory = new RouteDirectory();
     }
 
     public UserDirectory getUserDirectory() {
@@ -71,6 +73,10 @@ public class Business {
 
     public DriverDirectory getDriverDirectory() {
         return driverDirectory;
+    }
+
+    public RouteDirectory getRouteDirectory() {
+        return routeDirectory;
     }
     
     
