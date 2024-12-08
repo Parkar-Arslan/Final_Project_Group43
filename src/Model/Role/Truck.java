@@ -1,6 +1,5 @@
-package Model.Truck;
+package Model.Role;
 
-import Model.Driver.Driver;
 import Model.Route.Route;
 
 public class Truck {

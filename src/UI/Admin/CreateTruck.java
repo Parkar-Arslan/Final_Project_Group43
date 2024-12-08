@@ -5,9 +5,9 @@
 package UI.Admin;
 
 import Model.Business.Business;
-import Model.Truck.TruckDirectory;
+import Model.Role.TruckDirectory;
 import javax.swing.JPanel;
-import Model.Truck.Truck;
+import Model.Role.Truck;
 import javax.swing.JOptionPane;
 
 /**

@@ -1,5 +1,6 @@
-package Model.Driver;
+package Model.Role;
 
+import Model.Role.Driver;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package Model.User;
+package Model.Role;
 public class User {
     private String id;
     private String name;

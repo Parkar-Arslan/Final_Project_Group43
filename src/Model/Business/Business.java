@@ -6,12 +6,12 @@ package Model.Business;
 
 import Model.Bill.BillDirectory;
 import Model.Admin.AdminDirectory;
-import Model.Driver.DriverDirectory;
+import Model.Role.DriverDirectory;
 import Model.Route.RouteDirectory;
-import Model.Supervisor.SupervisorDirectory;
-import Model.Truck.TruckDirectory;
-import Model.Driver.DriverDirectory;
-import Model.User.UserDirectory;
+import Model.Role.SupervisorDirectory;
+import Model.Role.TruckDirectory;
+import Model.Role.DriverDirectory;
+import Model.Role.UserDirectory;
 /**
  *
  * @author arslanparkar

@@ -1,5 +1,6 @@
-package Model.Truck;
+package Model.Role;
 
+import Model.Role.Truck;
 import java.util.ArrayList;
 import java.util.List;
 

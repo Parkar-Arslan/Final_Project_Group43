@@ -6,9 +6,9 @@ package UI;
 
 import Model.Business.Business;
 import Model.Complaint.ComplaintDirectory;
-import Model.Supervisor.Supervisor;
-import Model.Supervisor.SupervisorDirectory;
-import Model.User.UserDirectory;
+import Model.Role.Supervisor;
+import Model.Role.SupervisorDirectory;
+import Model.Role.UserDirectory;
 import UI.Dashboard.SupervisorDashboard;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;

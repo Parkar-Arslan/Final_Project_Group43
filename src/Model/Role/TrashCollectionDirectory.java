@@ -1,3 +1,6 @@
+package Model.Role;
+
+import Model.Role.TrashCollection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

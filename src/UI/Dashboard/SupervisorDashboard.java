@@ -7,11 +7,11 @@ package UI.Dashboard;
 import Model.Business.Business;
 import Model.Complaint.ComplaintDirectory;
 
-import Model.Driver.Driver;
+import Model.Role.Driver;
 import Model.Route.Route;
-import Model.Supervisor.Supervisor;
-import Model.Supervisor.SupervisorDirectory;
-import Model.Truck.Truck;
+import Model.Role.Supervisor;
+import Model.Role.SupervisorDirectory;
+import Model.Role.Truck;
 import UI.Supervisor.SupervisorAssignRoute;
 import UI.Supervisor.SupervisorCreateRoute;
 import UI.Supervisor.SupervisorAssignTruck;
