@@ -10,17 +10,29 @@ public class Driver {
 
     private Truck assignedTruck;  // Holds a reference to the assigned truck
     private String licenseNumber; // Store license number for driver identification
+    private String password; // Adding password attribute
 
-    public Driver(String driverId, String name, String licenseNumber) {
+
+    public Driver(String driverId, String name, String licenseNumber, String password) {
         this.driverId = driverId;
         this.name = name;
         this.assignedTruck = null;  // Initially, no truck is assigned
         this.licenseNumber = licenseNumber;
+        this.password = password;
     }
 
     public String getDriverId() {
         return driverId;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
 
     public String getName() {
         return name;

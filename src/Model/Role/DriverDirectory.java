@@ -1,6 +1,7 @@
 package Model.Role;
 
 import Model.Role.Driver;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class DriverDirectory {
     }
 
     // Method to add a driver
-    public Driver addDriver(String driverId, String name, String licenseNumber) {
-        Driver driver = new Driver(driverId, name, licenseNumber);
+    public Driver addDriver(String driverId, String name, String licenseNumber, String password) {
+        Driver driver = new Driver(driverId, name, licenseNumber, password);
         drivers.add(driver); // Add the driver to the list
         System.out.println("Driver added: " + driverId + " - " + name);
         return driver; // Return the newly created driver
@@ -42,6 +43,15 @@ public class DriverDirectory {
             }
         }
         return null;
+    }
+    
+    public boolean authenticateDriver(String driverId, String password) {
+        for (Driver driver : drivers) {
+            if (driver.getDriverId().equals(driverId) && driver.getPassword().equals(password)) {
+                return true; // Authentication successful
+            }
+        }
+        return false; // Authentication failed
     }
 
     public List<Driver> getDrivers() {
