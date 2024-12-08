@@ -5,10 +5,10 @@
 package UI;
 
 import Model.Business.Business;
-import Model.Complaint.ComplaintDirectory;
-import Model.Supervisor.Supervisor;
-import Model.Supervisor.SupervisorDirectory;
-import Model.User.UserDirectory;
+import Model.Enterprise.Compliance.ComplaintDirectory;
+import Model.Role.Supervisor;
+import Model.Role.SupervisorDirectory;
+import Model.Role.UserDirectory;
 import UI.Dashboard.SupervisorDashboard;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -28,7 +28,7 @@ public class SupervisorLoginJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SupervisorLoginJPanel
      */
-    public SupervisorLoginJPanel(JPanel userProcessContainer,Business business ,SupervisorDirectory supervisorDirectory1,ComplaintDirectory complaintdirectory, UserDirectory userDirectory) {
+    public SupervisorLoginJPanel(JPanel userProcessContainer,Business business ,SupervisorDirectory supervisorDirectory,ComplaintDirectory complaintdirectory, UserDirectory userDirectory) {
         initComponents();
         this.business = business;
         this.userProcessContainer=userProcessContainer;

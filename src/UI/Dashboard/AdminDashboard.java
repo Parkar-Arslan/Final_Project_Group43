@@ -5,7 +5,7 @@
 package UI.Dashboard;
 
 import Model.Business.Business;
-import Model.Complaint.ComplaintDirectory;
+import Model.Enterprise.Compliance.ComplaintDirectory;
 import UI.Complaints.AllComplaints;
 import java.awt.CardLayout;
 import javax.swing.JPanel;

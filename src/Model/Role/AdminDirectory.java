@@ -1,5 +1,5 @@
-package Model.Admin;
-import Model.Admin.Admin;
+package Model.Role;
+import Model.Role.Admin;
 import java.util.ArrayList;
 import java.util.List;
 

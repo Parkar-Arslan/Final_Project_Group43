@@ -4,9 +4,9 @@
  */
 package UI.User;
 
-import Model.Bill.Bill;
-import Model.Bill.BillDirectory;
-import Model.User.User;
+import Model.Enterprise.bill.Bill;
+import Model.Enterprise.bill.BillDirectory;
+import Model.Role.User;
 import java.util.List;
 
 /**

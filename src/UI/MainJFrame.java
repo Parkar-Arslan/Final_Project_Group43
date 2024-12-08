@@ -4,22 +4,22 @@
  */
 package UI;
 
-import Model.Bill.Bill;
-import Model.Bill.BillDirectory;
-import Model.Admin.AdminDirectory;
+import Model.Enterprise.bill.Bill;
+import Model.Enterprise.bill.BillDirectory;
+import Model.Role.AdminDirectory;
 
 import Model.Business.Business;
-import Model.Complaint.ComplaintDirectory;
-import Model.Driver.DriverDirectory;
-import Model.Supervisor.SupervisorDirectory;
-import Model.Truck.TruckDirectory;
+import Model.Enterprise.Compliance.ComplaintDirectory;
+import Model.Role.DriverDirectory;
+import Model.Role.SupervisorDirectory;
+import Model.Enterprise.Vehicle.TruckDirectory;
 import UI.Dashboard.SupervisorDashboard;
 import UI.Supervisor.SupervisorCreateRoute;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-import Model.User.UserDirectory; // Adjust this based on your actual package structure
-import Model.User.UserDirectory;
-import Model.User.User; // Adjust the package as per your structure
+import Model.Role.UserDirectory; // Adjust this based on your actual package structure
+import Model.Role.UserDirectory;
+import Model.Role.User; // Adjust the package as per your structure
 
 
 
@@ -73,7 +73,7 @@ public class MainJFrame extends javax.swing.JFrame {
         userDirectory.createUser("U008", "Sneha Patel", "sneha.patel@example.com", "sneha123");
         userDirectory.createUser("U009", "Rohit Mehta", "rohit.mehta@example.com", "rohit123");
         userDirectory.createUser("U010", "Sana Khan", "sana.khan@example.com", "sana123");
-        adminDirectory = business.getAdminDirectory();
+       // adminDirectory = business.getAdminDirectory();
         initializeTruckData();
         initializeDriverData(); 
         initializeSupervisorData();
@@ -100,8 +100,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }
     
     private void initializeAdminData() {
-        adminDirectory.createAdmin("A01", "sa", "ABC", "sa");
-        adminDirectory.createAdmin("A02", "sb", "DEF", "sb");
+       // adminDirectory.createAdmin("A01", "sa", "ABC", "sa");
+        //adminDirectory.createAdmin("A02", "sb", "DEF", "sb");
         // Add more drivers as needed
     }
     /**
@@ -116,8 +116,7 @@ public class MainJFrame extends javax.swing.JFrame {
         splitPane = new javax.swing.JSplitPane();
         controlPanel = new javax.swing.JPanel();
         btnAdminClick = new javax.swing.JButton();
-
-        btnUserClick = new javax.swing.JButton();
+        btnUserLogin = new javax.swing.JButton();
         btnDriver = new javax.swing.JButton();
         btnSupervisorClick1 = new javax.swing.JButton();
         userProcessContainer = new javax.swing.JPanel();
@@ -176,13 +175,12 @@ public class MainJFrame extends javax.swing.JFrame {
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSupervisorClick1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdminClick, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUserClick, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(btnUserLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,8 +190,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnSupervisorClick1)
                 .addGap(18, 18, 18)
-
-                .addComponent(btnUserClick)
+                .addComponent(btnUserLogin)
                 .addGap(18, 18, 18)
                 .addComponent(btnDriver)
                 .addContainerGap(302, Short.MAX_VALUE))
@@ -245,7 +242,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnSupervisorClick1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupervisorClick1ActionPerformed
         // TODO add your handling code here:
-        SupervisorLoginJPanel SL = new SupervisorLoginJPanel(userProcessContainer,business ,supervisorDirectory);
+        SupervisorLoginJPanel SL = new SupervisorLoginJPanel(userProcessContainer,business ,supervisorDirectory,complaintDirectory, userDirectory);
         userProcessContainer.add("SupervisorLoginJPanel", SL);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -288,10 +285,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdminClick;
-
     private javax.swing.JButton btnDriver;
     private javax.swing.JButton btnSupervisorClick1;
-    private javax.swing.JButton btnUserClick;
+    private javax.swing.JButton btnUserLogin;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel userProcessContainer;

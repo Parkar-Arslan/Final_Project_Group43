@@ -5,9 +5,9 @@
 package UI.Admin;
 
 import Model.Business.Business;
-import Model.Supervisor.SupervisorDirectory;
+import Model.Role.SupervisorDirectory;
 import javax.swing.JPanel;
-import Model.Supervisor.Supervisor;
+import Model.Role.Supervisor;
 import javax.swing.JOptionPane;
 
 

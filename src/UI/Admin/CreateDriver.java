@@ -5,8 +5,8 @@
 package UI.Admin;
 
 import Model.Business.Business;
-import Model.Driver.Driver;
-import Model.Driver.DriverDirectory;
+import Model.Role.Driver;
+import Model.Role.DriverDirectory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 

@@ -5,12 +5,12 @@
 package UI.Supervisor;
 
 import Model.Business.Business;
-import Model.Driver.Driver;
-import Model.Driver.DriverDirectory;
+import Model.Role.Driver;
+import Model.Role.DriverDirectory;
 
-import Model.Supervisor.Supervisor;
-import Model.Supervisor.SupervisorDirectory;
-import Model.Truck.Truck;
+import Model.Role.Supervisor;
+import Model.Role.SupervisorDirectory;
+import Model.Enterprise.Vehicle.Truck;
 import UI.Dashboard.SupervisorDashboard;
 import java.awt.CardLayout;
 import java.util.List;

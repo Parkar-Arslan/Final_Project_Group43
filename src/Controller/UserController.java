@@ -1,6 +1,6 @@
 
-import Model.User.User;
-import Model.User.UserDirectory;
+import Model.Role.User;
+import Model.Role.UserDirectory;
 
 
 public class UserController {

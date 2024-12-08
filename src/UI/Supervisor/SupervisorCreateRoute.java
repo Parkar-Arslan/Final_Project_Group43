@@ -5,9 +5,9 @@
 package UI.Supervisor;
 
 import Model.Business.Business;
-import Model.Route.RouteDirectory;
-import Model.Supervisor.Supervisor;
-import Model.Supervisor.SupervisorDirectory;
+import Model.Enterprise.Logistic.RouteDirectory;
+import Model.Role.Supervisor;
+import Model.Role.SupervisorDirectory;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

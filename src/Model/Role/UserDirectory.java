@@ -1,4 +1,5 @@
-package Model.User;
+package Model.Role;
+import Model.Role.User;
 import java.util.ArrayList;
 import java.util.List;
 

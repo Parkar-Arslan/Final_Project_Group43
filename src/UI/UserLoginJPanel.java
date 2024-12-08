@@ -4,13 +4,13 @@
  */
 package UI;
 
-import Model.Admin.Admin;
-import Model.Admin.AdminDirectory;
+import Model.Role.Admin;
+import Model.Role.AdminDirectory;
 import Model.Business.Business;
-import Model.Complaint.ComplaintDirectory;
-import Model.Supervisor.SupervisorDirectory;
-import Model.User.User;
-import Model.User.UserDirectory;
+import Model.Enterprise.Compliance.ComplaintDirectory;
+import Model.Role.SupervisorDirectory;
+import Model.Role.User;
+import Model.Role.UserDirectory;
 import UI.Dashboard.SupervisorDashboard;
 import UI.Dashboard.UserDashboard;
 import java.awt.CardLayout;

@@ -1,6 +1,6 @@
-package Model.Driver;
+package Model.Role;
 
-import Model.Truck.Truck;
+import Model.Enterprise.Vehicle.Truck;
 
 public class Driver {
 
@@ -17,42 +17,37 @@ public class Driver {
         this.assignedTruck = null;  // Initially, no truck is assigned
         this.licenseNumber = licenseNumber;
     }
-    
-        public String getDriverId() {
+
+    public String getDriverId() {
         return driverId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Truck getAssignedTruck() {
+        return assignedTruck;
+    }
+
+    public String getLicenseNumber() {
+        return licenseNumber;
     }
 
     public void setDriverId(String driverId) {
         this.driverId = driverId;
     }
 
-
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
-    // Returns the truck assigned to the driver, if any
-    public Truck getAssignedTruck() {
-        return assignedTruck;
-
-    }
-
-    // Returns the driver's license number
-    public String getLicenseNumber() {
-        return licenseNumber;
     }
 
     public void setLicenseNumber(String licenseNumber) {
         this.licenseNumber = licenseNumber;
     }
-
-
-    public Truck getAssignedTruck() {
-        return assignedTruck;
-    }
-
+    
+    
+    
 
     public void setAssignedTruck(Truck assignedTruck) {
         this.assignedTruck = assignedTruck;

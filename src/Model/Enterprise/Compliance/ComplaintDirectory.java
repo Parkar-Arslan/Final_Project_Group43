@@ -1,6 +1,7 @@
-package Model.Complaint;
+package Model.Enterprise.Compliance;
 
 
+import Model.Enterprise.Compliance.Complaint;
 import java.util.ArrayList;
 import java.util.List;
 

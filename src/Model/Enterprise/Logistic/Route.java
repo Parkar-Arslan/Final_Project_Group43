@@ -1,4 +1,4 @@
-package Model.Route;
+package Model.Enterprise.Logistic;
 
 public class Route {
     private String routeId;

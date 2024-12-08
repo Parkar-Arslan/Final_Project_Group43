@@ -5,8 +5,8 @@
 package UI.Dashboard;
 
 import Model.Business.Business;
-import Model.Complaint.ComplaintDirectory;
-import Model.Supervisor.SupervisorDirectory;
+import Model.Enterprise.Compliance.ComplaintDirectory;
+import Model.Role.SupervisorDirectory;
 import UI.Supervisor.SupervisorAssignTruck;
 import UI.User.UserFileComplain;
 import java.awt.CardLayout;
