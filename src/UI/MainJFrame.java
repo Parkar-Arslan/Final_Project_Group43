@@ -4,6 +4,7 @@
  */
 package UI;
 
+import Model.Admin.AdminDirectory;
 import Model.Business.Business;
 import Model.Driver.DriverDirectory;
 import Model.Supervisor.SupervisorDirectory;
@@ -22,6 +23,7 @@ public class MainJFrame extends javax.swing.JFrame {
     TruckDirectory truckDirectory;
     SupervisorDirectory supervisorDirectory;
      DriverDirectory driverDirectory; 
+     AdminDirectory adminDirectory;
     /**
      * Creates new form MainJFrame
      */
@@ -32,10 +34,11 @@ public class MainJFrame extends javax.swing.JFrame {
         supervisorDirectory = business.getSupervisorDirectory();
         driverDirectory = new DriverDirectory(); 
         driverDirectory = DriverDirectory.getInstance();
+        adminDirectory = business.getAdminDirectory();
         initializeTruckData();
         initializeDriverData(); 
         initializeSupervisorData();
-        
+        initializeAdminData();
         
     }
     
@@ -54,6 +57,12 @@ public class MainJFrame extends javax.swing.JFrame {
     private void initializeDriverData() {
         driverDirectory.addDriver("DR001", "John Doe", "L1234567890");
         driverDirectory.addDriver("DR002", "Jane Smith", "L0987654321");
+        // Add more drivers as needed
+    }
+    
+    private void initializeAdminData() {
+        adminDirectory.createAdmin("A01", "sa", "ABC", "sa");
+        adminDirectory.createAdmin("A02", "sb", "DEF", "sb");
         // Add more drivers as needed
     }
     /**
@@ -156,6 +165,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnAdminClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminClickActionPerformed
         // TODO add your handling code here:
+        AdminLoginJPanel AL = new AdminLoginJPanel(userProcessContainer,business, adminDirectory);
+        userProcessContainer.add("AdminLoginJPanel", AL);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAdminClickActionPerformed
 
     private void btnUserClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserClickActionPerformed

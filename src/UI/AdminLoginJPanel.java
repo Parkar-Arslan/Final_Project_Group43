@@ -6,17 +6,31 @@ package UI;
 
 import Model.Admin.Admin;
 import Model.Admin.AdminDirectory;
+import Model.Business.Business;
+import Model.Supervisor.Supervisor;
+import Model.Supervisor.SupervisorDirectory;
+import UI.Admin.AdminHome;
+import UI.Dashboard.SupervisorDashboard;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 /**
  *
  * @author tawde
  */
 public class AdminLoginJPanel extends javax.swing.JPanel {
-
+    Business  business;
+    private JPanel userProcessContainer;
+    private AdminDirectory adminDirectory;
     /**
      * Creates new form AdminLoginJPanel
      */
-    public AdminLoginJPanel() {
+    public AdminLoginJPanel(JPanel userProcessContainer,Business business, AdminDirectory adminDirectory) {
         initComponents();
+        this.business = business;
+        this.userProcessContainer=userProcessContainer;
+        this.adminDirectory = adminDirectory;
+        adminDirectory = business.getAdminDirectory();
     }
 
     /**
@@ -120,25 +134,28 @@ public class AdminLoginJPanel extends javax.swing.JPanel {
     private void btnAdminSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminSubmitActionPerformed
         // TODO add your handling code here:
     // Get the admin ID and password from the text fields
-    String adminId = jTextFieldAdminID.getText();
-    String password = jTextFieldAdminPassword.getText();
+    String adminId = jTextFieldAdminID.getText().trim();
+    String adminpassword = jTextFieldAdminPassword.getText().trim();
 
-    // Check if the admin ID and password are entered
-    if (adminId.isEmpty() || password.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Please enter both Admin ID and Password", "Validation Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // Find the admin by admin ID
-    AdminDirectory adminDirectory = new AdminDirectory(); // Assuming you have a way to access this object
-    Admin admin = adminDirectory.findAdminById(adminId);
-
-    // Check if the admin exists and validate the password
-    if (admin != null && password.equals("adminPassword")) {  // Replace "adminPassword" with actual password logic
-        javax.swing.JOptionPane.showMessageDialog(this, "Login Successful", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        // Proceed to the next screen (e.g., Admin Dashboard)
+    // Check if the credentials are correct
+    if (adminDirectory != null) {
+        Admin authenticatedAdmin = adminDirectory.authenticateAdmin(adminId, adminpassword);
+        if (authenticatedAdmin != null) {
+            // Login successful
+            JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            
+            // Assuming you have access to userProcessContainer from here, otherwise you need to pass it or get it from the parent JFrame
+            AdminHome adminhome = new AdminHome(userProcessContainer,business ,authenticatedAdmin, adminDirectory);
+            userProcessContainer.add("AdminHome", adminhome);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } else {
+            // Login failed
+            JOptionPane.showMessageDialog(this, "Invalid admin ID or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+        }
     } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "Invalid Admin ID or Password", "Login Failed", javax.swing.JOptionPane.ERROR_MESSAGE);
+        // If supervisorDirectory is not initialized
+        JOptionPane.showMessageDialog(this, "Login system not available.", "Error", JOptionPane.ERROR_MESSAGE);
     }
     
     }//GEN-LAST:event_btnAdminSubmitActionPerformed

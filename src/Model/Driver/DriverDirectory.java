@@ -21,10 +21,11 @@ public class DriverDirectory {
     }
 
     // Method to add a driver
-    public void addDriver(String driverId, String name, String licenseNumber) {
+    public Driver addDriver(String driverId, String name, String licenseNumber) {
         Driver driver = new Driver(driverId, name, licenseNumber);
-        drivers.add(driver);
+        drivers.add(driver); // Add the driver to the list
         System.out.println("Driver added: " + driverId + " - " + name);
+        return driver; // Return the newly created driver
     }
 
     // Method to return a copy of the list of all drivers
