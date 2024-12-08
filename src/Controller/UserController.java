@@ -1,4 +1,8 @@
 
+import Model.User.User;
+import Model.User.UserDirectory;
+
+
 public class UserController {
     private UserDirectory userDirectory;
 

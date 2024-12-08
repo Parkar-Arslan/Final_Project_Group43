@@ -6,6 +6,11 @@ package UI;
 
 import Model.Admin.Admin;
 import Model.Admin.AdminDirectory;
+import Model.Business.Business;
+import Model.Complaint.ComplaintDirectory;
+import Model.Supervisor.SupervisorDirectory;
+import Model.User.UserDirectory;
+import javax.swing.JPanel;
 /**
  *
  * @author tawde
@@ -15,7 +20,7 @@ public class AdminLoginJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AdminLoginJPanel
      */
-    public AdminLoginJPanel() {
+    public AdminLoginJPanel(JPanel userProcessContainer,Business business ,SupervisorDirectory supervisorDirectory,ComplaintDirectory complaintDirectory,UserDirectory userDirectory) {
         initComponents();
     }
 
@@ -134,7 +139,7 @@ public class AdminLoginJPanel extends javax.swing.JPanel {
     Admin admin = adminDirectory.findAdminById(adminId);
 
     // Check if the admin exists and validate the password
-    if (admin != null && password.equals("adminPassword")) {  // Replace "adminPassword" with actual password logic
+    if (admin != null && password.equals(password)) {  // Replace "adminPassword" with actual password logic
         javax.swing.JOptionPane.showMessageDialog(this, "Login Successful", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         // Proceed to the next screen (e.g., Admin Dashboard)
     } else {

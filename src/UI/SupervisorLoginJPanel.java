@@ -5,8 +5,10 @@
 package UI;
 
 import Model.Business.Business;
+import Model.Complaint.ComplaintDirectory;
 import Model.Supervisor.Supervisor;
 import Model.Supervisor.SupervisorDirectory;
+import Model.User.UserDirectory;
 import UI.Dashboard.SupervisorDashboard;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -21,15 +23,17 @@ public class SupervisorLoginJPanel extends javax.swing.JPanel {
     Business  business;
     private SupervisorDirectory supervisorDirectory;
     private JPanel userProcessContainer;
+    private ComplaintDirectory complaintdirectory;
 
     /**
      * Creates new form SupervisorLoginJPanel
      */
-    public SupervisorLoginJPanel(JPanel userProcessContainer,Business business ,SupervisorDirectory supervisorDirectory1) {
+    public SupervisorLoginJPanel(JPanel userProcessContainer,Business business ,SupervisorDirectory supervisorDirectory1,ComplaintDirectory complaintdirectory, UserDirectory userDirectory) {
         initComponents();
         this.business = business;
         this.userProcessContainer=userProcessContainer;
         this.supervisorDirectory = supervisorDirectory;
+        this.complaintdirectory=complaintdirectory;
         supervisorDirectory = business.getSupervisorDirectory();
     }
     
@@ -153,7 +157,7 @@ public class SupervisorLoginJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
             
             // Assuming you have access to userProcessContainer from here, otherwise you need to pass it or get it from the parent JFrame
-            SupervisorDashboard dashboard = new SupervisorDashboard(userProcessContainer,business ,authenticatedSupervisor, supervisorDirectory);
+            SupervisorDashboard dashboard = new SupervisorDashboard(userProcessContainer,business ,authenticatedSupervisor, supervisorDirectory,complaintdirectory);
             userProcessContainer.add("SupervisorDashboard", dashboard);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

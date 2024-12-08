@@ -4,17 +4,30 @@
  */
 package UI.Dashboard;
 
+import Model.Business.Business;
+import Model.Complaint.ComplaintDirectory;
+import Model.Supervisor.SupervisorDirectory;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tawde
  */
 public class UserDashboard extends javax.swing.JPanel {
+    private JPanel userProcessContainer;
+    private Business business ;
+    private SupervisorDirectory supervisorDirectory;
+    private ComplaintDirectory complaintDirectory;
 
     /**
      * Creates new form UserDashboard
      */
-    public UserDashboard() {
+    public UserDashboard(JPanel userProcessContainer,Business business ,SupervisorDirectory supervisorDirectory,ComplaintDirectory complaintDirectory) {
         initComponents();
+        this.business=business;
+        this.userProcessContainer=userProcessContainer;
+        this.supervisorDirectory=supervisorDirectory;
+        this.complaintDirectory=complaintDirectory;
     }
 
     /**

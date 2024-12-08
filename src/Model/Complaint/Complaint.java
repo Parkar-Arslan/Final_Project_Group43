@@ -1,3 +1,5 @@
+package Model.Complaint;
+
 public class Complaint {
     private String complaintId;
     private String details;

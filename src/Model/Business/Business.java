@@ -8,6 +8,7 @@ import Model.Driver.DriverDirectory;
 import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.TruckDirectory;
 import Model.Driver.DriverDirectory;
+import Model.User.UserDirectory;
 /**
  *
  * @author arslanparkar
@@ -16,12 +17,22 @@ public class Business {
     TruckDirectory truckDirectory;
     SupervisorDirectory supervisorDirectory;
     DriverDirectory driverDirectory;
+    UserDirectory userDirectory;
 
     public Business(){
     
         truckDirectory = new TruckDirectory();
         supervisorDirectory = new SupervisorDirectory();
         driverDirectory =  DriverDirectory.getInstance();
+        this.userDirectory = new UserDirectory();
+    }
+
+    public UserDirectory getUserDirectory() {
+        return userDirectory;
+    }
+
+    public void setUserDirectory(UserDirectory userDirectory) {
+        this.userDirectory = userDirectory;
     }
     
     public TruckDirectory getTruckDirectory(){

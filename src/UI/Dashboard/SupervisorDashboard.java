@@ -5,8 +5,10 @@
 package UI.Dashboard;
 
 import Model.Business.Business;
+import Model.Complaint.ComplaintDirectory;
 import Model.Supervisor.Supervisor;
 import Model.Supervisor.SupervisorDirectory;
+import UI.Complaints.AllComplaints;
 import UI.Supervisor.SupervisorAssignDriver;
 import UI.Supervisor.SupervisorAssignTruck;
 import java.awt.CardLayout;
@@ -22,15 +24,17 @@ public class SupervisorDashboard extends javax.swing.JPanel {
     private Supervisor authenticatedSupervisor;
     private SupervisorDirectory supervisorDirectory;
     private Business business;
+    private ComplaintDirectory complaintdirectory;
 
     /**
      * Creates new form SupervisorDashboard
      */
-    public SupervisorDashboard(JPanel userProcessContainer, Business business, Supervisor authenticatedSupervisor, SupervisorDirectory supervisorDirectory) {
+    public SupervisorDashboard(JPanel userProcessContainer, Business business, Supervisor authenticatedSupervisor, SupervisorDirectory supervisorDirectory, ComplaintDirectory complaintdirectory) {
         this.userProcessContainer = userProcessContainer;
         this.business = business;
         this.authenticatedSupervisor = authenticatedSupervisor;
         this.supervisorDirectory = supervisorDirectory;
+        this.complaintdirectory=complaintdirectory;
         initComponents();
     }
 
@@ -51,6 +55,7 @@ public class SupervisorDashboard extends javax.swing.JPanel {
         btnCheckUser = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSupreport = new javax.swing.JTable();
+        btnCheckComplaints = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(54, 116, 99));
 
@@ -130,24 +135,37 @@ public class SupervisorDashboard extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTableSupreport);
 
+        btnCheckComplaints.setBackground(new java.awt.Color(181, 143, 120));
+        btnCheckComplaints.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCheckComplaints.setForeground(new java.awt.Color(255, 255, 255));
+        btnCheckComplaints.setText("Check Complaints");
+        btnCheckComplaints.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckComplaintsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTotalTrash)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCheckUser, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAssignDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAssignTruck, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAssignRoute))))
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCheckUser, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAssignDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAssignTruck, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAssignRoute))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(btnTotalTrash)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCheckComplaints)
+                .addGap(23, 23, 23))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAssignDriver, btnAssignRoute, btnAssignTruck, btnCheckUser});
@@ -157,19 +175,24 @@ public class SupervisorDashboard extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblTitle)
-                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addComponent(btnAssignTruck)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAssignDriver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAssignRoute)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCheckUser)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(btnTotalTrash)
+                        .addComponent(btnCheckUser)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTotalTrash)
+                    .addComponent(btnCheckComplaints))
                 .addGap(17, 17, 17))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -195,17 +218,27 @@ public class SupervisorDashboard extends javax.swing.JPanel {
 
     private void btnAssignRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignRouteActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnAssignRouteActionPerformed
 
     private void btnCheckUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCheckUserActionPerformed
 
+    private void btnCheckComplaintsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckComplaintsActionPerformed
+        // TODO add your handling code here:
+        AllComplaints allcomplaints = new AllComplaints(complaintdirectory, userProcessContainer, business);
+        userProcessContainer.add("UserFileComplaint", allcomplaints);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnCheckComplaintsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAssignDriver;
     private javax.swing.JButton btnAssignRoute;
     private javax.swing.JButton btnAssignTruck;
+    private javax.swing.JButton btnCheckComplaints;
     private javax.swing.JButton btnCheckUser;
     private javax.swing.JButton btnTotalTrash;
     private javax.swing.JScrollPane jScrollPane1;
