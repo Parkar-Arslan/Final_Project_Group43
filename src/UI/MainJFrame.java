@@ -4,7 +4,12 @@
  */
 package UI;
 
+import Model.Bill.Bill;
+import Model.Bill.BillDirectory;
+import Model.Admin.AdminDirectory;
+
 import Model.Business.Business;
+import Model.Complaint.ComplaintDirectory;
 import Model.Driver.DriverDirectory;
 import Model.Supervisor.SupervisorDirectory;
 import Model.Truck.TruckDirectory;
@@ -12,6 +17,11 @@ import UI.Dashboard.SupervisorDashboard;
 import UI.Supervisor.SupervisorCreateRoute;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import Model.User.UserDirectory; // Adjust this based on your actual package structure
+import Model.User.UserDirectory;
+import Model.User.User; // Adjust the package as per your structure
+
+
 
 /**
  *
@@ -21,7 +31,11 @@ public class MainJFrame extends javax.swing.JFrame {
     Business business;
     TruckDirectory truckDirectory;
     SupervisorDirectory supervisorDirectory;
-     DriverDirectory driverDirectory; 
+    DriverDirectory driverDirectory; 
+    UserDirectory userDirectory;
+    ComplaintDirectory complaintDirectory;
+    private BillDirectory billDirectory;
+
     /**
      * Creates new form MainJFrame
      */
@@ -30,13 +44,40 @@ public class MainJFrame extends javax.swing.JFrame {
         business = new Business();
         truckDirectory = business.getTruckDirectory();
         supervisorDirectory = business.getSupervisorDirectory();
-        driverDirectory = new DriverDirectory(); 
+        driverDirectory = new DriverDirectory();
         driverDirectory = DriverDirectory.getInstance();
+        complaintDirectory = new ComplaintDirectory();
+        userDirectory = business.getUserDirectory();
+        billDirectory = new BillDirectory();
+        
+        if (userDirectory == null) {
+        userDirectory = new UserDirectory();
+        business.setUserDirectory(userDirectory);
+    }
+        
         initializeTruckData();
         initializeDriverData(); 
         initializeSupervisorData();
-        
-        
+        initializeUserData();  
+        initializeBillData();
+    }
+    
+    private void initializeUserData() {
+        userDirectory.createUser("U001", "Arjun Kapoor", "arjun.kapoor@example.com", "arjun123");
+        userDirectory.createUser("U002", "Priya Sharma", "priya.sharma@example.com", "priya123");
+        userDirectory.createUser("U003", "Ravi Verma", "ravi.verma@example.com", "ravi123");
+        userDirectory.createUser("U004", "Meena Joshi", "meena.joshi@example.com", "meena123");
+        userDirectory.createUser("U005", "Vikram Singh", "vikram.singh@example.com", "vikram123");
+        userDirectory.createUser("U006", "Anjali Nair", "anjali.nair@example.com", "anjali123");
+        userDirectory.createUser("U007", "Karan Gupta", "karan.gupta@example.com", "karan123");
+        userDirectory.createUser("U008", "Sneha Patel", "sneha.patel@example.com", "sneha123");
+        userDirectory.createUser("U009", "Rohit Mehta", "rohit.mehta@example.com", "rohit123");
+        userDirectory.createUser("U010", "Sana Khan", "sana.khan@example.com", "sana123");
+        adminDirectory = business.getAdminDirectory();
+        initializeTruckData();
+        initializeDriverData(); 
+        initializeSupervisorData();
+        initializeAdminData();
         
     }
     
@@ -57,6 +98,12 @@ public class MainJFrame extends javax.swing.JFrame {
         driverDirectory.addDriver("DR002", "Jane Smith", "L0987654321");
         // Add more drivers as needed
     }
+    
+    private void initializeAdminData() {
+        adminDirectory.createAdmin("A01", "sa", "ABC", "sa");
+        adminDirectory.createAdmin("A02", "sb", "DEF", "sb");
+        // Add more drivers as needed
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,6 +116,7 @@ public class MainJFrame extends javax.swing.JFrame {
         splitPane = new javax.swing.JSplitPane();
         controlPanel = new javax.swing.JPanel();
         btnAdminClick = new javax.swing.JButton();
+
         btnUserClick = new javax.swing.JButton();
         btnDriver = new javax.swing.JButton();
         btnSupervisorClick1 = new javax.swing.JButton();
@@ -92,13 +140,13 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnUserClick.setBackground(new java.awt.Color(181, 143, 120));
-        btnUserClick.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnUserClick.setForeground(new java.awt.Color(255, 255, 255));
-        btnUserClick.setText("Click Here");
-        btnUserClick.addActionListener(new java.awt.event.ActionListener() {
+        btnUserLogin.setBackground(new java.awt.Color(181, 143, 120));
+        btnUserLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnUserLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnUserLogin.setText("User Login");
+        btnUserLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUserClickActionPerformed(evt);
+                btnUserLoginActionPerformed(evt);
             }
         });
 
@@ -128,6 +176,7 @@ public class MainJFrame extends javax.swing.JFrame {
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
+
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSupervisorClick1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdminClick, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,6 +192,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnSupervisorClick1)
                 .addGap(18, 18, 18)
+
                 .addComponent(btnUserClick)
                 .addGap(18, 18, 18)
                 .addComponent(btnDriver)
@@ -171,14 +221,25 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnAdminClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminClickActionPerformed
         // TODO add your handling code here:
+        AdminLoginJPanel AL = new AdminLoginJPanel(userProcessContainer,business ,supervisorDirectory,complaintDirectory,userDirectory);
+        userProcessContainer.add("SupervisorLoginJPanel", AL);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+
     }//GEN-LAST:event_btnAdminClickActionPerformed
 
-    private void btnUserClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserClickActionPerformed
+    private void btnUserLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUserClickActionPerformed
+        UserLoginJPanel UL = new UserLoginJPanel(userProcessContainer,business , supervisorDirectory, complaintDirectory, business.getUserDirectory());
+        userProcessContainer.add("SupervisorLoginJPanel", UL);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnUserLoginActionPerformed
 
     private void btnDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDriverActionPerformed
        
+
         
     }//GEN-LAST:event_btnDriverActionPerformed
 
@@ -227,6 +288,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdminClick;
+
     private javax.swing.JButton btnDriver;
     private javax.swing.JButton btnSupervisorClick1;
     private javax.swing.JButton btnUserClick;
@@ -234,4 +296,24 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
+
+    private void initializeBillData() {
+        createBillsForUser("U001", 3);
+        createBillsForUser("U002", 2);
+        createBillsForUser("U003", 4);
+        createBillsForUser("U004", 1);
+        createBillsForUser("U005", 3);
+    }
+    private void createBillsForUser(String userId, int numberOfBills) {
+        for (int i = 1; i <= numberOfBills; i++) {
+            Bill bill = new Bill();
+            bill.setBillId(userId + "-B" + i);
+            bill.setAmount(100 + Math.random() * 900); // Random amount between 100 and 1000
+            bill.setIsPaid(false);
+            bill.setDueDate("2024-12-31"); // Set a fixed due date for simplicity
+            billDirectory.addBill(userId, bill);
+        }
+    }
+
+    
 }

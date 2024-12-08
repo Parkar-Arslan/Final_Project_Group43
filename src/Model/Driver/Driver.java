@@ -3,8 +3,11 @@ package Model.Driver;
 import Model.Truck.Truck;
 
 public class Driver {
+
+
     private String driverId;
     private String name;
+
     private Truck assignedTruck;  // Holds a reference to the assigned truck
     private String licenseNumber; // Store license number for driver identification
 
@@ -14,20 +17,26 @@ public class Driver {
         this.assignedTruck = null;  // Initially, no truck is assigned
         this.licenseNumber = licenseNumber;
     }
-
-    // Returns the driver's unique identifier
-    public String getDriverId() {
+    
+        public String getDriverId() {
         return driverId;
     }
 
-    // Returns the driver's name
+    public void setDriverId(String driverId) {
+        this.driverId = driverId;
+    }
+
+
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
     // Returns the truck assigned to the driver, if any
     public Truck getAssignedTruck() {
         return assignedTruck;
+
     }
 
     // Returns the driver's license number
@@ -35,7 +44,16 @@ public class Driver {
         return licenseNumber;
     }
 
-    // Assigns a truck to this driver and updates the truck's assigned driver reference
+    public void setLicenseNumber(String licenseNumber) {
+        this.licenseNumber = licenseNumber;
+    }
+
+
+    public Truck getAssignedTruck() {
+        return assignedTruck;
+    }
+
+
     public void setAssignedTruck(Truck assignedTruck) {
         this.assignedTruck = assignedTruck;
         if (assignedTruck != null) {

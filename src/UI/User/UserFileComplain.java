@@ -4,17 +4,25 @@
  */
 package UI.User;
 
+import Model.Complaint.Complaint;
+import Model.Complaint.ComplaintDirectory;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tawde
  */
 public class UserFileComplain extends javax.swing.JPanel {
+    private ComplaintDirectory complaintDirectory;
+    private JPanel userProcessContainer;
 
     /**
      * Creates new form UserFileComplain
      */
-    public UserFileComplain() {
+    public UserFileComplain(ComplaintDirectory complaintDirectory,JPanel userProcessContainer) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.complaintDirectory=complaintDirectory;
     }
 
     /**
@@ -136,6 +144,21 @@ public class UserFileComplain extends javax.swing.JPanel {
 
     private void btnFileComplainSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFileComplainSubmitActionPerformed
         // TODO add your handling code here:
+        String complaintId = jTextFieldBillid.getText(); 
+        String date = jTextFieldDate.getText();
+        String details = jTextFieldComplain.getText();
+        
+        if (complaintId.isEmpty() || details.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Complaint ID and details cannot be empty!", "Input Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+        }
+        Complaint newComplaint = complaintDirectory.fileComplaint(complaintId, details);
+        
+        javax.swing.JOptionPane.showMessageDialog(this, "Complaint filed successfully!\nComplaint ID: " + newComplaint.getComplaintId(), "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        // Clear the input fields after submission
+        jTextFieldBillid.setText("");
+        jTextFieldDate.setText("");
+        jTextFieldComplain.setText("");
     }//GEN-LAST:event_btnFileComplainSubmitActionPerformed
 
     private void jTextFieldComplainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldComplainActionPerformed

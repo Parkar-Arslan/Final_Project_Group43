@@ -4,17 +4,42 @@
  */
 package UI;
 
+import Model.Admin.Admin;
+import Model.Admin.AdminDirectory;
+import Model.Business.Business;
+import Model.Complaint.ComplaintDirectory;
+import Model.Supervisor.SupervisorDirectory;
+import Model.User.User;
+import Model.User.UserDirectory;
+import UI.Dashboard.SupervisorDashboard;
+import UI.Dashboard.UserDashboard;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tawde
  */
 public class UserLoginJPanel extends javax.swing.JPanel {
 
+    Business business;
+    private SupervisorDirectory supervisorDirectory;
+    private ComplaintDirectory complaintDirectory;
+    private UserDirectory userDirectory;
+    JPanel userProcessContainer;
+    
     /**
      * Creates new form UserLoginJPanel
      */
-    public UserLoginJPanel() {
+    public UserLoginJPanel(JPanel userProcessContainer,Business business ,SupervisorDirectory supervisorDirectory,ComplaintDirectory complaintDirectory, UserDirectory userDirectory) {
         initComponents();
+        this.business = business;
+        this.userProcessContainer=userProcessContainer;
+        this.supervisorDirectory = supervisorDirectory;
+        this.complaintDirectory=complaintDirectory;
+        supervisorDirectory = business.getSupervisorDirectory();
+        this.userDirectory = userDirectory;
+        
     }
 
     /**
@@ -26,8 +51,8 @@ public class UserLoginJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextFieldUserPassword = new javax.swing.JTextField();
-        jTextFieldUserID = new javax.swing.JTextField();
+        txtUserPass = new javax.swing.JTextField();
+        txtUserId = new javax.swing.JTextField();
         lblUserLogin = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         lblUserPassword = new javax.swing.JLabel();
@@ -35,15 +60,15 @@ public class UserLoginJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(54, 116, 99));
 
-        jTextFieldUserPassword.addActionListener(new java.awt.event.ActionListener() {
+        txtUserPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldUserPasswordActionPerformed(evt);
+                txtUserPassActionPerformed(evt);
             }
         });
 
-        jTextFieldUserID.addActionListener(new java.awt.event.ActionListener() {
+        txtUserId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldUserIDActionPerformed(evt);
+                txtUserIdActionPerformed(evt);
             }
         });
 
@@ -82,8 +107,8 @@ public class UserLoginJPanel extends javax.swing.JPanel {
                     .addComponent(lblUserLogin))
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldUserID, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(jTextFieldUserPassword))
+                    .addComponent(txtUserId, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(txtUserPass))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -98,36 +123,59 @@ public class UserLoginJPanel extends javax.swing.JPanel {
                 .addGap(91, 91, 91)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUserLogin)
-                    .addComponent(jTextFieldUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUserId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUserPassword)
-                    .addComponent(jTextFieldUserPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUserPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(61, 61, 61)
                 .addComponent(btnUserSubmit)
                 .addContainerGap(88, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldUserPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserPasswordActionPerformed
+    private void txtUserPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserPassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldUserPasswordActionPerformed
+    }//GEN-LAST:event_txtUserPassActionPerformed
 
-    private void jTextFieldUserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserIDActionPerformed
+    private void txtUserIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldUserIDActionPerformed
+    }//GEN-LAST:event_txtUserIdActionPerformed
 
     private void btnUserSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserSubmitActionPerformed
         // TODO add your handling code here:
+        if (userDirectory == null) {
+        javax.swing.JOptionPane.showMessageDialog(this, "User directory not initialized", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+        }
+        String userId = txtUserId.getText().trim();  // Assume txtUserId and txtUserPass are the input fields for user credentials
+        String password = txtUserPass.getText().trim();
+        
+        if (userId.isEmpty() || password.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please enter both User ID and Password", "Validation Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+        }
+        User user = userDirectory.findUserById(userId);
+        
+        if (user != null && password.equals(user.getPassword())) { 
+        javax.swing.JOptionPane.showMessageDialog(this, "Login Successful", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        // Proceed to the next screen (userDashBoard)
+            UserDashboard dashboard = new UserDashboard(userProcessContainer,business , supervisorDirectory,complaintDirectory);
+            userProcessContainer.add("SupervisorDashboard", dashboard);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } else {
+        javax.swing.JOptionPane.showMessageDialog(this, "Invalid User ID or Password", "Login Failed", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }  
     }//GEN-LAST:event_btnUserSubmitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUserSubmit;
-    private javax.swing.JTextField jTextFieldUserID;
-    private javax.swing.JTextField jTextFieldUserPassword;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUserLogin;
     private javax.swing.JLabel lblUserPassword;
+    private javax.swing.JTextField txtUserId;
+    private javax.swing.JTextField txtUserPass;
     // End of variables declaration//GEN-END:variables
 }
