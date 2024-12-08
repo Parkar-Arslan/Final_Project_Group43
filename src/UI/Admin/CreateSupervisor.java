@@ -27,6 +27,8 @@ public class CreateSupervisor extends javax.swing.JPanel {
      */
     public CreateSupervisor(JPanel userProcessContainer, Business business, SupervisorDirectory supervisorDirectory) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.business = business;
     }
 
     /**

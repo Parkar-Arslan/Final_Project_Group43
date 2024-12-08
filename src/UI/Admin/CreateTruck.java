@@ -25,6 +25,8 @@ public class CreateTruck extends javax.swing.JPanel {
      */
     public CreateTruck(JPanel userProcessContainer, Business business, TruckDirectory truckDirectory) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.business = business;
     }
 
     /**

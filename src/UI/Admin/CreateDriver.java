@@ -26,8 +26,11 @@ public class CreateDriver extends javax.swing.JPanel {
      * Creates new form CreateDriver
      */
     public CreateDriver(JPanel userProcessContainer, Business business, DriverDirectory driverDirectory) {
-        initComponents();
+    initComponents(); // Ensure components are added here
+    this.userProcessContainer = userProcessContainer;
+    this.business = business;
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
