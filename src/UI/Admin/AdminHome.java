@@ -4,6 +4,8 @@
  */
 package UI.Admin;
 
+import Model.Admin.Admin;
+import Model.Admin.AdminDirectory;
 import UI.Admin.CreateDriver;
 import java.awt.CardLayout;
 import Model.Business.Business;
@@ -27,7 +29,7 @@ public class AdminHome extends javax.swing.JPanel {
     /**
      * Creates new form AdminHome
      */
-    public AdminHome() {
+    public AdminHome(JPanel userProcessContainer, Business business, Admin authenticatedAdmin, AdminDirectory adminDirectory) {
         initComponents();
         driverDirectory = business.getDriverDirectory();
         supervisorDirectory = business.getSupervisorDirectory();

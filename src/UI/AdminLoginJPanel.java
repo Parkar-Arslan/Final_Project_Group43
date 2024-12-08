@@ -10,18 +10,31 @@ import Model.Business.Business;
 import Model.Complaint.ComplaintDirectory;
 import Model.Supervisor.SupervisorDirectory;
 import Model.User.UserDirectory;
+import Model.Supervisor.Supervisor;
+import Model.Supervisor.SupervisorDirectory;
+import UI.Admin.AdminHome;
+import UI.Dashboard.SupervisorDashboard;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 /**
  *
  * @author tawde
  */
 public class AdminLoginJPanel extends javax.swing.JPanel {
-
+    Business  business;
+    private JPanel userProcessContainer;
+    private AdminDirectory adminDirectory;
     /**
      * Creates new form AdminLoginJPanel
      */
     public AdminLoginJPanel(JPanel userProcessContainer,Business business ,SupervisorDirectory supervisorDirectory,ComplaintDirectory complaintDirectory,UserDirectory userDirectory) {
+
         initComponents();
+        this.business = business;
+        this.userProcessContainer=userProcessContainer;
+        this.adminDirectory = adminDirectory;
+        adminDirectory = business.getAdminDirectory();
     }
 
     /**
@@ -142,8 +155,10 @@ public class AdminLoginJPanel extends javax.swing.JPanel {
     if (admin != null && password.equals(password)) {  // Replace "adminPassword" with actual password logic
         javax.swing.JOptionPane.showMessageDialog(this, "Login Successful", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         // Proceed to the next screen (e.g., Admin Dashboard)
+
     } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "Invalid Admin ID or Password", "Login Failed", javax.swing.JOptionPane.ERROR_MESSAGE);
+        // If supervisorDirectory is not initialized
+        JOptionPane.showMessageDialog(this, "Login system not available.", "Error", JOptionPane.ERROR_MESSAGE);
     }
     
     }//GEN-LAST:event_btnAdminSubmitActionPerformed

@@ -11,6 +11,8 @@ package Model.Supervisor;
 
 
 public class Supervisor {
+
+
     private String supervisorId;
     private String name;
     private String password; // Assuming password management
@@ -20,17 +22,30 @@ public class Supervisor {
         this.name = name;
         this.password = password;
     }
-
-    // Getters
-    public String getSupervisorId() {
+    
+        public String getSupervisorId() {
         return supervisorId;
+    }
+
+    public void setSupervisorId(String supervisorId) {
+        this.supervisorId = supervisorId;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getPassword() {
         return password;
     }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    // Getters
+
 }

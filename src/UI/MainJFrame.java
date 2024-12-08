@@ -4,6 +4,7 @@
  */
 package UI;
 
+import Model.Admin.AdminDirectory;
 import Model.Business.Business;
 import Model.Complaint.ComplaintDirectory;
 import Model.Driver.DriverDirectory;
@@ -30,6 +31,7 @@ public class MainJFrame extends javax.swing.JFrame {
     DriverDirectory driverDirectory; 
     UserDirectory userDirectory;
     ComplaintDirectory complaintDirectory;
+
     /**
      * Creates new form MainJFrame
      */
@@ -65,6 +67,12 @@ public class MainJFrame extends javax.swing.JFrame {
         userDirectory.createUser("U008", "Sneha Patel", "sneha.patel@example.com", "sneha123");
         userDirectory.createUser("U009", "Rohit Mehta", "rohit.mehta@example.com", "rohit123");
         userDirectory.createUser("U010", "Sana Khan", "sana.khan@example.com", "sana123");
+        adminDirectory = business.getAdminDirectory();
+        initializeTruckData();
+        initializeDriverData(); 
+        initializeSupervisorData();
+        initializeAdminData();
+        
     }
     
     private void initializeTruckData() {
@@ -82,6 +90,12 @@ public class MainJFrame extends javax.swing.JFrame {
     private void initializeDriverData() {
         driverDirectory.addDriver("DR001", "John Doe", "L1234567890");
         driverDirectory.addDriver("DR002", "Jane Smith", "L0987654321");
+        // Add more drivers as needed
+    }
+    
+    private void initializeAdminData() {
+        adminDirectory.createAdmin("A01", "sa", "ABC", "sa");
+        adminDirectory.createAdmin("A02", "sb", "DEF", "sb");
         // Add more drivers as needed
     }
     /**
@@ -189,6 +203,7 @@ public class MainJFrame extends javax.swing.JFrame {
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
         
+
     }//GEN-LAST:event_btnAdminClickActionPerformed
 
     private void btnUserLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserLoginActionPerformed

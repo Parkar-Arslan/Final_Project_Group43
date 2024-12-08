@@ -15,7 +15,8 @@ public class AdminDirectory {
         adminList.add(newAdmin);
         return newAdmin;
     }
-
+    
+    
 
     public List<Admin> getAdmins() {
         return adminList;
@@ -28,5 +29,14 @@ public class AdminDirectory {
             }
         }
         return null; // No admin found
+    }
+    
+    public Admin authenticateAdmin(String id, String password) {
+        for (Admin admin : adminList) {
+            if (admin.getAdminId().equals(id) && admin.getPassword().equals(password)) {
+                return admin; // Supervisor authenticated successfully
+            }
+        }
+        return null; // Authentication failed
     }
 }
