@@ -7,13 +7,19 @@ package UI.Admin;
 import Model.Business.Business;
 import Model.Truck.TruckDirectory;
 import javax.swing.JPanel;
+import Model.Truck.Truck;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author tawde
  */
 public class CreateTruck extends javax.swing.JPanel {
-
+    JPanel userProcessContainer;
+    Business business;
+    private String truckId;
+    private String description;
+    private int capacity;
     /**
      * Creates new form CreateTruck
      */
@@ -143,6 +149,30 @@ public class CreateTruck extends javax.swing.JPanel {
 
     private void btnCreateTruckSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateTruckSubmitActionPerformed
         // TODO add your handling code here:
+        try {
+            // Get text from input fields
+            String truckId = jTextFieldTruckID.getText();
+            String description = jTextFieldTruckModel.getText();
+            String capacityStr = jTextFieldLicenseCapacity.getText(); // Get capacity as a string
+
+            // Parse capacity to an integer
+            int capacity = Integer.parseInt(capacityStr);
+
+            // Proceed with further processing (e.g., creating a truck object)
+            // Example:
+            // Truck truck = new Truck(truckId, model, capacity);
+            // Add truck to your list or database
+
+      
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Capacity must be a valid integer.", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Please check the ID, model, and capacity fields.", "Info", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        TruckDirectory directory = new TruckDirectory();  // Create an instance
+        directory.addTruck(truckId, description, capacity); // Add the supervisor
     }//GEN-LAST:event_btnCreateTruckSubmitActionPerformed
 
     private void jTextFieldLicenseCapacityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLicenseCapacityActionPerformed
