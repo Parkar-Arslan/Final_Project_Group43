@@ -2,70 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package UI.Dashboard;
-
-import Model.Business.Business;
-import Model.Enterprise.Compliance.ComplaintDirectory;
-
-import Model.Role.Driver;
-import Model.Enterprise.Logistic.Route;
-import Model.Role.Supervisor;
-import Model.Role.SupervisorDirectory;
-import Model.Enterprise.Vehicle.Truck;
-import UI.Supervisor.SupervisorAssignRoute;
-import UI.Supervisor.SupervisorCreateRoute;
-import UI.Supervisor.SupervisorAssignTruck;
-import java.awt.CardLayout;
-import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
+package UI.Driver;
 
 /**
  *
  * @author arslanparkar
  */
-public class SupervisorDashboard extends javax.swing.JPanel {
-    
-    private JPanel userProcessContainer;
-    private Supervisor authenticatedSupervisor;
-    private SupervisorDirectory supervisorDirectory;
-    private Business business;
-    private ComplaintDirectory complaintdirectory;
+public class DriverDashboard extends javax.swing.JPanel {
 
     /**
-     * Creates new form SupervisorDashboard
+     * Creates new form DriverDashboard
      */
-    public SupervisorDashboard(JPanel userProcessContainer, Business business, Supervisor authenticatedSupervisor, SupervisorDirectory supervisorDirectory, ComplaintDirectory complaintdirectory) {
-        this.userProcessContainer = userProcessContainer;
-        this.business = business;
-        this.authenticatedSupervisor = authenticatedSupervisor;
-        this.supervisorDirectory = supervisorDirectory;
-        this.complaintdirectory=complaintdirectory;
-
+    public DriverDashboard() {
         initComponents();
-        populateDriverTruckTable();
-        updateTableAfterAssignment();
     }
 
-    public void updateTableAfterAssignment() {
-    populateDriverTruckTable();  // This method refreshes the JTable
-    System.out.println("Refreshing driver-truck table data...");
-    }
-    
-    public void populateDriverTruckTable() {
-    DefaultTableModel model = (DefaultTableModel) jTableSupreport.getModel();
-    model.setRowCount(0); // Clear existing rows
-
-    for (Driver driver : business.getDriverDirectory().getDrivers()) {
-        Truck truck = driver.getAssignedTruck();
-        Route route = truck != null ? truck.getAssignedRoute() : null;
-        String routeDescription = route != null ? route.getRouteId() + " - From " + route.getStart() + " to " + route.getEnd() : "No route assigned";
-        if (truck != null) { // Only display drivers with assigned trucks
-            String truckDisplay = truck.getTruckId() + " - " + truck.getDescription();
-            model.addRow(new Object[]{driver.getName(), truckDisplay, routeDescription});
-        }
-    }
-    System.out.println("Table refreshed with current truck and route assignments.");
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,7 +51,7 @@ public class SupervisorDashboard extends javax.swing.JPanel {
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText(" Supervisor Dashboard");
+        lblTitle.setText("Driver Dashboard");
 
         btnAssignTruck.setBackground(new java.awt.Color(181, 143, 120));
         btnAssignTruck.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -195,9 +146,6 @@ public class SupervisorDashboard extends javax.swing.JPanel {
                             .addComponent(btnAssignRoute))))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAssignRoute, btnAssignTruck, btnCheckUser, btnCreateRoute});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -231,32 +179,21 @@ public class SupervisorDashboard extends javax.swing.JPanel {
 
     private void btnAssignTruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignTruckActionPerformed
         // TODO add your handling code here:
-        SupervisorAssignTruck assignTruckPanel = new SupervisorAssignTruck(userProcessContainer, business, authenticatedSupervisor, supervisorDirectory, this);
-        userProcessContainer.add("SupervisorAssignTruck", assignTruckPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        
     }//GEN-LAST:event_btnAssignTruckActionPerformed
+
+    private void btnCreateRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateRouteActionPerformed
+       
+    }//GEN-LAST:event_btnCreateRouteActionPerformed
 
     private void btnAssignRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignRouteActionPerformed
 
-        SupervisorAssignRoute SAR = new SupervisorAssignRoute(userProcessContainer, business, authenticatedSupervisor, supervisorDirectory);
-        userProcessContainer.add("SupervisorAssignRoute", SAR);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-        
+       
     }//GEN-LAST:event_btnAssignRouteActionPerformed
 
     private void btnCheckUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCheckUserActionPerformed
-
-
-    private void btnCreateRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateRouteActionPerformed
-        SupervisorCreateRoute assignDriverPanel = new SupervisorCreateRoute(userProcessContainer, business, authenticatedSupervisor, supervisorDirectory);
-        userProcessContainer.add("SupervisorAssignDriver", assignDriverPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnCreateRouteActionPerformed
 
     private void btnCheckComplaintsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckComplaintsActionPerformed
         // TODO add your handling code here:
