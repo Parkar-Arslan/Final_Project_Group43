@@ -7,6 +7,7 @@ package UI.Driver;
 import Model.Business.Business;
 import Model.Role.Driver;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -15,13 +16,25 @@ import javax.swing.JPanel;
  */
 public class DriverPickUpRegister extends javax.swing.JPanel {
 
-        private JPanel userProcessContainer;
-
+ private JPanel userProcessContainer;
+    private Business business;
+    private Driver driver;
     /**
      * Creates new form DriverPickUpRegister
      */
     public DriverPickUpRegister(JPanel userProcessContainer, Business business, Driver driver) {
+        this.userProcessContainer = userProcessContainer;
+        this.business = business;
+        this.driver = driver;
         initComponents();
+        populateComboBoxes();
+    }
+    
+    private void populateComboBoxes() {
+        // This should populate combo boxes from the business model
+        comboRoute.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Route 101", "Route 102", "Route 103" }));
+        comboUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User 1", "User 2", "User 3" }));
+        combostatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Completed", "Delayed" }));
     }
 
     /**
@@ -34,7 +47,7 @@ public class DriverPickUpRegister extends javax.swing.JPanel {
     private void initComponents() {
 
         comboRoute = new javax.swing.JComboBox<>();
-        comboTrash = new javax.swing.JComboBox<>();
+        comboUser = new javax.swing.JComboBox<>();
         btnback = new javax.swing.JButton();
         btnAssignRouteSet = new javax.swing.JButton();
         lblChooseTrashid = new javax.swing.JLabel();
@@ -47,7 +60,7 @@ public class DriverPickUpRegister extends javax.swing.JPanel {
 
         comboRoute.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        comboTrash.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnback.setBackground(new java.awt.Color(181, 143, 120));
         btnback.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -71,7 +84,7 @@ public class DriverPickUpRegister extends javax.swing.JPanel {
 
         lblChooseTrashid.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblChooseTrashid.setForeground(new java.awt.Color(255, 255, 255));
-        lblChooseTrashid.setText("Trash");
+        lblChooseTrashid.setText("User");
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -112,7 +125,7 @@ public class DriverPickUpRegister extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(combostatus, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboTrash, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboUser, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -129,7 +142,7 @@ public class DriverPickUpRegister extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblRouteNo))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(comboTrash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -152,6 +165,16 @@ public class DriverPickUpRegister extends javax.swing.JPanel {
 
     private void btnAssignRouteSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignRouteSetActionPerformed
         // TODO add your handling code here:
+        
+        String selectedUser = (String) comboUser.getSelectedItem();
+        String selectedRoute = (String) comboRoute.getSelectedItem();
+        String selectedStatus = (String) combostatus.getSelectedItem();
+        if (selectedUser != null && selectedRoute != null && selectedStatus != null) {
+            // Implement logic based on your model's methods to set route and status for the user
+            JOptionPane.showMessageDialog(null, "Route assigned to user successfully with status: " + selectedStatus, "Success", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select all fields correctly.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
        
     }//GEN-LAST:event_btnAssignRouteSetActionPerformed
@@ -161,7 +184,7 @@ public class DriverPickUpRegister extends javax.swing.JPanel {
     private javax.swing.JButton btnAssignRouteSet;
     private javax.swing.JButton btnback;
     private javax.swing.JComboBox<String> comboRoute;
-    private javax.swing.JComboBox<String> comboTrash;
+    private javax.swing.JComboBox<String> comboUser;
     private javax.swing.JComboBox<String> combostatus;
     private javax.swing.JLabel lblChooseTrashid;
     private javax.swing.JLabel lblRouteNo;

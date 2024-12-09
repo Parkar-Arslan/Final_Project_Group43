@@ -37,14 +37,14 @@
               <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblRouteNo" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblChooseTrashid" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblChooseuser" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="Compplian" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="combocomplain" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
                   <Component id="comboRoute" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                  <Component id="comboTrash" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                  <Component id="combouser" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -61,12 +61,12 @@
               <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblChooseTrashid" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblChooseuser" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="lblRouteNo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="comboTrash" min="-2" max="-2" attributes="0"/>
+                      <Component id="combouser" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="comboRoute" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -110,7 +110,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="comboTrash">
+    <Component class="javax.swing.JComboBox" name="combouser">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -159,7 +159,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAssignRouteSetActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblChooseTrashid">
+    <Component class="javax.swing.JLabel" name="lblChooseuser">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
