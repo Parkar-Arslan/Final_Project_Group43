@@ -4,11 +4,15 @@
  */
 package UI.Driver;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tawde
  */
 public class DriverPickUpComplain extends javax.swing.JPanel {
+    private JPanel userProcessContainer;
 
     /**
      * Creates new form DriverPickUpComplain
@@ -26,19 +30,137 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Compplian = new javax.swing.JLabel();
+        comboRoute = new javax.swing.JComboBox<>();
+        comboTrash = new javax.swing.JComboBox<>();
+        btnback = new javax.swing.JButton();
+        btnAssignRouteSet = new javax.swing.JButton();
+        lblChooseTrashid = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
+        lblRouteNo = new javax.swing.JLabel();
+        combocomplain = new javax.swing.JComboBox<>();
+
+        setBackground(new java.awt.Color(54, 116, 99));
+
+        Compplian.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Compplian.setForeground(new java.awt.Color(255, 255, 255));
+        Compplian.setText("Status");
+
+        comboRoute.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        comboTrash.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnback.setBackground(new java.awt.Color(181, 143, 120));
+        btnback.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnback.setForeground(new java.awt.Color(255, 255, 255));
+        btnback.setText("<<Back");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
+
+        btnAssignRouteSet.setBackground(new java.awt.Color(181, 143, 120));
+        btnAssignRouteSet.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAssignRouteSet.setForeground(new java.awt.Color(255, 255, 255));
+        btnAssignRouteSet.setText("Set");
+        btnAssignRouteSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignRouteSetActionPerformed(evt);
+            }
+        });
+
+        lblChooseTrashid.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblChooseTrashid.setForeground(new java.awt.Color(255, 255, 255));
+        lblChooseTrashid.setText("Trash");
+
+        lblTitle.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("Pickup Complain");
+
+        lblRouteNo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblRouteNo.setForeground(new java.awt.Color(255, 255, 255));
+        lblRouteNo.setText("Route No");
+
+        combocomplain.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                .addGap(119, 119, 119))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAssignRouteSet, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(240, 240, 240))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(147, 147, 147)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblRouteNo)
+                    .addComponent(lblChooseTrashid)
+                    .addComponent(Compplian))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(combocomplain, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboTrash, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitle)
+                    .addComponent(btnback))
+                .addGap(89, 89, 89)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblChooseTrashid)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblRouteNo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comboTrash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Compplian)
+                    .addComponent(combocomplain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addComponent(btnAssignRouteSet)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnbackActionPerformed
+
+    private void btnAssignRouteSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignRouteSetActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnAssignRouteSetActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Compplian;
+    private javax.swing.JButton btnAssignRouteSet;
+    private javax.swing.JButton btnback;
+    private javax.swing.JComboBox<String> comboRoute;
+    private javax.swing.JComboBox<String> comboTrash;
+    private javax.swing.JComboBox<String> combocomplain;
+    private javax.swing.JLabel lblChooseTrashid;
+    private javax.swing.JLabel lblRouteNo;
+    private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }

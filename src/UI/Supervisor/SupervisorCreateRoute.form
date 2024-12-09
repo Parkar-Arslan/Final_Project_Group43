@@ -34,16 +34,25 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lblDriverShift" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblDriver" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblChooseTruck" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtrouteend" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
-                  <Component id="txtroutestart" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
-                  <Component id="txtrouteid" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="lblDriverShift1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="txtdesc" min="-2" pref="140" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblDriverShift" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDriver" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblChooseTruck" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtrouteend" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="txtroutestart" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="txtrouteid" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -75,7 +84,12 @@
                       <Component id="txtrouteend" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtdesc" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDriverShift1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
               <Component id="btnRouteset" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="61" max="32767" attributes="0"/>
           </Group>
@@ -176,6 +190,22 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnbackActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtdesc">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtdescActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDriverShift1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Descrpt"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
