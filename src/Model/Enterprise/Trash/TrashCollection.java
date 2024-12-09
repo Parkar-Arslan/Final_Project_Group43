@@ -5,15 +5,20 @@ import java.util.Date;
 
 public class TrashCollection {
     private String collectionId;
+    private String truckId;
     private String location;
-    private Date collectionDate;
-    private int weight;
+    private String supervisorId;
+    private String driverId;
+    private String date;
 
-    public TrashCollection(String collectionId, String location, Date collectionDate, int weight) {
+    // Constructor
+    public TrashCollection(String collectionId, String truckId, String location, String supervisorId, String driverId, String date) {
         this.collectionId = collectionId;
+        this.truckId = truckId;
         this.location = location;
-        this.collectionDate = collectionDate;
-        this.weight = weight;
+        this.supervisorId = supervisorId;
+        this.driverId = driverId;
+        this.date = date;
     }
 
     // Getters and Setters
@@ -25,6 +30,14 @@ public class TrashCollection {
         this.collectionId = collectionId;
     }
 
+    public String getTruckId() {
+        return truckId;
+    }
+
+    public void setTruckId(String truckId) {
+        this.truckId = truckId;
+    }
+
     public String getLocation() {
         return location;
     }
@@ -33,19 +46,34 @@ public class TrashCollection {
         this.location = location;
     }
 
-    public Date getCollectionDate() {
-        return collectionDate;
+    public String getSupervisorId() {
+        return supervisorId;
     }
 
-    public void setCollectionDate(Date collectionDate) {
-        this.collectionDate = collectionDate;
+    public void setSupervisorId(String supervisorId) {
+        this.supervisorId = supervisorId;
     }
 
-    public int getWeight() {
-        return weight;
+    public String getDriverId() {
+        return driverId;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
+    public void setDriverId(String driverId) {
+        this.driverId = driverId;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "CollectionId: " + collectionId + ", TruckId: " + truckId + ", Location: " + location 
+                + ", SupervisorId: " + supervisorId + ", DriverId: " + driverId + ", Date: " + date;
+    }
+    
 }

@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import Model.Role.UserDirectory; // Adjust this based on your actual package structure
 import Model.Role.UserDirectory;
 import Model.Role.User; // Adjust the package as per your structure
+import Model.Enterprise.Trash.TrashCollectionDirectory;
 
 
 
@@ -35,6 +36,7 @@ public class MainJFrame extends javax.swing.JFrame {
     UserDirectory userDirectory;
     ComplaintDirectory complaintDirectory;
     private BillDirectory billDirectory;
+    private TrashCollectionDirectory trashCollectionDirectory;
 
     /**
      * Creates new form MainJFrame
@@ -49,7 +51,7 @@ public class MainJFrame extends javax.swing.JFrame {
         complaintDirectory = new ComplaintDirectory();
         userDirectory = business.getUserDirectory();
         billDirectory = new BillDirectory();
-        
+        trashCollectionDirectory = new TrashCollectionDirectory();
         if (userDirectory == null) {
         userDirectory = new UserDirectory();
         business.setUserDirectory(userDirectory);
@@ -60,6 +62,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initializeSupervisorData();
         initializeUserData();  
         initializeBillData();
+        initializeTrashCollectionData(); 
     }
     
     private void initializeUserData() {
@@ -309,6 +312,46 @@ public class MainJFrame extends javax.swing.JFrame {
             bill.setDueDate("2024-12-31"); // Set a fixed due date for simplicity
             billDirectory.addBill(userId, bill);
         }
+    }
+
+    private void initializeTrashCollectionData() {
+        if (supervisorDirectory.getSupervisors().isEmpty()) {
+        System.out.println("No supervisors found! Cannot initialize trash collection data.");
+        return;
+    }
+
+    // Get supervisors from the supervisor directory
+    var supervisorList = supervisorDirectory.getSupervisors();
+
+    // Initialize data based on supervisors
+    trashCollectionDirectory.addTrashCollection("TC001", 
+        supervisorList.get(0).getSupervisorId(), // Supervisor ID
+        "Downtown", // Location
+        "1500.0", // Weight in kg
+        "Monday 9:00 AM", // Schedule
+        "TR001" // Truck ID
+    );
+
+    trashCollectionDirectory.addTrashCollection("TC002", 
+        supervisorList.get(1).getSupervisorId(), // Supervisor ID
+        "Uptown", // Location
+        "2000.0", // Weight in kg
+        "Wednesday 2:00 PM", // Schedule
+        "TR002" // Truck ID
+    );
+
+    // Add more trash collection data as needed
+    if (supervisorList.size() > 2) {
+        trashCollectionDirectory.addTrashCollection("TC003", 
+            supervisorList.get(2).getSupervisorId(), // Supervisor ID
+            "Suburbs", // Location
+            "1200.0", // Weight in kg
+            "Friday 11:00 AM", // Schedule
+            "TR003" // Truck ID
+        );
+    }
+
+    System.out.println("Trash collection data initialized.");
     }
 
     

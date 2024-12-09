@@ -142,6 +142,7 @@ public class UserPayBill extends javax.swing.JPanel {
 
     private void btnPayBillSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayBillSubmitActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnPayBillSubmitActionPerformed
 
     private void jTextFieldAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAmountActionPerformed

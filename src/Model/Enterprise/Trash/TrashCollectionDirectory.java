@@ -6,29 +6,46 @@ import java.util.Date;
 import java.util.List;
 
 public class TrashCollectionDirectory {
-    private List<TrashCollection> collectionList;
+    private ArrayList<TrashCollection> trashCollections;
 
-     TrashCollectionDirectory() {
-        collectionList = new ArrayList<>();
-    }
-     
-
-     TrashCollection addCollection(String collectionId, String location,Date collectionDate, int weight) {
-        TrashCollection newCollection = new TrashCollection(collectionId, location, collectionDate, weight);
-        collectionList.add(newCollection);
-        return newCollection;
+    // Constructor
+    public TrashCollectionDirectory() {
+        trashCollections = new ArrayList<>();
     }
 
-    public List<TrashCollection> getCollections() {
-        return collectionList;
+    // Getter for trashCollections
+    public ArrayList<TrashCollection> getTrashCollections() {
+        return trashCollections;
     }
 
-     TrashCollection findCollectionById(String collectionId) {
-        for (TrashCollection collection : collectionList) {
+    // Method to add TrashCollection with all six parameters
+    public TrashCollection addTrashCollection(String collectionId, String truckId, String location, String supervisorId, String driverId, String date) {
+        TrashCollection collection = new TrashCollection(collectionId, truckId, location, supervisorId, driverId, date);
+        trashCollections.add(collection);
+        return collection;
+    }
+
+    // Overloaded method to add TrashCollection with only four parameters
+    public TrashCollection addTrashCollection(String collectionId, String truckId, String location, String date) {
+        // Provide default values for the missing parameters
+        String defaultSupervisorId = "UnknownSupervisor";
+        String defaultDriverId = "UnknownDriver";
+
+        return addTrashCollection(collectionId, truckId, location, defaultSupervisorId, defaultDriverId, date);
+    }
+
+    // Method to remove TrashCollection by collectionId
+    public void removeTrashCollection(String collectionId) {
+        trashCollections.removeIf(collection -> collection.getCollectionId().equals(collectionId));
+    }
+
+    // Method to find TrashCollection by collectionId
+    public TrashCollection findTrashCollectionById(String collectionId) {
+        for (TrashCollection collection : trashCollections) {
             if (collection.getCollectionId().equals(collectionId)) {
                 return collection;
             }
         }
-        return null; // No collection found
+        return null;
     }
 }
