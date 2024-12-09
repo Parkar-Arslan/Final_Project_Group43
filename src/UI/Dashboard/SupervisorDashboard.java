@@ -76,7 +76,6 @@ public class SupervisorDashboard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnTotalTrash = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         btnAssignTruck = new javax.swing.JButton();
         btnCreateRoute = new javax.swing.JButton();
@@ -86,16 +85,6 @@ public class SupervisorDashboard extends javax.swing.JPanel {
         jTableSupreport = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(54, 116, 99));
-
-        btnTotalTrash.setBackground(new java.awt.Color(181, 143, 120));
-        btnTotalTrash.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnTotalTrash.setForeground(new java.awt.Color(255, 255, 255));
-        btnTotalTrash.setText("Total Trash");
-        btnTotalTrash.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTotalTrashActionPerformed(evt);
-            }
-        });
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -170,16 +159,13 @@ public class SupervisorDashboard extends javax.swing.JPanel {
             .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTotalTrash)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAssignUser, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCreateRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAssignTruck, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAssignRoute))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAssignUser, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCreateRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAssignTruck, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAssignRoute))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -194,9 +180,7 @@ public class SupervisorDashboard extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTotalTrash)
-                        .addGap(17, 17, 17))
+                        .addGap(61, 61, 61))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(btnAssignTruck)
@@ -209,10 +193,6 @@ public class SupervisorDashboard extends javax.swing.JPanel {
                         .addGap(27, 177, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnTotalTrashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalTrashActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTotalTrashActionPerformed
 
     private void btnAssignTruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignTruckActionPerformed
         // TODO add your handling code here:
@@ -253,7 +233,6 @@ public class SupervisorDashboard extends javax.swing.JPanel {
     private javax.swing.JButton btnAssignTruck;
     private javax.swing.JButton btnAssignUser;
     private javax.swing.JButton btnCreateRoute;
-    private javax.swing.JButton btnTotalTrash;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableSupreport;
     private javax.swing.JLabel lblTitle;

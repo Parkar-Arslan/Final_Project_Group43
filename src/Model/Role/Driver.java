@@ -11,6 +11,7 @@ public class Driver {
     private Truck assignedTruck;  // Holds a reference to the assigned truck
     private String licenseNumber; // Store license number for driver identification
     private String password; // Adding password attribute
+    
 
 
     public Driver(String driverId, String name, String licenseNumber, String password) {
