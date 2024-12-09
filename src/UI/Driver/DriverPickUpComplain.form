@@ -44,7 +44,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="combocomplain" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
                   <Component id="comboRoute" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                  <Component id="combouser" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                  <Component id="comboUser" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -66,7 +66,7 @@
                       <Component id="lblRouteNo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="combouser" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboUser" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="comboRoute" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -110,7 +110,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="combouser">
+    <Component class="javax.swing.JComboBox" name="comboUser">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -167,7 +167,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Trash"/>
+        <Property name="text" type="java.lang.String" value="USER"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTitle">

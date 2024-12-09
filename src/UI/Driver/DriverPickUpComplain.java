@@ -4,8 +4,13 @@
  */
 package UI.Driver;
 
+import Model.Business.Business;
+import Model.Enterprise.Compliance.Complaint;
 import Model.Enterprise.Compliance.ComplaintDirectory;
+import Model.Enterprise.Logistic.Route;
+import Model.Role.User;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -13,14 +18,36 @@ import javax.swing.JPanel;
  * @author tawde
  */
 public class DriverPickUpComplain extends javax.swing.JPanel {
-    private ComplaintDirectory complaintDirectory;
+     private ComplaintDirectory complaintDirectory;
     private JPanel userProcessContainer;
+    private Business business;
 
     /**
      * Creates new form DriverPickUpComplain
      */
-    public DriverPickUpComplain() {
+    public DriverPickUpComplain(JPanel userProcessContainer, Business business, ComplaintDirectory complaintDirectory) {
+        this.userProcessContainer = userProcessContainer;
+        this.business = business;
+        this.complaintDirectory = complaintDirectory;
         initComponents();
+        populateComboBoxes();
+    }
+    
+    private void populateComboBoxes() {
+        // Populate users and routes from the business model
+        comboUser.removeAllItems();
+        comboRoute.removeAllItems();
+
+        for (User user : business.getUserDirectory().getUsers()) {
+            comboUser.addItem(user.getId() + " - " + user.getName());
+        }
+
+        for (Route route : business.getRouteDirectory().getRoutes()) {
+            comboRoute.addItem(route.getRouteId() + " - " + route.getDescription());
+        }
+
+        // Populate complaint types
+        combocomplain.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bin Filled", "Trash Overflow", "Delayed Pickup" }));
     }
 
     /**
@@ -34,7 +61,7 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
 
         Compplian = new javax.swing.JLabel();
         comboRoute = new javax.swing.JComboBox<>();
-        combouser = new javax.swing.JComboBox<>();
+        comboUser = new javax.swing.JComboBox<>();
         btnback = new javax.swing.JButton();
         btnAssignRouteSet = new javax.swing.JButton();
         lblChooseuser = new javax.swing.JLabel();
@@ -50,7 +77,7 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
 
         comboRoute.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        combouser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnback.setBackground(new java.awt.Color(181, 143, 120));
         btnback.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -74,7 +101,7 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
 
         lblChooseuser.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblChooseuser.setForeground(new java.awt.Color(255, 255, 255));
-        lblChooseuser.setText("Trash");
+        lblChooseuser.setText("USER");
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -111,7 +138,7 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(combocomplain, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combouser, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboUser, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -128,7 +155,7 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblRouteNo))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(combouser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -150,6 +177,29 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
 
     private void btnAssignRouteSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignRouteSetActionPerformed
         // TODO add your handling code here:
+        String selectedUser = (String) comboUser.getSelectedItem();
+        String selectedRoute = (String) comboRoute.getSelectedItem();
+        String complaintType = (String) combocomplain.getSelectedItem();
+
+        if (selectedUser == null || selectedRoute == null || complaintType == null) {
+            JOptionPane.showMessageDialog(null, "Please select all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String userId = selectedUser.split(" - ")[0];
+        String routeId = selectedRoute.split(" - ")[0];
+
+        User user = business.getUserDirectory().findUserById(userId);
+        Route route = business.getRouteDirectory().findRouteById(routeId);
+
+        if (user != null && route != null) {
+            Complaint complaint = new Complaint("C" + System.currentTimeMillis(), "Complaint about " + complaintType, false);
+            complaintDirectory.addComplaint(complaint);
+            route.setStatus("Complaint logged"); // Update route status
+            JOptionPane.showMessageDialog(null, "Complaint logged successfully for " + user.getName(), "Success", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Failed to log complaint. Check user and route.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_btnAssignRouteSetActionPerformed
 
@@ -159,8 +209,8 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
     private javax.swing.JButton btnAssignRouteSet;
     private javax.swing.JButton btnback;
     private javax.swing.JComboBox<String> comboRoute;
+    private javax.swing.JComboBox<String> comboUser;
     private javax.swing.JComboBox<String> combocomplain;
-    private javax.swing.JComboBox<String> combouser;
     private javax.swing.JLabel lblChooseuser;
     private javax.swing.JLabel lblRouteNo;
     private javax.swing.JLabel lblTitle;

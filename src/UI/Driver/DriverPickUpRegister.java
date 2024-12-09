@@ -5,8 +5,12 @@
 package UI.Driver;
 
 import Model.Business.Business;
+import Model.Enterprise.Logistic.Route;
+import Model.Enterprise.Vehicle.Truck;
 import Model.Role.Driver;
+import Model.Role.User;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -16,13 +20,14 @@ import javax.swing.JPanel;
  */
 public class DriverPickUpRegister extends javax.swing.JPanel {
 
- private JPanel userProcessContainer;
+        
+     private JPanel userProcessContainer;
     private Business business;
     private Driver driver;
     /**
      * Creates new form DriverPickUpRegister
      */
-    public DriverPickUpRegister(JPanel userProcessContainer, Business business, Driver driver) {
+    public DriverPickUpRegister(JPanel userProcessContainer, Business business, Driver driver, DriverDashboard aThis) {
         this.userProcessContainer = userProcessContainer;
         this.business = business;
         this.driver = driver;
@@ -31,9 +36,21 @@ public class DriverPickUpRegister extends javax.swing.JPanel {
     }
     
     private void populateComboBoxes() {
-        // This should populate combo boxes from the business model
-        comboRoute.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Route 101", "Route 102", "Route 103" }));
-        comboUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User 1", "User 2", "User 3" }));
+        comboRoute.removeAllItems();
+        comboUser.removeAllItems();
+        combostatus.removeAllItems();
+
+        // Populate Routes
+        for (Route route : business.getRouteDirectory().getRoutes()) {
+            comboRoute.addItem(route.getRouteId() + " - " + route.getDescription());
+        }
+
+        // Populate Users
+        for (User user : business.getUserDirectory().getUsers()) {
+            comboUser.addItem(user.getId() + " - " + user.getName());
+        }
+
+        // Populate Statuses
         combostatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Completed", "Delayed" }));
     }
 
@@ -55,6 +72,8 @@ public class DriverPickUpRegister extends javax.swing.JPanel {
         lblRouteNo = new javax.swing.JLabel();
         combostatus = new javax.swing.JComboBox<>();
         lblstatus = new javax.swing.JLabel();
+        lblRouteNo1 = new javax.swing.JLabel();
+        txttrashkg = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(54, 116, 99));
 
@@ -101,6 +120,10 @@ public class DriverPickUpRegister extends javax.swing.JPanel {
         lblstatus.setForeground(new java.awt.Color(255, 255, 255));
         lblstatus.setText("Status");
 
+        lblRouteNo1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblRouteNo1.setForeground(new java.awt.Color(255, 255, 255));
+        lblRouteNo1.setText("Trash");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,12 +143,14 @@ public class DriverPickUpRegister extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblRouteNo)
                     .addComponent(lblChooseTrashid)
-                    .addComponent(lblstatus))
+                    .addComponent(lblstatus)
+                    .addComponent(lblRouteNo1))
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(combostatus, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboUser, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(combostatus, 0, 135, Short.MAX_VALUE)
+                    .addComponent(comboRoute, 0, 135, Short.MAX_VALUE)
+                    .addComponent(comboUser, 0, 135, Short.MAX_VALUE)
+                    .addComponent(txttrashkg))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -149,7 +174,11 @@ public class DriverPickUpRegister extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblstatus)
                     .addComponent(combostatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRouteNo1)
+                    .addComponent(txttrashkg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addComponent(btnAssignRouteSet)
                 .addContainerGap(63, Short.MAX_VALUE))
         );
@@ -166,17 +195,59 @@ public class DriverPickUpRegister extends javax.swing.JPanel {
     private void btnAssignRouteSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignRouteSetActionPerformed
         // TODO add your handling code here:
         
-        String selectedUser = (String) comboUser.getSelectedItem();
-        String selectedRoute = (String) comboRoute.getSelectedItem();
-        String selectedStatus = (String) combostatus.getSelectedItem();
-        if (selectedUser != null && selectedRoute != null && selectedStatus != null) {
-            // Implement logic based on your model's methods to set route and status for the user
-            JOptionPane.showMessageDialog(null, "Route assigned to user successfully with status: " + selectedStatus, "Success", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select all fields correctly.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+         // Fetching selected values
+    String selectedUser = (String) comboUser.getSelectedItem();
+    String selectedRoute = (String) comboRoute.getSelectedItem();
+    String selectedStatus = (String) combostatus.getSelectedItem();
+    String trashKgText = txttrashkg.getText();
 
-       
+    if (selectedUser == null || selectedRoute == null || selectedStatus == null || trashKgText.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please fill all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        int trashKg = Integer.parseInt(trashKgText);
+        
+        // Extract Route ID and User ID
+        String routeId = selectedRoute.split(" - ")[0];
+        String userId = selectedUser.split(" - ")[0];
+
+        // Find route and user objects
+        Route route = business.getRouteDirectory().findRouteById(routeId);
+        Driver currentDriver = driver;
+
+        if (route != null && currentDriver != null) {
+            // Update route information
+            route.setTrashCollected(route.getTrashCollected() + trashKg);
+            route.setStatus(selectedStatus);
+
+            // Update the driver's truck (if assigned)
+            Truck truck = currentDriver.getAssignedTruck();
+            if (truck != null) {
+                truck.setTrashCollected(truck.getTrashCollected() + trashKg);
+                truck.setStatus(selectedStatus);
+            }
+
+            JOptionPane.showMessageDialog(null, "Trash collected and updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+            // Notify driver dashboard to refresh
+            userProcessContainer.remove(this);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.previous(userProcessContainer);
+
+            Component[] components = userProcessContainer.getComponents();
+            for (Component component : components) {
+                if (component instanceof DriverDashboard) {
+                    ((DriverDashboard) component).populateTable(); // Refresh dashboard
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Route or Driver not found!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Invalid trash amount. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnAssignRouteSetActionPerformed
 
 
@@ -188,7 +259,9 @@ public class DriverPickUpRegister extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> combostatus;
     private javax.swing.JLabel lblChooseTrashid;
     private javax.swing.JLabel lblRouteNo;
+    private javax.swing.JLabel lblRouteNo1;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblstatus;
+    private javax.swing.JTextField txttrashkg;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,6 +8,7 @@ import Model.Business.Business;
 import Model.Enterprise.Vehicle.Truck;
 import Model.Role.Driver;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,27 +26,36 @@ public class DriverDashboard extends javax.swing.JPanel {
      * Creates new form DriverDashboard
      */
     public DriverDashboard(JPanel userProcessContainer, Business business, Driver driver) {
-        this.userProcessContainer = userProcessContainer;
+         this.userProcessContainer = userProcessContainer;
         this.business = business;
         this.driver = driver;
-        initComponents();
-    }
-    
-    
-    private void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) jTableSupreport.getModel();
-        model.setRowCount(0); // Clear existing data
 
-        Truck truck = driver.getAssignedTruck();
-        if (truck != null) {
-            Object[] row = new Object[4];
-            row[0] = truck.getTruckId();
-            row[1] = truck.getAssignedRoute() != null ? truck.getAssignedRoute().getRouteId() : "Not assigned";
-            row[2] = truck.getTrashCollected() + " kg"; // Assuming there is a method to get collected trash
-            row[3] = truck.getStatus(); // Assuming there is a method to get the current status
-            model.addRow(row);
+        initComponents();
+
+        // Ensure driver is assigned a truck before populating table
+        if (driver != null && driver.getAssignedTruck() != null) {
+            populateTable();
+        } else {
+            JOptionPane.showMessageDialog(this, "No truck is assigned to this driver.", "Info", JOptionPane.INFORMATION_MESSAGE);
         }
+    
     }
+    
+    
+    public void populateTable() {
+    DefaultTableModel model = (DefaultTableModel) jTableSupreport.getModel();
+    model.setRowCount(0); // Clear existing data
+
+    Truck truck = driver.getAssignedTruck();
+    if (truck != null) {
+        Object[] row = new Object[4];
+        row[0] = truck.getTruckId();
+        row[1] = truck.getAssignedRoute() != null ? truck.getAssignedRoute().getRouteId() : "Not assigned";
+        row[2] = truck.getTrashCollected() + " kg"; // Display collected trash
+        row[3] = truck.getStatus(); // Display current truck status
+        model.addRow(row);
+    }
+}
 
 
     /**
@@ -137,7 +147,7 @@ public class DriverDashboard extends javax.swing.JPanel {
 
     private void btnCollectTrashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectTrashActionPerformed
         // TODO add your handling code here:
-        DriverPickUpRegister pt = new DriverPickUpRegister(userProcessContainer, business, driver);
+        DriverPickUpRegister pt = new DriverPickUpRegister(userProcessContainer, business, driver,this);
         userProcessContainer.add("DriverDashboard", pt);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
