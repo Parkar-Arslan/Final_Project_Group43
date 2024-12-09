@@ -20,6 +20,7 @@ import Model.Role.UserDirectory; // Adjust this based on your actual package str
 import Model.Role.UserDirectory;
 import Model.Role.User; // Adjust the package as per your structure
 import UI.Driver.DriverLoginJPanel;
+import UI.analyst.Analyst;
 
 
 
@@ -112,6 +113,7 @@ public class MainJFrame extends javax.swing.JFrame {
         btnUserLogin = new javax.swing.JButton();
         btnDriver = new javax.swing.JButton();
         btnSupervisorClick1 = new javax.swing.JButton();
+        btnanaylyst = new javax.swing.JButton();
         userProcessContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -162,6 +164,16 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnanaylyst.setBackground(new java.awt.Color(181, 143, 120));
+        btnanaylyst.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnanaylyst.setForeground(new java.awt.Color(255, 255, 255));
+        btnanaylyst.setText("Analyst");
+        btnanaylyst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnanaylystActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
@@ -169,11 +181,12 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnanaylyst, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSupervisorClick1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdminClick, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUserLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,8 +198,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnUserLogin)
                 .addGap(18, 18, 18)
+                .addComponent(btnanaylyst)
+                .addGap(21, 21, 21)
                 .addComponent(btnDriver)
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(controlPanel);
@@ -244,6 +259,14 @@ public class MainJFrame extends javax.swing.JFrame {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnSupervisorClick1ActionPerformed
 
+    private void btnanaylystActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnanaylystActionPerformed
+        // TODO add your handling code here:
+        Analyst an = new Analyst(userProcessContainer,business ,supervisorDirectory,complaintDirectory, userDirectory);
+        userProcessContainer.add("Analyst", an);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnanaylystActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -284,6 +307,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnDriver;
     private javax.swing.JButton btnSupervisorClick1;
     private javax.swing.JButton btnUserLogin;
+    private javax.swing.JButton btnanaylyst;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel userProcessContainer;
