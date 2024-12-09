@@ -46,6 +46,9 @@ public class Business {
         this.userDirectory = new UserDirectory();
 
         routeDirectory = new RouteDirectory();
+        supervisorDirectory.addSupervisor("s1", "s1","s1");
+        supervisorDirectory.addSupervisor("SV002", "Bob Smith","sup2");
+        
     }
 
     public UserDirectory getUserDirectory() {
