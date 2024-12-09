@@ -29,13 +29,13 @@ public class AdminHome extends javax.swing.JPanel {
     /**
      * Creates new form AdminHome
      */
-    public AdminHome(JPanel userProcessContainer, Business business, Admin authenticatedAdmin, AdminDirectory adminDirectory) {
+    public AdminHome(JPanel userProcessContainer, Business business) {
         initComponents();
+        this.business = business;
+        this.userProcessContainer = userProcessContainer; // Assign the passed JPanel to the userProcessContainer
         driverDirectory = business.getDriverDirectory();
         supervisorDirectory = business.getSupervisorDirectory();
         truckDirectory = business.getTruckDirectory();
-//        userProcessContainer = upc;
-//        business = b;
     }
 
     /**
