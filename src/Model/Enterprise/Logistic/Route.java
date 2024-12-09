@@ -1,5 +1,7 @@
 package Model.Enterprise.Logistic;
 
+import Model.Role.Driver;
+import Model.Role.Supervisor;
 import Model.Role.User;
 
 public class Route {
@@ -10,6 +12,8 @@ public class Route {
     private User assignedUser; // Reference to a User object
     private int trashCollected; // Holds the total trash collected in kilograms
     private String status; // Current status of the route (e.g., Pending, Completed)
+    private Supervisor assignedSupervisor; // Add this field
+    private Driver assignedDriver; // Reference to the assigned driver
 
 
     public Route(String routeId,String description, String start, String end) {
@@ -20,7 +24,28 @@ public class Route {
         this.assignedUser = null; // No user assigned initially
         this.trashCollected = 0; // Default no trash collected
         this.status = "Pending"; // Default status
+        this.assignedSupervisor = null; // Initialize as null
+        this.assignedDriver = null; // No driver assigned initially
         
+    }
+    
+    
+    // Getter for assignedDriver
+    public Driver getAssignedDriver() {
+        return assignedDriver;
+    }
+
+    // Setter for assignedDriver
+    public void setAssignedDriver(Driver driver) {
+        this.assignedDriver = driver;
+    }
+    
+    public Supervisor getAssignedSupervisor() { // Add getter for supervisor
+        return assignedSupervisor;
+    }
+
+    public void setAssignedSupervisor(Supervisor assignedSupervisor) { // Add setter for supervisor
+        this.assignedSupervisor = assignedSupervisor;
     }
 
     public User getAssignedUser() {

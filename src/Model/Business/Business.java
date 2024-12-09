@@ -4,6 +4,7 @@
  */
 package Model.Business;
 
+import Model.Enterprise.Compliance.ComplaintDirectory;
 import Model.Enterprise.bill.BillDirectory;
 import Model.Role.AdminDirectory;
 import Model.Role.DriverDirectory;
@@ -20,7 +21,7 @@ public class Business {
     TruckDirectory truckDirectory;
     SupervisorDirectory supervisorDirectory;
     DriverDirectory driverDirectory;
-
+    ComplaintDirectory complaintDirectory;
 
     UserDirectory userDirectory;
     BillDirectory billDirectory;
@@ -42,7 +43,7 @@ public class Business {
         truckDirectory = new TruckDirectory();
         supervisorDirectory = new SupervisorDirectory();
         driverDirectory =  DriverDirectory.getInstance();
-
+        complaintDirectory = new ComplaintDirectory();
         this.userDirectory = new UserDirectory();
 
         routeDirectory = new RouteDirectory();
@@ -52,6 +53,15 @@ public class Business {
         return userDirectory;
     }
 
+    public ComplaintDirectory getComplaintDirectory() {
+        return complaintDirectory;
+    }
+
+    public void setComplaintDirectory(ComplaintDirectory complaintDirectory) {
+        this.complaintDirectory = complaintDirectory;
+    }
+
+    
     public void setUserDirectory(UserDirectory userDirectory) {
         this.userDirectory = userDirectory;
         adminDirectory = new AdminDirectory();

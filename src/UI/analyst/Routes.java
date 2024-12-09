@@ -4,17 +4,62 @@
  */
 package UI.analyst;
 
+import Model.Business.Business;
+import Model.Enterprise.Logistic.Route;
+import Model.Enterprise.Logistic.RouteDirectory;
+import Model.Role.Driver;
+import Model.Role.Supervisor;
+import Model.Role.User;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author arslanparkar
  */
 public class Routes extends javax.swing.JPanel {
+      private Business business; // Reference to business object
+    private RouteDirectory routeDirectory;
+private JPanel userProcessContainer;
 
     /**
      * Creates new form Analyst
      */
-    public Routes() {
+    public Routes(JPanel userProcessContainer,Business business) {
+        this.business = business;
+        this.routeDirectory = business.getRouteDirectory(); // Assuming business contains RouteDirectory
         initComponents();
+        populateTable();
+    }
+    
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Clear existing rows
+
+        for (Route route : routeDirectory.getRoutes()) {
+            Object[] row = new Object[5];
+
+            // Fetch user details
+            User user = route.getAssignedUser();
+            row[0] = user != null ? user.getName() : "Unassigned";
+
+            // Fetch supervisor details
+            Supervisor supervisor = route.getAssignedSupervisor();
+            row[1] = supervisor != null ? supervisor.getName() : "Unassigned";
+
+            // Route description
+            row[2] = route.getDescription();
+
+            // Fetch driver details
+            Driver driver = route.getAssignedDriver();
+            row[3] = driver != null ? driver.getName() : "Unassigned";
+
+            // Route status
+            row[4] = route.getStatus();
+
+            model.addRow(row);
+        }
     }
 
     /**
@@ -27,55 +72,37 @@ public class Routes extends javax.swing.JPanel {
     private void initComponents() {
 
         lblTitle = new javax.swing.JLabel();
-        Seetrash = new javax.swing.JButton();
-        bins = new javax.swing.JButton();
-        btnrecycle = new javax.swing.JButton();
-        btnroutes = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btnback = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(54, 116, 99));
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("Analyst");
+        lblTitle.setText("Routes");
 
-        Seetrash.setBackground(new java.awt.Color(181, 143, 120));
-        Seetrash.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Seetrash.setForeground(new java.awt.Color(255, 255, 255));
-        Seetrash.setText("See trash collection");
-        Seetrash.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SeetrashActionPerformed(evt);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "User", "Supervisor", "Route", "Driver", "Status"
             }
-        });
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
-        bins.setBackground(new java.awt.Color(181, 143, 120));
-        bins.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        bins.setForeground(new java.awt.Color(255, 255, 255));
-        bins.setText("BIns");
-        bins.addActionListener(new java.awt.event.ActionListener() {
+        btnback.setBackground(new java.awt.Color(181, 143, 120));
+        btnback.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnback.setForeground(new java.awt.Color(255, 255, 255));
+        btnback.setText("<<Back");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                binsActionPerformed(evt);
-            }
-        });
-
-        btnrecycle.setBackground(new java.awt.Color(181, 143, 120));
-        btnrecycle.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnrecycle.setForeground(new java.awt.Color(255, 255, 255));
-        btnrecycle.setText("Recycle");
-        btnrecycle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnrecycleActionPerformed(evt);
-            }
-        });
-
-        btnroutes.setBackground(new java.awt.Color(181, 143, 120));
-        btnroutes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnroutes.setForeground(new java.awt.Color(255, 255, 255));
-        btnroutes.setText("Routes");
-        btnroutes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnroutesActionPerformed(evt);
+                btnbackActionPerformed(evt);
             }
         });
 
@@ -84,60 +111,41 @@ public class Routes extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                 .addGap(60, 60, 60))
             .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnrecycle, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Seetrash, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bins, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnroutes, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(137, 137, 137))
+                .addGap(74, 74, 74)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(lblTitle)
-                .addGap(130, 130, 130)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Seetrash)
-                    .addComponent(bins))
-                .addGap(61, 61, 61)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnrecycle)
-                    .addComponent(btnroutes))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitle)
+                    .addComponent(btnback))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SeetrashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeetrashActionPerformed
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_SeetrashActionPerformed
-
-    private void binsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_binsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_binsActionPerformed
-
-    private void btnrecycleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrecycleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnrecycleActionPerformed
-
-    private void btnroutesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnroutesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnroutesActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnbackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Seetrash;
-    private javax.swing.JButton bins;
-    private javax.swing.JButton btnrecycle;
-    private javax.swing.JButton btnroutes;
+    private javax.swing.JButton btnback;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }
