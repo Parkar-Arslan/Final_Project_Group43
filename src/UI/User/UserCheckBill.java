@@ -4,10 +4,10 @@
  */
 package UI.User;
 
-import Model.Enterprise.bill.Bill;
 import Model.Enterprise.bill.BillDirectory;
 import Model.Role.User;
-import java.util.List;
+
+
 
 /**
  *

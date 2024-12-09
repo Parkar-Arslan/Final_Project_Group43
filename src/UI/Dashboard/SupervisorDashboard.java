@@ -219,7 +219,7 @@ public class SupervisorDashboard extends javax.swing.JPanel {
                         .addComponent(btnAssignRoute)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCheckUser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                         .addComponent(btnCheckComplaints)
                         .addGap(27, 27, 27))))
         );

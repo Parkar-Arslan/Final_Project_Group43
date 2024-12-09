@@ -21,6 +21,7 @@ public class CreateDriver extends javax.swing.JPanel {
     private String DriverID;
     private String DriverName;
     private String LicenseNumber;
+    private  String password;
 
     /**
      * Creates new form CreateDriver
@@ -46,6 +47,8 @@ public class CreateDriver extends javax.swing.JPanel {
         btnCreateDriverSubmit = new javax.swing.JButton();
         jTextFieldLicenseNumber = new javax.swing.JTextField();
         lblLicenseNumber = new javax.swing.JLabel();
+        txtpass = new javax.swing.JTextField();
+        lblLicenseNumber1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(54, 116, 99));
 
@@ -94,27 +97,43 @@ public class CreateDriver extends javax.swing.JPanel {
         lblLicenseNumber.setForeground(new java.awt.Color(255, 255, 255));
         lblLicenseNumber.setText("License Number");
 
+        txtpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpassActionPerformed(evt);
+            }
+        });
+
+        lblLicenseNumber1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblLicenseNumber1.setForeground(new java.awt.Color(255, 255, 255));
+        lblLicenseNumber1.setText("Pass");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblLicenseNumber)
-                    .addComponent(lblDriverName)
-                    .addComponent(lblDriverID))
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldLicenseNumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldDriverName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldDriverID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(126, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCreateDriverSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(240, 240, 240))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(147, 147, 147)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblLicenseNumber1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblLicenseNumber)
+                            .addComponent(lblDriverName)
+                            .addComponent(lblDriverID))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldLicenseNumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldDriverName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldDriverID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +154,11 @@ public class CreateDriver extends javax.swing.JPanel {
                         .addComponent(jTextFieldDriverName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldLicenseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(54, 54, 54)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLicenseNumber1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCreateDriverSubmit)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
@@ -155,6 +178,7 @@ public class CreateDriver extends javax.swing.JPanel {
             DriverID = jTextFieldDriverID.getText();
             DriverName = jTextFieldDriverName.getText();
             LicenseNumber = jTextFieldLicenseNumber.getText();
+            password = txtpass.getText();
             
             
         } catch (Exception e) {
@@ -163,7 +187,7 @@ public class CreateDriver extends javax.swing.JPanel {
         }
         
         DriverDirectory directory = DriverDirectory.getInstance();
-        Driver d = directory.addDriver(DriverID, DriverName, LicenseNumber );
+        Driver d = directory.addDriver(DriverID, DriverName, LicenseNumber,password );
         d.setDriverId(DriverID);
         d.setName(DriverName);
         d.setLicenseNumber(LicenseNumber);
@@ -174,6 +198,10 @@ public class CreateDriver extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLicenseNumberActionPerformed
 
+    private void txtpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpassActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateDriverSubmit;
@@ -183,6 +211,8 @@ public class CreateDriver extends javax.swing.JPanel {
     private javax.swing.JLabel lblDriverID;
     private javax.swing.JLabel lblDriverName;
     private javax.swing.JLabel lblLicenseNumber;
+    private javax.swing.JLabel lblLicenseNumber1;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTextField txtpass;
     // End of variables declaration//GEN-END:variables
 }
