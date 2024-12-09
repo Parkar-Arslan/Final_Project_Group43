@@ -47,7 +47,8 @@ public class UserDashboard extends javax.swing.JPanel {
         btnCheckBill = new javax.swing.JButton();
         btnPayBill = new javax.swing.JButton();
         btnComplain = new javax.swing.JButton();
-        btnAddRemove = new javax.swing.JButton();
+        btnaddtrash = new javax.swing.JButton();
+        btnAddRemove1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(54, 116, 99));
 
@@ -96,13 +97,23 @@ public class UserDashboard extends javax.swing.JPanel {
             }
         });
 
-        btnAddRemove.setBackground(new java.awt.Color(181, 143, 120));
-        btnAddRemove.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAddRemove.setForeground(new java.awt.Color(255, 255, 255));
-        btnAddRemove.setText("Add/Remove");
-        btnAddRemove.addActionListener(new java.awt.event.ActionListener() {
+        btnaddtrash.setBackground(new java.awt.Color(181, 143, 120));
+        btnaddtrash.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnaddtrash.setForeground(new java.awt.Color(255, 255, 255));
+        btnaddtrash.setText("add trash");
+        btnaddtrash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddRemoveActionPerformed(evt);
+                btnaddtrashActionPerformed(evt);
+            }
+        });
+
+        btnAddRemove1.setBackground(new java.awt.Color(181, 143, 120));
+        btnAddRemove1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAddRemove1.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddRemove1.setText("Add/Remove");
+        btnAddRemove1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddRemove1ActionPerformed(evt);
             }
         });
 
@@ -110,18 +121,19 @@ public class UserDashboard extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
+            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(btnTotalTrash)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnPayBill, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCheckBill, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnComplain, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAddRemove))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnPayBill, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(btnCheckBill, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(btnComplain, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(btnaddtrash, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAddRemove1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
@@ -135,9 +147,11 @@ public class UserDashboard extends javax.swing.JPanel {
                 .addComponent(btnPayBill)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnComplain)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAddRemove)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAddRemove1)
+                .addGap(13, 13, 13)
+                .addComponent(btnaddtrash)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(btnTotalTrash)
                 .addGap(17, 17, 17))
         );
@@ -163,17 +177,22 @@ public class UserDashboard extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnComplainActionPerformed
 
-    private void btnAddRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRemoveActionPerformed
+    private void btnaddtrashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddtrashActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddRemoveActionPerformed
+    }//GEN-LAST:event_btnaddtrashActionPerformed
+
+    private void btnAddRemove1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRemove1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddRemove1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddRemove;
+    private javax.swing.JButton btnAddRemove1;
     private javax.swing.JButton btnCheckBill;
     private javax.swing.JButton btnComplain;
     private javax.swing.JButton btnPayBill;
     private javax.swing.JButton btnTotalTrash;
+    private javax.swing.JButton btnaddtrash;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }

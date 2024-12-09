@@ -4,6 +4,7 @@
  */
 package UI.Driver;
 
+import Model.Enterprise.Compliance.ComplaintDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -12,6 +13,7 @@ import javax.swing.JPanel;
  * @author tawde
  */
 public class DriverPickUpComplain extends javax.swing.JPanel {
+    private ComplaintDirectory complaintDirectory;
     private JPanel userProcessContainer;
 
     /**
@@ -32,10 +34,10 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
 
         Compplian = new javax.swing.JLabel();
         comboRoute = new javax.swing.JComboBox<>();
-        comboTrash = new javax.swing.JComboBox<>();
+        combouser = new javax.swing.JComboBox<>();
         btnback = new javax.swing.JButton();
         btnAssignRouteSet = new javax.swing.JButton();
-        lblChooseTrashid = new javax.swing.JLabel();
+        lblChooseuser = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         lblRouteNo = new javax.swing.JLabel();
         combocomplain = new javax.swing.JComboBox<>();
@@ -48,7 +50,7 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
 
         comboRoute.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        comboTrash.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combouser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnback.setBackground(new java.awt.Color(181, 143, 120));
         btnback.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -70,9 +72,9 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
             }
         });
 
-        lblChooseTrashid.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblChooseTrashid.setForeground(new java.awt.Color(255, 255, 255));
-        lblChooseTrashid.setText("Trash");
+        lblChooseuser.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblChooseuser.setForeground(new java.awt.Color(255, 255, 255));
+        lblChooseuser.setText("Trash");
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,13 +105,13 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
                 .addGap(147, 147, 147)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblRouteNo)
-                    .addComponent(lblChooseTrashid)
+                    .addComponent(lblChooseuser)
                     .addComponent(Compplian))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(combocomplain, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboTrash, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combouser, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -122,11 +124,11 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
                 .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblChooseTrashid)
+                        .addComponent(lblChooseuser)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblRouteNo))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(comboTrash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(combouser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -157,9 +159,9 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
     private javax.swing.JButton btnAssignRouteSet;
     private javax.swing.JButton btnback;
     private javax.swing.JComboBox<String> comboRoute;
-    private javax.swing.JComboBox<String> comboTrash;
     private javax.swing.JComboBox<String> combocomplain;
-    private javax.swing.JLabel lblChooseTrashid;
+    private javax.swing.JComboBox<String> combouser;
+    private javax.swing.JLabel lblChooseuser;
     private javax.swing.JLabel lblRouteNo;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
