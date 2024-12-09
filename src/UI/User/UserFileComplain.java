@@ -7,6 +7,7 @@ package UI.User;
 
 import Model.Enterprise.Compliance.Complaint;
 import Model.Enterprise.Compliance.ComplaintDirectory;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -43,6 +44,7 @@ public class UserFileComplain extends javax.swing.JPanel {
         lblBillid = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
+        btnback1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(54, 116, 99));
 
@@ -91,11 +93,25 @@ public class UserFileComplain extends javax.swing.JPanel {
         lblDate.setForeground(new java.awt.Color(255, 255, 255));
         lblDate.setText("Date");
 
+        btnback1.setBackground(new java.awt.Color(181, 143, 120));
+        btnback1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnback1.setForeground(new java.awt.Color(255, 255, 255));
+        btnback1.setText("<<Back");
+        btnback1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnback1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(btnback1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +138,9 @@ public class UserFileComplain extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(lblTitle)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitle)
+                    .addComponent(btnback1))
                 .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBillid)
@@ -174,9 +192,17 @@ public class UserFileComplain extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldBillidActionPerformed
 
+    private void btnback1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnback1ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnback1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFileComplainSubmit;
+    private javax.swing.JButton btnback1;
     private javax.swing.JTextField jTextFieldBillid;
     private javax.swing.JTextField jTextFieldComplain;
     private javax.swing.JTextField jTextFieldDate;

@@ -1,0 +1,7 @@
+----- Bill Payment Receipt -----
+Bill ID: B1733801629522
+Amount Paid: $150.0
+Payment Status: Paid
+Due Date: 2024-12-31
+-------------------------------
+Thank you for your payment!

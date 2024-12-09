@@ -8,6 +8,7 @@ import Model.Business.Business;
 import Model.Enterprise.Vehicle.TruckDirectory;
 import javax.swing.JPanel;
 import Model.Enterprise.Vehicle.Truck;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +26,7 @@ public class CreateTruck extends javax.swing.JPanel {
      */
     public CreateTruck(JPanel userProcessContainer, Business business, TruckDirectory truckDirectory) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
     }
 
     /**
@@ -44,6 +46,7 @@ public class CreateTruck extends javax.swing.JPanel {
         btnCreateTruckSubmit = new javax.swing.JButton();
         jTextFieldLicenseCapacity = new javax.swing.JTextField();
         lblTruckCapacity = new javax.swing.JLabel();
+        btnback1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(54, 116, 99));
 
@@ -92,11 +95,25 @@ public class CreateTruck extends javax.swing.JPanel {
         lblTruckCapacity.setForeground(new java.awt.Color(255, 255, 255));
         lblTruckCapacity.setText("Truck Capacity");
 
+        btnback1.setBackground(new java.awt.Color(181, 143, 120));
+        btnback1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnback1.setForeground(new java.awt.Color(255, 255, 255));
+        btnback1.setText("<<Back");
+        btnback1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnback1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btnback1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(147, 147, 147)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -118,7 +135,9 @@ public class CreateTruck extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(lblTitle)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitle)
+                    .addComponent(btnback1))
                 .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -179,9 +198,17 @@ public class CreateTruck extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLicenseCapacityActionPerformed
 
+    private void btnback1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnback1ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnback1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateTruckSubmit;
+    private javax.swing.JButton btnback1;
     private javax.swing.JTextField jTextFieldLicenseCapacity;
     private javax.swing.JTextField jTextFieldTruckID;
     private javax.swing.JTextField jTextFieldTruckModel;

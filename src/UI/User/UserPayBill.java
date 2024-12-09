@@ -4,17 +4,71 @@
  */
 package UI.User;
 
+import Model.Enterprise.bill.Bill;
+import Model.Enterprise.bill.BillDirectory;
+import Model.Role.User;
+import java.awt.CardLayout;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author tawde
  */
 public class UserPayBill extends javax.swing.JPanel {
+    private JPanel userProcessContainer;
+    private List<Bill> userBills; 
+    private BillDirectory billDirectory; 
+    private User user; 
 
     /**
      * Creates new form UserPayBill
      */
-    public UserPayBill() {
+    public UserPayBill(JPanel userProcessContainer, List<Bill> userBills, BillDirectory billDirectory, User user) {
+        this.userProcessContainer = userProcessContainer;
+        this.userBills = userBills;
+        this.billDirectory = billDirectory;
+        this.user = user;
+
         initComponents();
+        populateTable();
+    }
+
+    /**
+     * Populates the table with bills for the logged-in user
+     */
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblBills.getModel();
+        model.setRowCount(0);
+
+        for (Bill bill : userBills) {
+            Object[] row = new Object[3];
+            row[0] = bill.getBillId();
+            row[1] = "$" + bill.getAmount();
+            row[2] = bill.isIsPaid() ? "Paid" : "Unpaid";
+            model.addRow(row);
+        }
+    }
+
+    private void generateBillReceipt(Bill bill) {
+        String fileName = "BillReceipt_" + bill.getBillId() + ".txt";
+        try (FileWriter writer = new FileWriter(fileName)) {
+            writer.write("----- Bill Payment Receipt -----\n");
+            writer.write("Bill ID: " + bill.getBillId() + "\n");
+            writer.write("Amount Paid: $" + bill.getAmount() + "\n");
+            writer.write("Payment Status: Paid\n");
+            writer.write("Due Date: " + bill.getDueDate() + "\n");
+            writer.write("-------------------------------\n");
+            writer.write("Thank you for your payment!");
+            writer.flush();
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Receipt downloaded: " + fileName, "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Failed to generate receipt.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -26,41 +80,18 @@ public class UserPayBill extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextFieldDate = new javax.swing.JTextField();
-        jTextFieldBillNo = new javax.swing.JTextField();
-        lblBillNo = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
-        lblDate = new javax.swing.JLabel();
         btnPayBillSubmit = new javax.swing.JButton();
-        jTextFieldAmount = new javax.swing.JTextField();
-        lblAmount = new javax.swing.JLabel();
+        btnback1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblBills = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(54, 116, 99));
-
-        jTextFieldDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDateActionPerformed(evt);
-            }
-        });
-
-        jTextFieldBillNo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldBillNoActionPerformed(evt);
-            }
-        });
-
-        lblBillNo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblBillNo.setForeground(new java.awt.Color(255, 255, 255));
-        lblBillNo.setText("Bill No");
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("Pay Bill");
-
-        lblDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblDate.setForeground(new java.awt.Color(255, 255, 255));
-        lblDate.setText("Date");
 
         btnPayBillSubmit.setBackground(new java.awt.Color(181, 143, 120));
         btnPayBillSubmit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -72,91 +103,106 @@ public class UserPayBill extends javax.swing.JPanel {
             }
         });
 
-        jTextFieldAmount.addActionListener(new java.awt.event.ActionListener() {
+        btnback1.setBackground(new java.awt.Color(181, 143, 120));
+        btnback1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnback1.setForeground(new java.awt.Color(255, 255, 255));
+        btnback1.setText("<<Back");
+        btnback1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAmountActionPerformed(evt);
+                btnback1ActionPerformed(evt);
             }
         });
 
-        lblAmount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblAmount.setForeground(new java.awt.Color(255, 255, 255));
-        lblAmount.setText("Amount");
+        tblBills.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Bill id", "Amount", "Status"
+            }
+        ));
+        jScrollPane1.setViewportView(tblBills);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnPayBillSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnPayBillSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(240, 240, 240))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblAmount)
-                                .addGap(82, 82, 82)
-                                .addComponent(jTextFieldAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDate)
-                                    .addComponent(lblBillNo))
-                                .addGap(94, 94, 94)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldBillNo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(149, 149, 149))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnback1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                        .addGap(42, 42, 42))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(lblTitle)
-                .addGap(88, 88, 88)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBillNo)
-                    .addComponent(jTextFieldBillNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDate)
-                    .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAmount)
-                    .addComponent(jTextFieldAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitle)
+                    .addComponent(btnback1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(btnPayBillSubmit)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(45, 45, 45))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDateActionPerformed
-
-    private void jTextFieldBillNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBillNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldBillNoActionPerformed
-
     private void btnPayBillSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayBillSubmitActionPerformed
         // TODO add your handling code here:
+        int selectedRow = tblBills.getSelectedRow();
+        if (selectedRow < 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a bill to pay.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String billId = (String) tblBills.getValueAt(selectedRow, 0);
+        Bill selectedBill = null;
+
+        for (Bill bill : userBills) {
+            if (bill.getBillId().equals(billId)) {
+                selectedBill = bill;
+                break;
+            }
+        }
+
+        if (selectedBill != null && !selectedBill.isIsPaid()) {
+            selectedBill.setIsPaid(true);
+            javax.swing.JOptionPane.showMessageDialog(this, "Bill paid successfully!", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            generateBillReceipt(selectedBill);
+            populateTable(); // Refresh the table
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "This bill is already paid.", "Info", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnPayBillSubmitActionPerformed
 
-    private void jTextFieldAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAmountActionPerformed
+    private void btnback1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnback1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAmountActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnback1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPayBillSubmit;
-    private javax.swing.JTextField jTextFieldAmount;
-    private javax.swing.JTextField jTextFieldBillNo;
-    private javax.swing.JTextField jTextFieldDate;
-    private javax.swing.JLabel lblAmount;
-    private javax.swing.JLabel lblBillNo;
-    private javax.swing.JLabel lblDate;
+    private javax.swing.JButton btnback1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTable tblBills;
     // End of variables declaration//GEN-END:variables
 }

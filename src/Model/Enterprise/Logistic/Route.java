@@ -1,8 +1,11 @@
 package Model.Enterprise.Logistic;
 
+import Model.Enterprise.Vehicle.Truck;
 import Model.Role.Driver;
 import Model.Role.Supervisor;
 import Model.Role.User;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Route {
     private String routeId;
@@ -14,6 +17,9 @@ public class Route {
     private String status; // Current status of the route (e.g., Pending, Completed)
     private Supervisor assignedSupervisor; // Add this field
     private Driver assignedDriver; // Reference to the assigned driver
+    private Truck assignedTruck; // New field for truck assignment
+
+    
 
 
     public Route(String routeId,String description, String start, String end) {
@@ -26,6 +32,8 @@ public class Route {
         this.status = "Pending"; // Default status
         this.assignedSupervisor = null; // Initialize as null
         this.assignedDriver = null; // No driver assigned initially
+        this.assignedTruck = null; // Initialize as null
+        
         
     }
     
@@ -38,6 +46,14 @@ public class Route {
     // Setter for assignedDriver
     public void setAssignedDriver(Driver driver) {
         this.assignedDriver = driver;
+    }
+    
+    public Truck getAssignedTruck() {
+        return assignedTruck;
+    }
+
+    public void setAssignedTruck(Truck truck) {
+        this.assignedTruck = truck;
     }
     
     public Supervisor getAssignedSupervisor() { // Add getter for supervisor
@@ -92,6 +108,8 @@ public class Route {
     public void setStatus(String status) {
         this.status = status;
     }
+    
+    
     
     
      @Override

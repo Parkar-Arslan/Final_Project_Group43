@@ -8,6 +8,9 @@ import Model.Business.Business;
 import Model.Enterprise.Compliance.Complaint;
 import Model.Enterprise.Compliance.ComplaintDirectory;
 import Model.Enterprise.Logistic.Route;
+import Model.Enterprise.bill.Bill;
+import Model.Enterprise.bill.BillDirectory;
+import Model.Role.Driver;
 import Model.Role.User;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -21,17 +24,22 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
      private ComplaintDirectory complaintDirectory;
     private JPanel userProcessContainer;
     private Business business;
+    private Driver driver;
 
     /**
      * Creates new form DriverPickUpComplain
      */
-    public DriverPickUpComplain(JPanel userProcessContainer, Business business, ComplaintDirectory complaintDirectory) {
-        this.userProcessContainer = userProcessContainer;
-        this.business = business;
-        this.complaintDirectory = complaintDirectory;
-        initComponents();
-        populateComboBoxes();
+    public DriverPickUpComplain(JPanel userProcessContainer, Business business, Driver driver, ComplaintDirectory complaintDirectory, DriverDashboard driverDashboard) {
+    if (complaintDirectory == null) {
+        throw new IllegalArgumentException("ComplaintDirectory cannot be null");
     }
+    this.userProcessContainer = userProcessContainer;
+    this.business = business;
+    this.driver = driver;
+    this.complaintDirectory = complaintDirectory;
+    initComponents();
+    populateComboBoxes();
+}
     
     private void populateComboBoxes() {
         // Populate users and routes from the business model
@@ -124,21 +132,20 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
                 .addGap(119, 119, 119))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAssignRouteSet, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(240, 240, 240))
             .addGroup(layout.createSequentialGroup()
                 .addGap(147, 147, 147)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblRouteNo)
-                    .addComponent(lblChooseuser)
-                    .addComponent(Compplian))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(combocomplain, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboUser, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAssignRouteSet, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblRouteNo)
+                            .addComponent(lblChooseuser)
+                            .addComponent(Compplian))
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(combocomplain, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboUser, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -162,9 +169,9 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Compplian)
                     .addComponent(combocomplain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addGap(53, 53, 53)
                 .addComponent(btnAssignRouteSet)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -177,6 +184,7 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
 
     private void btnAssignRouteSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignRouteSetActionPerformed
         // TODO add your handling code here:
+    try {
         String selectedUser = (String) comboUser.getSelectedItem();
         String selectedRoute = (String) comboRoute.getSelectedItem();
         String complaintType = (String) combocomplain.getSelectedItem();
@@ -192,15 +200,39 @@ public class DriverPickUpComplain extends javax.swing.JPanel {
         User user = business.getUserDirectory().findUserById(userId);
         Route route = business.getRouteDirectory().findRouteById(routeId);
 
-        if (user != null && route != null) {
-            Complaint complaint = new Complaint("C" + System.currentTimeMillis(), "Complaint about " + complaintType, false);
-            complaintDirectory.addComplaint(complaint);
-            route.setStatus("Complaint logged"); // Update route status
-            JOptionPane.showMessageDialog(null, "Complaint logged successfully for " + user.getName(), "Success", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "Failed to log complaint. Check user and route.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (user == null || route == null) {
+            JOptionPane.showMessageDialog(null, "User or Route not found. Please check the selections.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
+        // Log complaint
+        Complaint complaint = new Complaint("C" + System.currentTimeMillis(), "Complaint about " + complaintType, false);
+        complaintDirectory.addComplaint(complaint);
+        route.setStatus("Complaint logged");
+
+        // Handle trash overflow and generate a bill
+        if ("Trash Overflow".equals(complaintType)) {
+            // Ensure BillDirectory exists
+            if (business.getBillDirectory() == null) {
+                business.setBillDirectory(new BillDirectory());
+            }
+
+            // Generate a bill
+            Bill bill = new Bill();
+            bill.setBillId("B" + System.currentTimeMillis());
+            bill.setAmount(150.0); // Example fixed amount for overflow
+            bill.setIsPaid(false);
+            bill.setDueDate("2024-12-31");
+            business.getBillDirectory().addBill(userId, bill);
+
+            JOptionPane.showMessageDialog(null, "Bill generated for Trash Overflow. Amount: $150", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        JOptionPane.showMessageDialog(null, "Complaint logged successfully for " + user.getName(), "Success", JOptionPane.INFORMATION_MESSAGE);
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnAssignRouteSetActionPerformed
 
 

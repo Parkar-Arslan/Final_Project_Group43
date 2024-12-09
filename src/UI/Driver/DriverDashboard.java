@@ -5,6 +5,7 @@
 package UI.Driver;
 
 import Model.Business.Business;
+import Model.Enterprise.Compliance.ComplaintDirectory;
 import Model.Enterprise.Vehicle.Truck;
 import Model.Role.Driver;
 import java.awt.CardLayout;
@@ -21,6 +22,7 @@ public class DriverDashboard extends javax.swing.JPanel {
      private Business business;
     private Driver driver;
     private JPanel userProcessContainer;
+    private ComplaintDirectory complaintDirectory;
 
     /**
      * Creates new form DriverDashboard
@@ -154,7 +156,10 @@ public class DriverDashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCollectTrashActionPerformed
 
     private void btnTrashComplainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrashComplainActionPerformed
-       
+        DriverPickUpComplain apc = new DriverPickUpComplain(userProcessContainer, business, driver, business.getComplaintDirectory(), this);
+        userProcessContainer.add("DriverDashboard", apc);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnTrashComplainActionPerformed
 
 

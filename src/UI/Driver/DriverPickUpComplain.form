@@ -28,23 +28,23 @@
               <Component id="lblTitle" pref="433" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="btnAssignRouteSet" min="-2" pref="114" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="240" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblRouteNo" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblChooseuser" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="Compplian" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="combocomplain" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                  <Component id="comboRoute" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                  <Component id="comboUser" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="btnAssignRouteSet" min="-2" pref="114" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblRouteNo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblChooseuser" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Compplian" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="combocomplain" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                          <Component id="comboRoute" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                          <Component id="comboUser" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -76,9 +76,9 @@
                   <Component id="Compplian" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="combocomplain" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
               <Component id="btnAssignRouteSet" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="63" max="32767" attributes="0"/>
+              <EmptySpace pref="62" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

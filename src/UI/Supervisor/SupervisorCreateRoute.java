@@ -206,6 +206,7 @@ public class SupervisorCreateRoute extends javax.swing.JPanel {
         txtrouteid.setText("");
         txtroutestart.setText("");
         txtrouteend.setText("");
+        txtdesc.setText("");
     }//GEN-LAST:event_btnRoutesetActionPerformed
 
     private void txtrouteendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrouteendActionPerformed

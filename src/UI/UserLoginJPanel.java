@@ -147,26 +147,28 @@ public class UserLoginJPanel extends javax.swing.JPanel {
         if (userDirectory == null) {
         javax.swing.JOptionPane.showMessageDialog(this, "User directory not initialized", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         return;
-        }
-        String userId = txtUserId.getText().trim();  // Assume txtUserId and txtUserPass are the input fields for user credentials
-        String password = txtUserPass.getText().trim();
-        
-        if (userId.isEmpty() || password.isEmpty()) {
+    }
+    String userId = txtUserId.getText().trim();
+    String password = txtUserPass.getText().trim();
+
+    if (userId.isEmpty() || password.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Please enter both User ID and Password", "Validation Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         return;
-        }
-        User user = userDirectory.findUserById(userId);
-        
-        if (user != null && password.equals(user.getPassword())) { 
+    }
+
+    User user = userDirectory.findUserById(userId);
+
+    if (user != null && password.equals(user.getPassword())) { 
         javax.swing.JOptionPane.showMessageDialog(this, "Login Successful", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        // Proceed to the next screen (userDashBoard)
-            UserDashboard dashboard = new UserDashboard(userProcessContainer,business , supervisorDirectory,complaintDirectory);
-            userProcessContainer.add("SupervisorDashboard", dashboard);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        } else {
+
+        // Pass the logged-in user to the UserDashboard
+        UserDashboard dashboard = new UserDashboard(userProcessContainer, business, supervisorDirectory, complaintDirectory, user);
+        userProcessContainer.add("UserDashboard", dashboard);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    } else {
         javax.swing.JOptionPane.showMessageDialog(this, "Invalid User ID or Password", "Login Failed", javax.swing.JOptionPane.ERROR_MESSAGE);
-        }  
+    }
     }//GEN-LAST:event_btnUserSubmitActionPerformed
 
 

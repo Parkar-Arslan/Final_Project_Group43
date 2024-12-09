@@ -26,13 +26,7 @@ public class Business {
     UserDirectory userDirectory;
     BillDirectory billDirectory;
 
-    public BillDirectory getBillDirectory() {
-        return billDirectory;
-    }
-
-    public void setBillDirectory(BillDirectory billDirectory) {
-        this.billDirectory = billDirectory;
-    }
+  
     AdminDirectory adminDirectory;
 
     RouteDirectory routeDirectory;
@@ -45,12 +39,21 @@ public class Business {
         driverDirectory =  DriverDirectory.getInstance();
         complaintDirectory = new ComplaintDirectory();
         this.userDirectory = new UserDirectory();
-
+        this.billDirectory = new BillDirectory();
         routeDirectory = new RouteDirectory();
     }
 
+    
     public UserDirectory getUserDirectory() {
         return userDirectory;
+    }
+    
+     public BillDirectory getBillDirectory() {
+        return billDirectory;
+    }
+
+    public void setBillDirectory(BillDirectory billDirectory) {
+        this.billDirectory = billDirectory;
     }
 
     public ComplaintDirectory getComplaintDirectory() {
@@ -88,6 +91,8 @@ public class Business {
     public RouteDirectory getRouteDirectory() {
         return routeDirectory;
     }
+    
+    
     
     
 }

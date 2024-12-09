@@ -65,7 +65,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }
     
     private void initializeUserData() {
-        userDirectory.createUser("U001", "Arjun Kapoor", "arjun.kapoor@example.com", "arjun123");
+        userDirectory.createUser("u1", "Arjun Kapoor", "arjun.kapoor@example.com", "u1");
         userDirectory.createUser("U002", "Priya Sharma", "priya.sharma@example.com", "priya123");
         userDirectory.createUser("U003", "Ravi Verma", "ravi.verma@example.com", "ravi123");
         userDirectory.createUser("U004", "Meena Joshi", "meena.joshi@example.com", "meena123");

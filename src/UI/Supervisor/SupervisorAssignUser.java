@@ -162,9 +162,9 @@ public class SupervisorAssignUser extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAssignRouteSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignRouteSetActionPerformed
-       String selectedUser = (String) comboUser.getSelectedItem();
+    String selectedUser = (String) comboUser.getSelectedItem();
     String selectedRoute = (String) comboRoute.getSelectedItem();
-    
+
     if (selectedUser == null || selectedRoute == null) {
         JOptionPane.showMessageDialog(null, "Please select both a user and a route.", "Error", JOptionPane.ERROR_MESSAGE);
         return;
@@ -178,10 +178,12 @@ public class SupervisorAssignUser extends javax.swing.JPanel {
 
     if (user != null && route != null) {
         route.setAssignedUser(user);
+        user.addAssignedRoute(route); // Update the user's assigned routes
         JOptionPane.showMessageDialog(null, "User " + user.getName() + " successfully assigned to route " + route.getDescription(), "Assignment Successful", JOptionPane.INFORMATION_MESSAGE);
     } else {
         JOptionPane.showMessageDialog(null, "Failed to assign user to route. Check if user and route IDs are correct.", "Assignment Error", JOptionPane.ERROR_MESSAGE);
     }
+
     }//GEN-LAST:event_btnAssignRouteSetActionPerformed
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed

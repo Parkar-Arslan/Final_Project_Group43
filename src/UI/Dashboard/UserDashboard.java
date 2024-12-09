@@ -6,11 +6,20 @@ package UI.Dashboard;
 
 import Model.Business.Business;
 import Model.Enterprise.Compliance.ComplaintDirectory;
+import Model.Enterprise.Logistic.Route;
+import Model.Enterprise.Vehicle.Truck;
+import Model.Enterprise.bill.Bill;
+import Model.Enterprise.bill.BillDirectory;
 import Model.Role.SupervisorDirectory;
+import Model.Role.User;
 import UI.Supervisor.SupervisorAssignTruck;
+import UI.User.UserCheckBill;
 import UI.User.UserFileComplain;
+import UI.User.UserPayBill;
 import java.awt.CardLayout;
+import java.util.List;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,19 +27,60 @@ import javax.swing.JPanel;
  */
 public class UserDashboard extends javax.swing.JPanel {
     private JPanel userProcessContainer;
-    private Business business ;
+    private Business business;
     private SupervisorDirectory supervisorDirectory;
     private ComplaintDirectory complaintDirectory;
-
+    private User loggedInUser;
+    private BillDirectory billDirectory;
+    private User user;
     /**
      * Creates new form UserDashboard
      */
-    public UserDashboard(JPanel userProcessContainer,Business business ,SupervisorDirectory supervisorDirectory,ComplaintDirectory complaintDirectory) {
-        initComponents();
-        this.business=business;
-        this.userProcessContainer=userProcessContainer;
-        this.supervisorDirectory=supervisorDirectory;
-        this.complaintDirectory=complaintDirectory;
+    public UserDashboard(JPanel userProcessContainer, Business business, SupervisorDirectory supervisorDirectory, 
+                     ComplaintDirectory complaintDirectory, User loggedInUser) {
+    if (loggedInUser == null) {
+        throw new IllegalArgumentException("Logged-in user cannot be null.");
+    }
+    initComponents();
+    this.business = business;
+    this.userProcessContainer = userProcessContainer;
+    this.supervisorDirectory = supervisorDirectory;
+    this.complaintDirectory = complaintDirectory;
+    this.loggedInUser = loggedInUser;
+    this.billDirectory = business.getBillDirectory();
+    
+    populateTable();
+}
+
+    /**
+     * Populates the table with data specific to the logged-in user
+     */
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0); // Clear the table
+
+    if (loggedInUser.getAssignedRoutes() == null || loggedInUser.getAssignedRoutes().isEmpty()) {
+        System.out.println("No assigned routes for the user.");
+        return; // No assigned routes
+    }
+
+    loggedInUser.getAssignedRoutes().forEach(route -> {
+        String truckId = route.getAssignedTruck() != null ? route.getAssignedTruck().getTruckId() : "Not Assigned";
+        String driverName = route.getAssignedTruck() != null && route.getAssignedTruck().getAssignedDriver() != null
+                ? route.getAssignedTruck().getAssignedDriver().getName()
+                : "Not Assigned";
+
+        System.out.println("Route ID: " + route.getRouteId());
+        System.out.println("Truck ID: " + truckId);
+        System.out.println("Driver Name: " + driverName);
+
+        Object[] row = new Object[4];
+        row[0] = loggedInUser.getAssignedTruck();
+        row[1] = loggedInUser.getAssignedRoutes();
+        row[2] = route.getStatus();
+        row[3] = route.getTrashCollected()+ " kg";
+        model.addRow(row);
+    });
     }
 
     /**
@@ -42,25 +92,15 @@ public class UserDashboard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnTotalTrash = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         btnCheckBill = new javax.swing.JButton();
         btnPayBill = new javax.swing.JButton();
         btnComplain = new javax.swing.JButton();
-        btnaddtrash = new javax.swing.JButton();
         btnAddRemove1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(54, 116, 99));
-
-        btnTotalTrash.setBackground(new java.awt.Color(181, 143, 120));
-        btnTotalTrash.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnTotalTrash.setForeground(new java.awt.Color(255, 255, 255));
-        btnTotalTrash.setText("Total Trash");
-        btnTotalTrash.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTotalTrashActionPerformed(evt);
-            }
-        });
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -97,16 +137,6 @@ public class UserDashboard extends javax.swing.JPanel {
             }
         });
 
-        btnaddtrash.setBackground(new java.awt.Color(181, 143, 120));
-        btnaddtrash.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnaddtrash.setForeground(new java.awt.Color(255, 255, 255));
-        btnaddtrash.setText("add trash");
-        btnaddtrash.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnaddtrashActionPerformed(evt);
-            }
-        });
-
         btnAddRemove1.setBackground(new java.awt.Color(181, 143, 120));
         btnAddRemove1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnAddRemove1.setForeground(new java.awt.Color(255, 255, 255));
@@ -117,73 +147,107 @@ public class UserDashboard extends javax.swing.JPanel {
             }
         });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Truck", "Driver", "Status", "Trash"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
+            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(btnTotalTrash)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnPayBill, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                    .addComponent(btnCheckBill, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                    .addComponent(btnComplain, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                    .addComponent(btnaddtrash, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAddRemove1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(19, 19, 19))
+                    .addComponent(btnPayBill, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCheckBill, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnComplain, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAddRemove1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblTitle)
-                .addGap(67, 67, 67)
-                .addComponent(btnCheckBill)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnPayBill)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnComplain)
-                .addGap(18, 18, 18)
-                .addComponent(btnAddRemove1)
-                .addGap(13, 13, 13)
-                .addComponent(btnaddtrash)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
-                .addComponent(btnTotalTrash)
-                .addGap(17, 17, 17))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(btnCheckBill)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPayBill)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnComplain)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAddRemove1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnTotalTrashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalTrashActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTotalTrashActionPerformed
-
     private void btnCheckBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckBillActionPerformed
         // TODO add your handling code here:
+      if (loggedInUser == null) {
+        javax.swing.JOptionPane.showMessageDialog(this, "User data is missing. Please log in again.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    if (billDirectory == null) {
+        javax.swing.JOptionPane.showMessageDialog(this, "BillDirectory is not initialized. Please contact support.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    List<Bill> userBills = billDirectory.getUserBills(loggedInUser.getId());
+    UserCheckBill ucb = new UserCheckBill(userProcessContainer, userBills,loggedInUser, billDirectory);
+    userProcessContainer.add("UserCheckBill", ucb);
+    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+    layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCheckBillActionPerformed
-
-    private void btnPayBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayBillActionPerformed
-
-    }//GEN-LAST:event_btnPayBillActionPerformed
 
     private void btnComplainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComplainActionPerformed
         // TODO add your handling code here:
+        if (loggedInUser == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "User data is missing. Please log in again.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         UserFileComplain ufc = new UserFileComplain(complaintDirectory, userProcessContainer);
         userProcessContainer.add("UserFileComplain", ufc);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnComplainActionPerformed
 
-    private void btnaddtrashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddtrashActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnaddtrashActionPerformed
-
     private void btnAddRemove1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRemove1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddRemove1ActionPerformed
+
+    private void btnPayBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayBillActionPerformed
+        if (loggedInUser == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "User data is missing. Please log in again.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (billDirectory.getUserBills(loggedInUser.getId()).isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No bills found for the user.", "Info", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        List<Bill> userBills = billDirectory.getUserBills(loggedInUser.getId());
+    UserPayBill upb = new UserPayBill(userProcessContainer, userBills, billDirectory, loggedInUser);
+    userProcessContainer.add("UserPayBill", upb);
+    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+   layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnPayBillActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -191,8 +255,8 @@ public class UserDashboard extends javax.swing.JPanel {
     private javax.swing.JButton btnCheckBill;
     private javax.swing.JButton btnComplain;
     private javax.swing.JButton btnPayBill;
-    private javax.swing.JButton btnTotalTrash;
-    private javax.swing.JButton btnaddtrash;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }
