@@ -11,8 +11,8 @@ public class RouteDirectory {
         this.routes = new ArrayList<>();
     }
 
-    public void addRoute(String routeId, String start, String end) {
-        Route route = new Route(routeId, start, end);
+    public void addRoute(String routeId,String description ,String start, String end) {
+        Route route = new Route(routeId,description, start, end);
         routes.add(route);
     }
 

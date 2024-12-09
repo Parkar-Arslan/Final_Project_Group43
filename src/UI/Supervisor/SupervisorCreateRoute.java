@@ -54,6 +54,8 @@ public class SupervisorCreateRoute extends javax.swing.JPanel {
         lblTitle = new javax.swing.JLabel();
         lblDriver = new javax.swing.JLabel();
         btnback = new javax.swing.JButton();
+        txtdesc = new javax.swing.JTextField();
+        lblDriverShift1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(54, 116, 99));
 
@@ -112,6 +114,16 @@ public class SupervisorCreateRoute extends javax.swing.JPanel {
             }
         });
 
+        txtdesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdescActionPerformed(evt);
+            }
+        });
+
+        lblDriverShift1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblDriverShift1.setForeground(new java.awt.Color(255, 255, 255));
+        lblDriverShift1.setText("Descrpt");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,15 +139,21 @@ public class SupervisorCreateRoute extends javax.swing.JPanel {
                 .addGap(240, 240, 240))
             .addGroup(layout.createSequentialGroup()
                 .addGap(146, 146, 146)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblDriverShift)
-                    .addComponent(lblDriver)
-                    .addComponent(lblChooseTruck))
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtrouteend, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtroutestart, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtrouteid, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblDriverShift1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtdesc, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblDriverShift)
+                            .addComponent(lblDriver)
+                            .addComponent(lblChooseTruck))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtrouteend, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtroutestart, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtrouteid, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -159,7 +177,11 @@ public class SupervisorCreateRoute extends javax.swing.JPanel {
                         .addComponent(txtroutestart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtrouteend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(113, 113, 113)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtdesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDriverShift1))
+                .addGap(76, 76, 76)
                 .addComponent(btnRouteset)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
@@ -170,6 +192,7 @@ public class SupervisorCreateRoute extends javax.swing.JPanel {
         String routeId = txtrouteid.getText();
         String start = txtroutestart.getText();
         String end = txtrouteend.getText();
+        String description = txtdesc.getText();
 
         if (routeId.isEmpty() || start.isEmpty() || end.isEmpty()) {
             JOptionPane.showMessageDialog(null, "All fields must be filled", "Error", JOptionPane.ERROR_MESSAGE);
@@ -177,7 +200,7 @@ public class SupervisorCreateRoute extends javax.swing.JPanel {
         }
 
         RouteDirectory routeDirectory = business.getRouteDirectory();
-        routeDirectory.addRoute(routeId, start, end);
+        routeDirectory.addRoute(routeId, description, start, end);
         JOptionPane.showMessageDialog(null, "Route successfully created", "Success", JOptionPane.INFORMATION_MESSAGE);
 
         txtrouteid.setText("");
@@ -206,6 +229,10 @@ public class SupervisorCreateRoute extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnbackActionPerformed
 
+    private void txtdescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdescActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdescActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRouteset;
@@ -213,7 +240,9 @@ public class SupervisorCreateRoute extends javax.swing.JPanel {
     private javax.swing.JLabel lblChooseTruck;
     private javax.swing.JLabel lblDriver;
     private javax.swing.JLabel lblDriverShift;
+    private javax.swing.JLabel lblDriverShift1;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTextField txtdesc;
     private javax.swing.JTextField txtrouteend;
     private javax.swing.JTextField txtrouteid;
     private javax.swing.JTextField txtroutestart;
